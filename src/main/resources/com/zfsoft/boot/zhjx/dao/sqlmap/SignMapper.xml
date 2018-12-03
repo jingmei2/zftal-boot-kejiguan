@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.SignDao" >
+
+    
+    <insert id="insert" parameterType="signModel">
+    insert into M_SIGN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yhm != null">
+        yhm,
+      </if>
+      <if test="signData != null">
+        signdata,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yhm != null">
+        #{yhm,jdbcType=VARCHAR},
+      </if>
+      <if test="signData != null">
+        #{signData,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="countByYhm" parameterType="signModel" resultType="java.lang.Integer">
+  		select count(1) from M_SIGN t where t.yhm = #{yhm} and t.signdata like #{signData,jdbcType=VARCHAR}||'%'
+  </select>
+    
+  <!-- 签到列表 -->   
+  <select id="selectSignList"  parameterType="signModel"  resultType="signModel">  
+	   select t.*,t1.xm, t2.*, t3.institutename
+		  from M_SIGN t
+		 inner join M_USER t1
+		    on t.yhm = t1.yhm
+		 inner join M_CLASS t2
+		    on t1.classid = t2.classid
+		 inner join M_INSTITUTE t3
+		    on t2.instituteid = t3.instituteid
+		 <if test ="classId != null and classId != ''">
+		 	 and t1.classid = #{classId}
+		 </if>
+		 <if test ="yhm != null and yhm != ''">
+		 	 and t.yhm = #{yhm}
+		 </if>
+		 <if test="instituteId != null and instituteId != ''">
+		 	and t1.classid in (select t2.classid from m_class t2 where t2.instituteid = #{instituteId})
+		 </if>  
+		 <if test ="address != null and address != ''">
+		 	 and t.address = #{address}
+		 </if>
+		 <if test ="kssj != null and kssj != ''">
+		 	 <![CDATA[and t.signdata >= #{kssj}]]>
+		 </if>
+		 <if test ="jssj != null and jssj != ''">
+		 	<![CDATA[ and t.signdata <= #{jssj}]]>
+		 </if>  
+		 order by t.signdata desc 
+  </select>  
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IMobileUserDao" >
+
+    <resultMap id="mobileUserMap" type="MobileUserModel">
+		<result property="yhm" column="yhm" />
+		<result property="xm" column="xm" />
+		<result property="dzyx" column="dzyx" />
+		<result property="sfqy" column="sfqy" />
+		<result property="yhlx" column="yhlx" />
+		<result property="kl" column="kl" />
+		<result property="sjhm" column="sjhm" />
+		<result property="yhmmdj" column="yhmmdj" />
+		<result property="apptoken" column="apptoken" />
+	</resultMap> 
+	
+    <!-- 根据用户名和密码(已加密)查询是否存在该用户 -->
+    <select id="checkUser" parameterType="com.zfsoft.boot.zhjx.dao.entities.MobileUserModel" resultMap="mobileUserMap">
+    	select t.* from M_USER t 
+    	<where>
+	    	<if test="yhm != null and yhm != ''">
+	   			and t.yhm = #{yhm}
+		   	</if>
+		   	<if test="kl != null and kl != ''">
+	   			and t.kl = #{kl}
+		   	</if>
+	   		and t.sfqy = '1'
+	   	</where>
+    </select>
+    
+    <update id="updateApptoken" parameterType="com.zfsoft.boot.zhjx.dao.entities.MobileUserModel">
+		update M_USER  
+		<set>
+			<if test="apptoken != null and apptoken != ''">apptoken = #{apptoken}</if>
+		</set>
+		where yhm = #{yhm}
+	</update>
+	
+	<!-- 根据用户账号获取用户角色代码 -->
+	<select id="getJsdmByYhm" parameterType="map" resultType="string">
+	    select jsdm from zftal_xtgl_yhjsb where yhm = #{yhm}
+	</select>
+	
+	<!-- 根据学院id获取所有班级信息 -->
+	<select id="getClassInfoList"  parameterType="map" resultType="com.zfsoft.boot.zhjx.dao.entities.ClassInfoModel">
+	    select * from m_class where 1=1 
+	    <if test="instituteId != null and instituteId != ''">
+	       and instituteId = #{instituteId} 
+	    </if> 
+	</select>
+	
+	<!-- 获取所有学院信息 -->
+	<select id="getInstituteInfoList" resultType="com.zfsoft.boot.zhjx.dao.entities.InstituteInfoModel">
+	    select * from m_institute where 1=1
+	</select>
+</mapper>

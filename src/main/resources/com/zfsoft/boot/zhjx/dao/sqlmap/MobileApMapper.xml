@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IMobileApDao" >
+	<resultMap id="mobileApMap" type="MobileApModel">
+		<result property="wifiIp"     column="wifiIp" />
+		<result property="wifiName"   column="wifiName" />
+		<result property="networkType" column="networkType" />
+		<result property="cellIp"     column="cellIp" />
+		<result property="wifiList"   column="wifiList" />
+		<result property="createTime"   column="createTime" />
+	</resultMap>	
+
+    <insert id="insert" parameterType="MobileApModel">
+		insert into M_AP 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">userName,</if>
+			<if test="wifiIp != null and wifiIp != ''">wifiIp,</if>
+			<if test="wifiName != null and wifiName != ''">wifiName,</if>
+			<if test="networkType != null and networkType != ''">networkType,</if>
+			<if test="cellIp != null and cellIp != ''">cellIp,</if>
+			<if test="wifiList != null and wifiList != ''">wifiList,</if>
+			<if test="createTime != null">createTime,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">#{userName,jdbcType=VARCHAR},</if>
+			<if test="wifiIp != null and wifiIp != ''">#{wifiIp,jdbcType=VARCHAR},</if>
+			<if test="wifiName != null and wifiName != ''">#{wifiName,jdbcType=VARCHAR},</if>
+			<if test="networkType != null and networkType != ''">#{networkType,jdbcType=VARCHAR},</if>
+			<if test="cellIp != null and cellIp != ''">#{cellIp,jdbcType=VARCHAR},</if>
+			<if test="wifiList != null and wifiList != ''">#{wifiList,jdbcType=VARCHAR},</if>
+			<if test="createTime != null">#{createTime,jdbcType=VARCHAR},</if>
+		</trim>
+	</insert>
+	
+	<!-- 查询ap统计数据 -->
+	<select id="selectApCountList" resultType="MobileApCountModel">
+		 select *
+		  from (select t.wifiname, count(t.wifiname) as useTimes
+		          from M_AP t
+		          inner join M_USER t1
+		            on t.username = t1.yhm
+		          inner join M_CLASS t2
+		            on t1.classid = t2.classid
+		          inner join M_INSTITUTE t3
+		            on t2.instituteid = t3.instituteid    
+		         where t.createtime <![CDATA[ >= ]]> #{startTime}
+		           and t.createTime <![CDATA[ <= ]]> #{endTime}
+		           <if test="xyId !=null and xyId != ''">
+		             and t3.instituteid = #{xyId}
+		           </if>
+		           <if test="bjId !=null and bjId != ''">
+		             and t2.classid = #{bjId}
+		           </if>
+		           <if test="yhm !=null and yhm != ''">
+		             and t1.yhm = #{yhm}
+		           </if>
+		         group by t.wifiname
+		         order by useTimes desc)
+		 where rownum <![CDATA[ <= ]]>10
+	</select>
+	
+	<!-- 查询学院列表 -->
+	<select id="getInstituteList" resultType="InstituteInfoModel">
+	    select * from m_institute where 1=1
+	</select>
+	
+	<!-- 查询学院下班级列表 -->
+	<select id="getClassList" resultType="ClassInfoModel">
+        select * from m_class t where 1=1
+        <if test="xyId != null and xyId != ''">
+            and t.instituteId = #{xyId,jdbcType=VARCHAR}
+        </if>
+	</select>
+	
+	<select id="getLddmList" resultType="LdxxbModel">
+       select * from XG_GYGL_NEW_LDXXB t
+	</select>
+</mapper>

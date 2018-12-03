@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预警综合分析平台 | 用户注册</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body class="mui-bg-gray">
+		<header class="mui-bar mui-bar-nav mui-primary">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-font-white"></a>
+			<h1 class="mui-title mui-font-white">用户注册</h1>
+		</header>
+		<div class="mui-content registration">
+		    <form class="mui-input-group base-info">
+		    	<div class="mui-input-row">
+			        <label class="registration-sub-title">基本信息</label>
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="yhm">用户名：</label>
+			    	<input type="text" placeholder="(例如:yilinsitian)" id="yhm" name="yhm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="pass">密码：</label>
+			    	<input type="text" class="mui-h6" placeholder="(6-16个字符组成,包含大写与小写字母)" id="pass" name="pass">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="realname">姓名：</label>
+			    	<input type="text" id="xm" name="xm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="phonenumb">电子邮箱：</label>
+			    	<input type="text" id="dzyx" name="dzyx">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">手机号码：</label>
+			    	<input type="text" id="sjhm" name="sjhm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">学院：</label>
+			    	<select id="schoolId" onchange="getClass()">
+			    		<option value="1">信息学院</option>
+			    		<option value="2">艺术与传媒学院</option>
+			    	</select>
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">班级：</label>
+			    	<select id="classId">
+			    		<!--<option value="1">艺传1班</option>
+			    		<option value="1">艺传2班</option>-->
+			    	</select>
+			    </div>
+			</form>
+			<form>
+			    <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary mui-btn-block btn-regist" onclick="addUser()">注册</button>
+			    </div>
+			</form>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/jquery-1.4.2.min.js"></script>
+		<!--<script src="js/GetOpenid.js"></script>-->
+		<script type="text/javascript">  
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					console.log('ready')
+					getSchool();
+				});
+			})(mui, document);
+			
+		function getSchool(){
+			$.ajax({
+				type:"get",
+				url:"/mUser/getInstituteInfoList",
+				success:function(data){
+					if(data.code == 1){
+						var c = data.data;
+						var html = '';
+						for(var i = 0; i < c.length;i++){
+							html += "<option value="+c[i].instituteId+">"+c[i].instituteName+"</option>";
+						}
+						$("#schoolId").html(html);
+					}else{
+						alert(data.status);
+					}
+				}
+			});
+		}
+		
+		function getClass(){
+			if($("#schoolId").val() != null){
+				$.ajax({
+					type:"get",
+					url:"/mUser/getClassInfoList",
+					data:{
+						instituteId:$("#schoolId").val()
+					},
+					success:function(data){
+						if(data.code == 1){
+							var c = data.data;
+							var html = '';
+							for(var i = 0; i < c.length;i++){
+								html += "<option value="+c[i].classId+">"+c[i].className+"</option>";
+							}
+							$("#classId").html(html);
+						}else{
+							alert(data.status);
+						}
+					}
+				});
+			}
+		}
+		
+		
+		function addUser(){
+			//基本信息校验
+			if($("#yhm").val() == ''){
+				alert("请输入用户名");
+			}else if($("#pass").val() == ''){
+				alert("请输入密码");
+			}else if($("#xm").val() == ''){
+				alert("请输入姓名");
+			}else if($("#sjhm").val() == '' || !checkMobile($("#sjhm").val())){
+				alert("请输入正确的联系电话");
+			}else if($("#dzyx").val() == ''){
+				alert("请输入正确的电子邮箱");
+			}else if($("#classId").val() == ''){
+				alert("请选择班级");
+			}else{
+				$.ajax({
+					type:"post",
+					url:"/wx/register",
+					data:{
+						yhm:$("#yhm").val(),
+						kl:$("#pass").val(),
+						xm:$("#xm").val(),
+						sjhm:$("#sjhm").val(),
+						dzyx:$("#dzyx").val(),
+						classId:$("#classId").val(),
+					},
+					success:function(data){
+						if(data.code == 1){
+							alert(data.status);
+							setTimeout(function(){
+								window.location.href = "userinfo.html";
+							},1000)
+						}else{
+							alert(data.status);
+							setTimeout(function(){
+								window.location.href = "login.html";
+							},1000)
+						}
+					}
+				});
+			}
+		}
+			
+		
+		function checkMobile(str) {
+  			var re = /^1\d{10}$/
+  			if(re.test(str)) {
+    			return true;
+  			}else {
+    			return false
+  			}
+		}
+		
+		</script>
+	</body>
+
+</html>

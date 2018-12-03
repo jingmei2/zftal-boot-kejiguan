@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IWarningDao" >
+
+    <select id="getWarningList" parameterType="map" resultType="WarningModel">
+        select t.*,t1.xm as name
+		  from m_warning t
+		 inner join m_user t1
+		    on t.username = t1.yhm
+		 inner join m_class t2
+		    on t1.classid = t2.classid
+		 inner join m_institute t3
+		    on t2.instituteid = t3.instituteid
+		 where 1=1 
+		 <if test="yjType !=null and yjType !=''">
+		   and t.type = #{yjType} 
+		 </if>
+		 <if test="startDate != null and startDate !=''">
+		   <![CDATA[ and t.time >= #{startDate} ]]>
+		 </if>  
+		 <if test="endDate != null and endDate !=''">
+		   <![CDATA[ and t.time <= #{endDate} ]]>
+		 </if> 
+		 <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'">
+		   and t3.instituteid = (select instituteid
+		                           from zftal_xtgl_yhb tt
+		                          inner join zftal_xtgl_yhjsb tt1
+		                             on tt.yhm = tt1.yhm
+		                          where tt.yhm = #{yhm}
+		                            and tt1.jsdm = 'js')
+         </if>
+         <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>  
+        
+       <!-- 
+   	   select t.* from m_warning t where 1=1 and t.type = #{yjType} 
+   	   <if test="startDate != null and startDate !=''">
+    	 <![CDATA[ and t.time >= #{startDate} ]]>
+       </if>
+       <if test="endDate != null and endDate !=''">
+         <![CDATA[ and t.time <= #{endDate} ]]>
+       </if>
+       -->
+    </select>
+    
+    <!-- 天预警统计 -->
+	<select id="getWarningDayCount" parameterType="map" resultType="int">
+	   select NVL(COUNT(*),0)
+	      from m_warning t
+	     inner join m_user t1
+	        on t.username = t1.yhm
+	     inner join m_class t2
+	        on t1.classid = t2.classid
+	     inner join m_institute t3
+	        on t2.instituteid = t3.instituteid
+	     where t.type = #{yjType}
+	     <if test="dateStr != null and dateStr !=''"> 
+	       and t.time like '%'||#{dateStr}||'%'
+	     </if>
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'"> 
+	       and t3.instituteid = (select instituteid
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'js')
+	     </if> 
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>                           
+	   <!-- 
+   	   select NVL(SUM(t.personsamt),0) from m_warning t where t.type = #{yjType} 
+   	   <if test="dateStr != null and dateStr !=''">
+    	 and t.time like '%'||#{dateStr}||'%'
+       </if>
+        -->
+    </select>
+    
+    <!-- 月预警统计 -->
+	<select id="getWarningMonthCount" parameterType="map" resultType="int">
+	   	 select NVL(COUNT(*),0)
+	      from m_warning t
+	     inner join m_user t1
+	        on t.username = t1.yhm
+	     inner join m_class t2
+	        on t1.classid = t2.classid
+	     inner join m_institute t3
+	        on t2.instituteid = t3.instituteid
+	     where t.type = #{yjType}
+	     <if test="monthStr != null and monthStr !=''"> 
+	       and t.time like '%'||#{monthStr}||'%'
+	     </if>
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'"> 
+	       and t3.instituteid = (select instituteid
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'js')
+	     </if> 
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>  
+	   <!-- 
+   	   select NVL(SUM(t.personsamt),0) from m_warning t where t.type = #{yjType} 
+   	   <if test="monthStr != null and monthStr !=''">
+    	 and t.time like '%'||#{monthStr}||'%'
+       </if>
+        -->
+    </select>
+    
+    <!-- 年预警统计 -->
+	<select id="getWarningYearCount" parameterType="map" resultType="int">
+	     select NVL(COUNT(*),0)
+	      from m_warning t
+	     inner join m_user t1
+	        on t.username = t1.yhm
+	     inner join m_class t2
+	        on t1.classid = t2.classid
+	     inner join m_institute t3
+	        on t2.instituteid = t3.instituteid
+	     where t.type = #{yjType}
+	     <if test="yearStr != null and yearStr !=''"> 
+	       and t.time like '%'||#{yearStr}||'%'
+	     </if>
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'"> 
+	       and t3.instituteid = (select instituteid
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'js')
+	     </if> 
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>  
+	   <!-- 
+   	   select NVL(SUM(t.personsamt),0) from m_warning t where t.type = #{yjType} 
+   	   <if test="yearStr != null and yearStr !=''">
+    	 and t.time like '%'||#{yearStr}||'%'
+       </if>
+       -->
+    </select>
+    
+    <!-- 根据预警类型查询总数 -->
+    <select id="getSumByYjType" parameterType="map" resultType="int">
+         select NVL(COUNT(*),0)
+	      from m_warning t
+	     inner join m_user t1
+	        on t.username = t1.yhm
+	     inner join m_class t2
+	        on t1.classid = t2.classid
+	     inner join m_institute t3
+	        on t2.instituteid = t3.instituteid
+	     where t.type = #{yjType}
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'"> 
+	       and t3.instituteid = (select instituteid
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'js')
+	     </if> 
+	     <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>  
+    
+      <!-- 
+      select NVL(SUM(t.personsamt),0) from m_warning t where t.type = #{yjType} 
+      -->
+    </select>
+    
+    
+    <!-- 插入预警数据到预警表   -->
+    <insert id="insertWarning"  parameterType="WarningModel">
+        insert into M_WARNING 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="username != null and username != ''">username,</if>
+			<if test="time != null and time != ''">time,</if>
+			<if test="place != null and place != ''">place,</if>
+			<if test="polygonId != null and polygonId != ''">polygonId,</if>
+			<if test="type != null and type != ''">type,</if>
+			<if test="leaveStatus != null and leaveStatus != ''">leavestatus,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="username != null and username != ''">#{username,jdbcType=CLOB},</if>
+			<if test="time != null and time != ''">#{time,jdbcType=VARCHAR},</if>
+			<if test="place != null and place != ''">#{place,jdbcType=VARCHAR},</if>
+			<if test="polygonId != null and polygonId != ''">#{polygonId,jdbcType=VARCHAR},</if>
+			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
+			<if test="leaveStatus != null and leaveStatus != ''">#{leaveStatus,jdbcType=VARCHAR},</if>
+		</trim> 
+		<selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+			<![CDATA[
+			select SYS_GUID() id from DUAL
+			]]>
+		</selectKey>
+    </insert>
+    
+    
+    <select id="getYhxwfxWarningList" parameterType="map" resultType="WarningModel">
+        select t.*,t1.xm as name
+		  from m_warning t
+		 inner join m_user t1
+		    on t.username = t1.yhm
+		    
+		 <if test ="classid != null and classid != ''">
+		 	 and t1.classid = #{classid}
+		 </if>
+		    
+		 <if test="instituteid != null and instituteid != ''">
+		 	and t1.classid in (select t2.classid from m_class t2 where t2.instituteid = #{instituteid})
+		 </if>  
+		    
+		 inner join m_class t2
+		    on t1.classid = t2.classid
+		 inner join m_institute t3
+		    on t2.instituteid = t3.instituteid
+		 where 1=1 
+		 <if test="yjType !=null and yjType !=''">
+		   and t.type = #{yjType} 
+		 </if>
+		 <if test="username !=null and username !=''">
+		   and t.username = #{username} 
+		 </if>
+		 <if test="startDate != null and startDate !=''">
+		   <![CDATA[ and t.time >= #{startDate} ]]>
+		 </if>  
+		 <if test="endDate != null and endDate !=''">
+		   <![CDATA[ and t.time <= #{endDate} ]]>
+		 </if> 
+		 <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'js'">
+		   and t3.instituteid = (select instituteid
+		                           from zftal_xtgl_yhb tt
+		                          inner join zftal_xtgl_yhjsb tt1
+		                             on tt.yhm = tt1.yhm
+		                          where tt.yhm = #{yhm}
+		                            and tt1.jsdm = 'js')
+         </if>
+         <if test="yhm != null and yhm !='' and yhm !='admin' and jsdm == 'xs'"> 
+	       and t.username = (select tt.yhm
+	                               from zftal_xtgl_yhb tt
+	                              inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                              where tt.yhm = #{yhm}
+	                                and tt1.jsdm = 'xs')
+	     </if>  
+    </select>
+    
+    <select id="countByTime" resultType="java.lang.Integer">
+    	select count(1) from M_WARNING t where t.username=#{username} and time like '%'||#{time,jdbcType=VARCHAR}||'%'
+    </select>
+    
+    
+</mapper>

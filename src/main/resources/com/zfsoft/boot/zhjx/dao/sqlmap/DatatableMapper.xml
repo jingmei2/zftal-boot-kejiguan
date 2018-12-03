@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IDatatableDao" >
+
+    <!-- 查询教职工是否有照片 -->
+    <select id="get" parameterType="string" resultType="DatatableModel">
+    	select sys_guid() as id from dual 
+    </select>
+	<select id="get3" parameterType="string" resultType="DatatableModel">
+    	SELECT UUID() as id 
+    </select>
+	
+	
+	
+</mapper>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IMobileDeviceDao" >
+
+	<resultMap id="mobileDeviceMap" type="MobileDeviceModel">
+		<result property="userName"   column="userName" />
+		<result property="wifiIp"     column="wifiIp" />
+		<result property="language"   column="language" />
+		<result property="idfa"       column="idfa" />
+		<result property="idfv"       column="idfv" />
+		<result property="imei"       column="imei" />
+		<result property="imsi"       column="imsi" />
+		<result property="operaDesc"  column="operaDesc" />
+		<result property="appVersion" column="appVersion" />
+		<result property="resolution" column="resolution" />
+		<result property="systemType" column="systemType" />
+		<result property="isRooted"   column="isRooted" />
+		<result property="wifiName"   column="wifiName" />
+		<result property="networkType" column="networkType" />
+	    <result property="carrier"    column="carrier" />
+		<result property="cellIp"     column="cellIp" />
+		<result property="regId"      column="regId" />
+		<result property="systemVersion" column="systemVersion" />
+		<result property="wifiList"   column="wifiList" />
+		<result property="phoneNumber" column="phoneNumber" />
+		<result property="locInfo"    column="locInfo" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="xm"         column="xm" />
+		<result property="className"  column="className" />
+		<result property="instituteName"  column="instituteName" />
+	</resultMap>
+	
+	<select id="getDeviceInfo" parameterType="MobileDeviceModel" resultMap="mobileDeviceMap">
+	    select t.*
+		  from M_DEVICEINFO t
+		 where t.lastlogintime =
+		       (select max(tt.lastlogintime)
+		          from M_DEVICEINFO tt
+		         where t.username = tt.username)
+		 and t.username=#{userName}
+	</select>
+
+	<insert id="insert" parameterType="MobileDeviceModel">
+		insert into M_DEVICEINFO 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">userName,</if>
+			<if test="wifiIp != null and wifiIp != ''">wifiIp,</if>
+			<if test="language != null and language != ''">language,</if>
+			<if test="idfa != null and idfa != ''">idfa,</if>
+			<if test="idfv != null and idfv != ''">idfv,</if>
+			<if test="imei != null and imei != ''">imei,</if>
+			<if test="imsi != null and imsi != ''">imsi,</if>
+			<if test="operaDesc != null and operaDesc != ''">operaDesc,</if>
+			<if test="appVersion != null and appVersion != ''">appVersion,</if>
+			<if test="resolution != null and resolution != ''">resolution,</if>
+			<if test="systemType != null and systemType != ''">systemType,</if>
+			<if test="isRooted != null and isRooted != ''">isRooted,</if>
+			<if test="wifiName != null and wifiName != ''">wifiName,</if>
+			<if test="networkType != null and networkType != ''">networkType,</if>
+			<if test="carrier != null and carrier != ''">carrier,</if>
+			<if test="cellIp != null and cellIp != ''">cellIp,</if>
+			<if test="regId != null and regId != ''">regId,</if>
+			<if test="systemVersion != null and systemVersion != ''">systemVersion,</if>
+			<if test="wifiList != null and wifiList != ''">wifiList,</if>
+			<if test="phoneNumber != null and phoneNumber != ''">phoneNumber,</if>
+			<if test="locInfo != null and locInfo != ''">locInfo,</if>
+			<if test="lastLoginTime != null">lastLoginTime,</if>
+			<if test="xm != null">xm,</if>
+			<if test="openid != null">openid,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">#{userName,jdbcType=VARCHAR},</if>
+			<if test="wifiIp != null and wifiIp != ''">#{wifiIp,jdbcType=VARCHAR},</if>
+			<if test="language != null and language != ''">#{language,jdbcType=VARCHAR},</if>
+			<if test="idfa != null and idfa != ''">#{idfa,jdbcType=VARCHAR},</if>
+			<if test="idfv != null and idfv != ''">#{idfv,jdbcType=VARCHAR},</if>
+			<if test="imei != null and imei != ''">#{imei,jdbcType=VARCHAR},</if>
+			<if test="imsi != null and imsi != ''">#{imsi,jdbcType=VARCHAR},</if>
+			<if test="operaDesc != null and operaDesc != ''">#{operaDesc,jdbcType=VARCHAR},</if>
+			<if test="appVersion != null and appVersion != ''">#{appVersion,jdbcType=VARCHAR},</if>
+			<if test="resolution != null and resolution != ''">#{resolution,jdbcType=VARCHAR},</if>
+			<if test="systemType != null and systemType != ''">#{systemType,jdbcType=VARCHAR},</if>
+			<if test="isRooted != null and isRooted != ''">#{isRooted,jdbcType=VARCHAR},</if>
+			<if test="wifiName != null and wifiName != ''">#{wifiName,jdbcType=VARCHAR},</if>
+			<if test="networkType != null and networkType != ''">#{networkType,jdbcType=VARCHAR},</if>
+			<if test="carrier != null and carrier != ''">#{carrier,jdbcType=VARCHAR},</if>
+			<if test="cellIp != null and cellIp != ''">#{cellIp,jdbcType=VARCHAR},</if>
+			<if test="regId != null and regId != ''">#{regId,jdbcType=VARCHAR},</if>
+			<if test="systemVersion != null and systemVersion != ''">#{systemVersion,jdbcType=VARCHAR},</if>
+			<if test="wifiList != null and wifiList != ''">#{wifiList,jdbcType=VARCHAR},</if>
+			<if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber,jdbcType=VARCHAR},</if>
+			<if test="locInfo != null and locInfo != ''">#{locInfo,jdbcType=VARCHAR},</if>
+			<if test="lastLoginTime != null">#{lastLoginTime,jdbcType=TIMESTAMP},</if>
+			<if test="xm != null and xm != ''">#{xm,jdbcType=TIMESTAMP},</if>
+			<if test="openid != null">#{openid,jdbcType=TIMESTAMP},</if>
+		</trim>
+		<!-- <selectKey keyProperty="id" resultType="String" order="BEFORE">select sys_guid() from dual</selectKey> -->
+	</insert>
+	
+	<update id="update" parameterType="MobileDeviceModel">
+		update M_DEVICEINFO 
+		<set>
+			<if test="userName != null and userName != ''">userName=#{userName,jdbcType=VARCHAR},</if>
+			<if test="wifiIp != null and wifiIp != ''">wifiIp=#{wifiIp,jdbcType=VARCHAR},</if>
+			<if test="language != null and language != ''">language=#{language,jdbcType=VARCHAR},</if>
+			<if test="idfa != null and idfa != ''">idfa=#{idfa,jdbcType=VARCHAR},</if>
+			<if test="idfv != null and idfv != ''">idfv=#{idfv,jdbcType=VARCHAR},</if>
+			<if test="imei != null and imei != ''">imei=#{imei,jdbcType=VARCHAR},</if>
+			<if test="imsi != null and imsi != ''">imsi=#{imsi,jdbcType=VARCHAR},</if>
+			<if test="operaDesc != null and operaDesc != ''">operaDesc=#{operaDesc,jdbcType=VARCHAR},</if>
+			<if test="appVersion != null and appVersion != ''">appVersion=#{appVersion,jdbcType=VARCHAR},</if>
+			<if test="resolution != null and resolution != ''">resolution=#{resolution,jdbcType=VARCHAR},</if>
+			<if test="systemType != null and systemType != ''">systemType=#{systemType,jdbcType=VARCHAR},</if>
+			<if test="isRooted != null and isRooted != ''">isRooted=#{isRooted,jdbcType=VARCHAR},</if>
+			<if test="wifiName != null and wifiName != ''">wifiName=#{wifiName,jdbcType=VARCHAR},</if>
+			<if test="networkType != null and networkType != ''">networkType=#{networkType,jdbcType=VARCHAR},</if>
+			<if test="carrier != null and carrier != ''">carrier=#{carrier,jdbcType=VARCHAR},</if>
+			<if test="cellIp != null and cellIp != ''">cellIp=#{cellIp,jdbcType=VARCHAR},</if>
+			<if test="regId != null and regId != ''">regId=#{regId,jdbcType=VARCHAR},</if>
+			<if test="systemVersion != null and systemVersion != ''">systemVersion=#{systemVersion,jdbcType=VARCHAR},</if>
+			<if test="wifiList != null and wifiList != ''">wifiList=#{wifiList,jdbcType=VARCHAR},</if>
+			<if test="phoneNumber != null and phoneNumber != ''">phoneNumber=#{phoneNumber,jdbcType=VARCHAR},</if>
+			<if test="locInfo != null and locInfo != ''">locInfo=#{locInfo,jdbcType=VARCHAR},</if>
+			<if test="xm != null and xm != ''">xm=#{xm,jdbcType=VARCHAR},</if>
+			<if test="lastLoginTime != null">lastLoginTime=#{lastLoginTime,jdbcType=TIMESTAMP},</if>
+		</set>
+		where userName = #{userName}
+	</update>
+	
+	<!-- 根据账号和手机号查询是否存在该记录 -->
+    <select id="checkDeviceInfo" parameterType="com.zfsoft.boot.zhjx.dao.entities.MobileDeviceModel" resultMap="mobileDeviceMap">
+    	select t.* from M_DEVICEINFO t where 1=1 and t.userName = #{userName}
+    </select>
+    
+	<select id="getModelList" resultMap="mobileDeviceMap" parameterType="MobileDeviceModel">
+		select t.*,
+		       t3.classname,
+		       t4.institutename
+		  from M_DEVICEINFO t
+		  left join M_USER t2
+		    on t.username = t2.yhm
+		  left join M_CLASS t3
+		    on t2.classid = t3.classid
+		  left join M_INSTITUTE t4
+		    on t3.instituteid = t4.instituteid
+		    where t.lastlogintime = (select max(tt.lastlogintime) from M_DEVICEINFO tt where t.username=tt.username)  
+		    and t2.yhlx = 'student'
+		    
+		    <if test="mzdm != null">
+		    	and t.username = (select t2.yhm from M_USER t2 where t2.mzdm = #{mzdm}) 
+		    </if>
+		    <if test="status == '1'">
+		    	 <![CDATA[ and t.lastlogintime >=  to_date(#{startTime},'yyyy-mm-dd hh24:mi:ss')]]>
+		    </if>
+		    
+	</select>
+	
+	<insert id="insertPolygon" parameterType="PolygonModel">
+		insert into M_POLYGON_LNGLAT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="polygonId != null and polygonId != ''">polygonId,</if>
+			<if test="lnglatStr != null and lnglatStr != ''">lnglatStr,</if>
+			<if test="title != null and title != ''">title,</if>
+			<if test="warnLevel != null and warnLevel != ''">warnLevel,</if>
+			<if test="startTime != null and startTime != ''">startTime,</if>
+			<if test="endTime != null and endTime != ''">endTime,</if>
+			<if test="color != null and color != ''">color,</if>
+			<if test="description != null and description != ''">description,</if>
+			<if test="iscon != null and iscon != ''">iscon,</if>
+			<if test="lddm != null and lddm != ''">lddm,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="polygonId != null and polygonId != ''">#{polygonId,jdbcType=VARCHAR},</if>
+			<if test="lnglatStr != null and lnglatStr != ''">#{lnglatStr,jdbcType=CLOB},</if>
+			<if test="title != null and title != ''">#{title,jdbcType=VARCHAR},</if>
+			<if test="warnLevel != null and warnLevel != ''">#{warnLevel,jdbcType=VARCHAR},</if>
+			<if test="startTime != null and startTime != ''">#{startTime,jdbcType=VARCHAR},</if>
+			<if test="endTime != null and endTime != ''">#{endTime,jdbcType=VARCHAR},</if>
+			<if test="color != null and color != ''">#{color,jdbcType=VARCHAR},</if>
+			<if test="description != null and description != ''">#{description,jdbcType=VARCHAR},</if>
+			<if test="iscon != null and iscon != ''">#{iscon,jdbcType=VARCHAR},</if>
+			<if test="lddm != null and lddm != ''">#{lddm,jdbcType=VARCHAR},</if>
+		</trim>
+	</insert>
+	
+	<select id="getPolygonList" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
+		select t.* from M_POLYGON_LNGLAT t where 1=1
+		<if test="title != null and title != ''">
+		  and t.title like  '%'||#{title,jdbcType=VARCHAR}||'%'
+		</if>
+	</select>
+	
+	<select id="getPolygonById" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
+	    select t.* from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId} 
+	</select>
+	
+	<update id="updatePolygon">
+	    update M_POLYGON_LNGLAT t set 
+	     t.title=#{title,jdbcType=VARCHAR},
+	     t.description=#{description,jdbcType=VARCHAR},
+	     t.warnLevel=#{warnLevel,jdbcType=VARCHAR},
+	     t.startTime=#{startTime,jdbcType=VARCHAR},
+	     t.endTime=#{endTime,jdbcType=VARCHAR},
+	     t.color=#{color,jdbcType=VARCHAR}
+	    where t.polygonId=#{polygonId,jdbcType=VARCHAR} 
+	</update>
+	
+	<delete id="deletePolygonById" parameterType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
+	   delete from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId} 
+	</delete>
+	
+	<!-- 切换设备类型ios或者android -->
+	<select id="getMtaDeviceType" resultType="java.lang.String">
+	    select t.DEVICETYPE from M_DEVICETYPE t
+	</select>
+	
+	<!-- 修改设备类型 ios或者android -->
+	<update id="updateMtaDeviceType">
+		UPDATE M_DEVICETYPE SET devicetype=  
+		(  
+		  CASE devicetype  
+		    WHEN 'android' THEN 'ios'  
+		    WHEN 'ios' THEN 'android'  
+		    ELSE 'android'  
+		  END  
+		)
+	</update>
+	
+	<!-- 统计运营商信息 -->
+	<select id="getCarrierCountList"  parameterType="map" resultType="com.zfsoft.boot.zhjx.dao.entities.CarrierCountModel">
+	    select case t.carrier
+         when '中国联通' then
+          '中国联通'
+         when '中国电信' then
+          '中国电信'
+         when '中国移动' then
+          '中国移动'
+         else
+          '其他'
+       end carrierName,
+       count(distinct t.username) amount
+		  from m_deviceinfo t
+		 where 1=1
+		  <if test="starDateStr != null and starDateStr != ''">
+		    <![CDATA[ and t.lastlogintime >= to_date(#{starDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>  
+		  </if>
+		  <if test="endDateStr != null and endDateStr != ''">     
+		    <![CDATA[ and t.lastlogintime <= to_date(#{endDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>  
+		  </if>     
+		 group by case t.carrier3
+            when '中国联通' then
+             '中国联通'
+            when '中国电信' then
+             '中国电信'
+            when '中国移动' then
+             '中国移动'
+            else
+             '其他'
+          end
+	</select>
+	
+	<select id="updateByOpenid">
+			update M_DEVICEINFO set userName=#{userName} where openid =#{openid}
+	</select>
+	
+	<select id="getWgPolygonList" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
+		select t.* from m_polygon_lnglat t where iscon = '1' and t.lddm = (select a.lddm from xg_gygl_new_cwxxb a where a.xh = #{username})
+	</select>
+	
+	<select id="checkLeave" resultType="java.lang.Integer">
+		select count(1)
+		  	from xg_rcsw_qjgl_qjjg t
+		  	 <![CDATA[
+		 where to_date(t.kssj, 'yyyy-MM-dd HH24:mi:ss') <
+		       to_date(#{time}, 'yyyy-MM-dd HH24:mi:ss')
+		       and  to_date(#{time}, 'yyyy-MM-dd HH24:mi:ss') < to_date(t.jssj, 'yyyy-MM-dd HH24:mi:ss')
+		       ]]>  
+		       and t.xh = #{username}
+	</select>
+	
+	<select id="getPolygons"  resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
+		select t.*, t.rowid from M_POLYGON_LNGLAT t where t.iscon = '0'
+	</select>
+	
+	<select id="getLocationsByUser" resultType="com.zfsoft.boot.zhjx.dao.entities.MobileDeviceModel">
+		select distinct t.locinfo from M_DEVICEINFO t where t.username = #{username} and t.locinfo is not null
+		 <if test="startDate != null and startDate !=''">
+		   <![CDATA[ and t.lastlogintime >= to_date(#{startDate},'yyyy-mm-dd hh24:mi:ss') ]]>
+		 </if>  
+		 <if test="endDate != null and endDate !=''">
+		   <![CDATA[ and t.lastlogintime <=  to_date(#{endDate},'yyyy-mm-dd hh24:mi:ss')]]>
+		 </if> 
+		
+	</select>
+	
+	<select id="getNation" resultType="com.zfsoft.boot.zhjx.dao.entities.NationModel">
+		select * from M_USER_NATION t
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IReportDao" >
+
+    <select id="getReportList" parameterType="ReportModel" resultType="ReportModel">
+    	 
+    	   select t.id,t.title,t.time,rownum from m_report t 
+    	    where 1=1 and t.type=#{type} 
+    	    <if test="yhm != null and yhm !='' and yhm !='admin'"> 
+    	       and t.instituteid=(select instituteid
+	                                from zftal_xtgl_yhb tt
+	                               inner join zftal_xtgl_yhjsb tt1
+	                                 on tt.yhm = tt1.yhm
+	                               where tt.yhm = #{yhm}
+	                                 and tt1.jsdm = 'js')
+    	    </if>
+    	    <if test="yhm =='admin'"> 
+    	        and t.instituteid = 'admin'
+    	    </if>
+    	    <![CDATA[ and rownum <= 5 order by time desc ]]>
+    </select>
+	
+	
+	<select id="getDetail" parameterType="ReportModel" resultType="ReportModel">
+   	   select t.* from m_report t where t.id = #{id}
+    </select>
+    
+    <!-- 按日期及学院查询晚归人数 -->
+    <select id="getWanguiCount" resultType="java.lang.Integer">
+    	select NVL(count(1),0) from M_WARNING t  where t.type = '1'
+    	<![CDATA[
+    	 and t.time >=  #{startTime}  and t.time <=  #{endTime}
+    	]]>
+    	<if test="institute != null and institute !='' "> 
+    	and t.username in (
+    	select tt.yhm from M_USER tt
+                                where tt.classid in(select d.classid from M_CLASS d where d.instituteid = #{institute}) and tt.yhlx = 'student')
+    	</if>
+    </select>
+    
+    <select id="getInstituteList" resultType="com.zfsoft.boot.zhjx.dao.entities.InstituteInfoModel">
+    	select t.* from M_INSTITUTE t
+    </select>
+    
+     <!-- 插入预警数据到预警表   -->
+    <insert id="insertReport"  parameterType="ReportModel">
+        insert into M_REPORT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="title != null and title != ''">title,</if>
+			<if test="content != null and content != ''">content,</if>
+			<if test="time != null and time != ''">time,</if>
+			<if test="type != null and type != ''">type,</if>
+			<if test="instituteId != null and instituteId != ''">instituteid,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="title != null and title != ''">#{title,jdbcType=VARCHAR},</if>
+			<if test="content != null and title != ''">#{content,jdbcType=CLOB},</if>
+			<if test="time != null and time != ''">#{time,jdbcType=VARCHAR},</if>
+			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
+			<if test="instituteId != null and instituteId != ''">#{instituteId,jdbcType=VARCHAR},</if>
+		</trim> 
+		<selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+			<![CDATA[
+			select SYS_GUID() id from DUAL
+			]]>
+		</selectKey>
+    </insert>
+    
+     <!-- 按日期及学院查询晚归列表 -->
+    <select id="getWanguiList" resultType="com.zfsoft.boot.zhjx.dao.entities.WarningModel">
+    	select t.username,t.time,c.xm as name
+    	from M_WARNING t 
+    	left join M_USER c on t.username = c.yhm
+    	where t.type = '1'
+    	<![CDATA[
+    	 and t.time >=  #{startTime}  and t.time <=  #{endTime}
+    	]]>
+    	<if test="institute != null and institute !='' "> 
+    	and t.username in (
+    	select tt.yhm from M_USER tt
+                                where  tt.classid in(select d.classid from M_CLASS d where d.instituteid = #{institute}) and tt.yhlx = 'student')
+    	</if>
+    </select>
+    
+     <select id="getWanguiListByType" resultType="com.zfsoft.boot.zhjx.dao.entities.WarningModel">
+    select *
+      from(
+	select a.*,rownum rn from (
+	select t.*,c.xm as name
+    	from M_WARNING t 
+    	left join M_USER c on t.username = c.yhm
+      where t.type = #{type}
+       order by t.time)a)
+       <![CDATA[  
+        where rn >= 1
+		   and rn <= 5
+        ]]>	
+    </select>
+    
+    
+</mapper>

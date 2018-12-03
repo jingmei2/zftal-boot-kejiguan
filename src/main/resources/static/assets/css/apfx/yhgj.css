@@ -1,0 +1,41 @@
+.yhgj-header{
+	background-color:#FFFFFF;
+	padding:5px;
+	height:110px;
+}
+
+.sssj-gjzb{
+	font-size:14px;
+	margin-top:5px;
+	border-top:1px solid #E7E9EE;    /*上边框线*/
+    border-bottom:1px solid #E7E9EE;    /*下边框线*/
+    border-left:1px solid #E7E9EE;    /*左边框线  solid实线*/
+    border-right:1px solid #E7E9EE;    /*右边框线*/
+}
+
+.sssj-zb{
+	background-color:#FFFFFF;
+	padding:10px;
+	text-align:center;
+	float:left;
+    border-right:1px solid #E7E9EE;    /*右边框线*/
+}
+
+.selected-background{
+	/*background-color:#467FD7;*/
+	background-color:#EEF1F5;
+	border-bottom: 3px solid #0269F5;
+	color:#0269F5;
+}
+
+.sssj-header-day{
+	color:black;
+}
+
+.sssj-header-day-selected{
+	color:blue;
+}
+
+.sssj-header-day:hover{
+	cursor:pointer;
+}

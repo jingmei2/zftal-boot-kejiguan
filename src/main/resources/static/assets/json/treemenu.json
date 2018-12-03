@@ -1,0 +1,192 @@
+[
+	{
+		"fjgndm": "N",
+		"sfgnym": "0",
+		"children": [
+			{
+				"fjgndm": "N01",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0101",
+						"sfgnym": "1",
+						"dyym": "/xtgl/xtsz/cxCssz.zf",
+						"gnmkdm": "N010101",
+						"gnmkmc": "参数设置",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0101",
+						"sfgnym": "1",
+						"dyym": "/xtgl/xwgl/cxXw.zf",
+						"gnmkdm": "N010113",
+						"gnmkmc": "通知公告",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0101",
+						"sfgnym": "1",
+						"dyym": "/xtgl/rzgl/cxRz.zf",
+						"gnmkdm": "N010114",
+						"tblj": "fa fa-file-text-o",
+						"gnmkmc": "日志管理",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0101",
+						"sfgnym": "1",
+						"dyym": "/system/cache/cacheManagement.zf",
+						"gnmkdm": "N010199",
+						"gnmkmc": "缓存管理",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0101",
+				"tblj": "fa fa-cogs",
+				"gnmkmc": "系统设置"
+			}, {
+				"fjgndm": "N01",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0102",
+						"sfgnym": "1",
+						"dyym": "/xtgl/jsgl/cxJsxx.zf",
+						"gnmkdm": "N010201",
+						"gnmkmc": "角色管理",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0102",
+						"sfgnym": "1",
+						"dyym": "/xtgl/yhgl/cxYhxx.zf",
+						"gnmkdm": "N010202",
+						"gnmkmc": "用户管理",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0102",
+				"tblj": "fa fa-group",
+				"gnmkmc": "权限管理"
+			}, {
+				"fjgndm": "N01",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0105",
+						"sfgnym": "1",
+						"dyym": "/xtgl/jcsj/cxJcsj.zf",
+						"gnmkdm": "N010501",
+						"gnmkmc": "基础数据维护",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0105",
+				"tblj": "fa fa-database",
+				"gnmkmc": "基础数据维护"
+			}, {
+				"fjgndm": "N01",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0110",
+						"sfgnym": "1",
+						"dyym": "/pwdmgr/setting/strategy.zf",
+						"gnmkdm": "N011001",
+						"gnmkmc": "找回方式",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0110",
+						"sfgnym": "1",
+						"dyym": "/pwdmgr/setting/verifi.zf",
+						"gnmkdm": "N011005",
+						"gnmkmc": "核实信息",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0110",
+						"sfgnym": "1",
+						"dyym": "/pwdmgr/setting/props.zf",
+						"gnmkdm": "N011010",
+						"gnmkmc": "设置参数",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0110",
+				"gnmkmc": "密码找回"
+			}, {
+				"fjgndm": "N01",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0115",
+						"sfgnym": "1",
+						"dyym": "/ms/network/settings.zf",
+						"gnmkdm": "N011510",
+						"gnmkmc": "网络环境参数",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0115",
+						"sfgnym": "1",
+						"dyym": "/ms/sms/settings.zf",
+						"gnmkdm": "N011515",
+						"gnmkmc": "短信服务参数",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0115",
+						"sfgnym": "1",
+						"dyym": "/ms/mailclient/settings.zf",
+						"gnmkdm": "N011520",
+						"gnmkmc": "邮件服务参数",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0115",
+				"gnmkmc": "消息服务"
+			}
+		],
+		"dyym": "#",
+		"gnmkdm": "N01",
+		"tblj": "fa fa-cogs",
+		"gnmkmc": "系统管理"
+	}, {
+		"fjgndm": "N",
+		"sfgnym": "0",
+		"children": [
+			{
+				"fjgndm": "N02",
+				"sfgnym": "0",
+				"children": [
+					{
+						"fjgndm": "N0201",
+						"sfgnym": "1",
+						"dyym": "/apimgr/api/data/source/index",
+						"gnmkdm": "N020101",
+						"gnmkmc": "接口数据来源",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0201",
+						"sfgnym": "1",
+						"dyym": "/apimgr/api/info/data/index",
+						"gnmkdm": "N020103",
+						"gnmkmc": "数据源接口",
+						"icon":"fa fa-group"
+					}, {
+						"fjgndm": "N0201",
+						"sfgnym": "1",
+						"dyym": "/apimgr/api/info/biz/index",
+						"gnmkdm": "N020105",
+						"gnmkmc": "业务型接口",
+						"icon":"fa fa-group"
+					}
+				],
+				"dyym": "#",
+				"gnmkdm": "N0201",
+				"gnmkmc": "接口注册与发布"
+			}
+		],
+		"dyym": "#",
+		"gnmkdm": "N02",
+		"gnmkmc": "接口申请、注册、审批"
+	}
+]

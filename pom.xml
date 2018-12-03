@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.zfsoft</groupId>
+		<!-- 特别注意：真实的业务系统应继承 zftal-boot-parent  -->
+		<artifactId>zftal-boot-parent</artifactId>
+		<version>1.0.4-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>zftal-boot-zhjx</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<!-- Docker Build地址:本地构建需要单独指定 -->
+		<docker.build.repostory>10.71.21.118</docker.build.repostory>
+		<!--appassembler -->
+		<appassembler-app-name>zhjx</appassembler-app-name>
+	</properties>
+
+	<dependencies>
+		<!-- For Actuator -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-actuator-starter</artifactId>
+		</dependency>
+		<!-- For Sitemesh3 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-sitemesh3-starter</artifactId>
+		</dependency>
+		<!-- For Druid -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-druid-starter</artifactId>
+		</dependency>
+
+		<!-- ZFtal Boot Web Module -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-web-v5</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-init</artifactId>
+		</dependency>
+		<!-- 业务日志记录 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-logbiz</artifactId>
+		</dependency>
+		<!-- For Log4j2 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-log4j2-starter</artifactId>
+		</dependency>
+		<!-- 用户权限管理 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-authz</artifactId>
+		</dependency>
+		<!-- 支持单点配置 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-shiro-pac4j-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.opensaml</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- For Rocketmq -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>zftal-boot-rocketmq-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--<configuration>
+					<executable>true</executable>
+					<mainClass>com.zfsoft.boot.zhjx.ZhjxApplication</mainClass>
+				</configuration>-->
+			</plugin>
+			<!-- 第一步：生成可执行的启动脚本 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+			</plugin>
+			<!-- 第二步：通过antrun插件拷贝文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+			<!-- 第三步：通过docker-maven插件构造Docker镜像-->
+			<!--<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+			</plugin>-->
+		</plugins>
+	</build>
+
+</project>

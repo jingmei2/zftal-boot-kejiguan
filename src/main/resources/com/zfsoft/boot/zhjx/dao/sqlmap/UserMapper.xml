@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IUserDao" >
+
+	<select id="getUserByUuid" parameterType="java.lang.String" resultType="UserModel">
+   	   select t.* from zftal_xtgl_yhb t where t.uuid = #{uuid}
+    </select>
+
+    <select id="checkWxLogin" resultType="mobileUserModel">
+    	select t.* from M_USER t where yhm =#{userName} and kl =#{pass}
+    </select>
+
+    <select id="selectUserByYhm" resultType="mobileUserModel">
+    	select t.*, a.className as className, b.institutename as schoolName
+		  from M_USER t
+		  left join m_Class a
+		    on t.classid = a.classid
+		  left join m_institute b
+		    on b.instituteid = a.instituteid  where yhm =#{yhm}
+    </select>
+
+    <select id="selectUserByOpenid" resultType="mobileUserModel">
+    	select t.*  from M_USER t where openid =#{openId}
+    </select>
+
+    <insert id="insertUser" parameterType="mobileUserModel">
+    insert into M_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yhm != null">
+        yhm,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="dzyx != null">
+        dzyx,
+      </if>
+      <if test="sfqy != null">
+        sfqy,
+      </if>
+      <if test="yhlx != null">
+        yhlx,
+      </if>
+      <if test="kl != null">
+        kl,
+      </if>
+      <if test="sjhm != null">
+        sjhm,
+      </if>
+      <if test="yhmmdj != null">
+        yhmmdj,
+      </if>
+      <if test="apptoken != null">
+        apptoken,
+      </if>
+       <if test="classId != null">
+        classid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yhm != null">
+        #{yhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzyx != null">
+        #{dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfqy != null">
+        #{sfqy,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlx != null">
+        #{yhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="kl != null">
+        #{kl,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhm != null">
+        #{sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhmmdj != null">
+        #{yhmmdj,jdbcType=VARCHAR},
+      </if>
+      <if test="apptoken != null">
+        #{apptoken,jdbcType=VARCHAR},
+      </if>
+       <if test="classId != null">
+        #{classId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+    <select id="updateOpenid" resultType="java.lang.Integer">
+    	update M_USER set openid =#{openid} where yhm =#{yhm}
+    </select>
+
+    <select id="clearOpenid">
+    	update M_USER t set t.openid = ''
+    	<![CDATA[
+    	 where t.yhm <> #{yhm} and openid = #{openid}
+    	]]>
+    </select>
+
+
+</mapper>

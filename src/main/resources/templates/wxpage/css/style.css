@@ -1,0 +1,549 @@
+body{
+	font-family: "微软雅黑";
+	background:#fff;
+}
+.mui-h6{
+	font-size:12px !important;
+}
+.mui-input-row label{
+	font-family: "微软雅黑";
+}
+.mui-container{
+	padding-left:20px;
+	padding-right:20px;
+	margin-top:25px;
+}
+.mui-btn-primary{
+	background:#2d93f9;
+	margin-bottom:20px;
+}
+a:active{
+	color:#2d93f9;
+}
+.mui-btn-default{
+	background: #aeaeae;
+}
+.mui-primary{
+	background:#2d93f9;
+}
+.mui-font-white{
+	color:#fff;
+}
+.mui-font-red{
+	color:#eb3834;
+}
+.mui-bg-gray{
+	background:#efeff4;
+}
+.mui-bg-white{
+	background:#fff !important;
+}
+.mui-ipt-gray{
+	background-color: #f2f2f2 !important;
+}
+.mui-btn{
+	padding:10px 0;
+	height:40px;
+	border:none;
+}
+.mui-cstm-xs-5{
+	width:47%;
+}
+.m-b-20{
+	margin-bottom:20px !important;
+}
+.p-l-20{
+	padding-left:20px !important;
+}
+.p-r-20{
+	padding-right:20px !important;
+}
+.mui-input-row input{
+	border: none;
+	font-size:14px;
+}
+/*登录页样式*/
+.mui-handle{
+	position: relative;
+	height:40px;
+}
+.mui-handle a{
+	padding-left:5px;
+}
+.mui-handle .mui-icon-closeempty{
+	font-size:40px;
+	font-weight:600;
+}
+.avatar{
+	position: relative;
+	height:104px;
+	padding-top:20px;
+	text-align: center;
+	box-sizing: border-box;
+}
+.avatar img{   
+	width:84px;
+	height:84px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+}
+.mui-login{
+	padding:20px;
+}
+.mui-tips{
+	overflow: hidden;
+	margin-bottom:20px;
+}
+.mui-tips a{
+	color:#484848;
+}
+.mui-other-way{
+	
+	padding-top:10px;
+}
+.mui-other-txt{
+	color:#929292;
+}
+.mui-other-way .mui-table-view{
+	margin-top:20px;
+}
+.mui-other-way .mui-table-view:before,
+.mui-other-way .mui-table-view:after{
+	content:none;
+}
+.mui-other-img{
+	position: relative;
+	width: 56px;
+	height: 56px;
+	margin:0 auto;
+	background: #f2f2f2;
+	border-radius:50%;
+}
+.mui-other-img a{
+	display: block;
+	width:100%;
+	height:100%;
+}
+.mui-other-img img{
+	position:absolute;
+	vertical-align: middle;
+	width:30px;
+	height:30px;
+	top:50%;
+	left:50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+/*忘记密码样式*/
+.psd-info{
+	padding:85px 20px 20px;
+}
+.psd-info-des{
+	color:#484848;
+	line-height: 1.6em;
+	text-align: center;;
+}
+.psd-info .mui-button-row{
+	margin-top: 40px;
+}
+/*修改密码*/
+.modify-psd .nput-psd{
+	position:relative;
+}
+.modify-psd .send-code{
+	position:absolute;
+	width:auto;
+	height:24px;
+	top:8px;
+	right:2px;
+	padding:0 8px;
+	border-left:1px solid #c0c0c0;
+	color:#929292;
+}
+/*找回密码*/
+.find-psd .mui-input-row{
+	background:#fff;
+	border-radius:5px;
+}
+.find-psd .mui-input-row label,
+.find-psd .mui-input-row input{
+	font-size:14px;
+}
+.find-psd .mui-input-row .area-phone{
+	position: relative;
+	width:20%;
+	color:#b7b7b7;
+}
+.find-psd .mui-input-row .area-phone:after{
+	position:absolute;
+	top:8px;
+	right:0;
+	content:"";
+	width:1px;
+	height:24px;
+	background:#c0c0c0;
+}
+.find-psd .mui-input-row .telphone{
+	float:left;
+	width:80%;
+	padding-left:12px;
+}
+/*用户注册*/
+.registration form{
+	margin-top:15px;
+}
+.registration>form:first-child{
+	margin-top:0;
+}
+.registration .mui-input-row label,
+.info-modify .mui-input-row label{
+	font-size:14px;
+	color:#484848;
+}
+.registration .mui-input-row label~input,
+.info-modify .mui-input-row label~input{
+	text-align: right;
+	font-size:14px;
+	color:#484848;
+}
+.registration .base-info .mui-input-row label{
+	width:100px;
+}
+.registration .base-info .mui-input-row label~input{
+	width:calc(100% - 100px);
+}
+.registration .mui-input-row.longlabel label,
+.info-modify .mui-input-row.longlabel label{
+	width:185px;
+}
+.registration .mui-input-row.longlabel label~input,
+.info-modify .mui-input-row.longlabel label~input{
+	width:calc(100% - 185px);
+}
+.registration .mui-input-row label.registration-sub-title{
+	width:100%;
+	padding-left:30px;
+	font-size:16px;
+}
+.registration .registration-sub-title:before{
+	position:absolute;
+	left:15px;
+	top:10px;
+	content:'';
+	width:4px;
+	height:20px;
+	border-radius:5px;
+	background:#2d93f9;
+}
+.registration .poparrow,
+.info-modify .poparrow{
+	float:left;
+	position:relative;
+	width:calc(100% - 100px);
+	height:40px;
+	line-height:40px;
+	padding-right:25px;
+	text-align:right;
+	font-size:14px;
+	color:#484848;
+	background:url(../images/arrow.png) no-repeat center right 10px;
+	background-size:8px 12px;
+}
+.registration .mui-input-row.longlabel .poparrow,
+.info-modify .mui-input-row.longlabel .poparrow{
+	width:calc(100% - 185px);
+}
+.registration .mui-button-row,
+.info-modify .mui-button-row{
+	margin:20px 20px 40px;
+}
+.mui-bar .error-tips{
+	display: block;
+	line-height: 44px;
+	font-size: 12px;
+}
+/*企业信息修改在用户注册部分*/
+/*联系我们，部分样式和用户注册重*/
+.page-contact .contact-sub-title{
+	position: relative;
+	margin:0;
+	line-height:38px;
+	padding-left:30px;
+	background:#efeff4;
+	box-sizing:border-box;
+	font-weight: 600;
+	font-size:16px;
+}
+.page-contact .contact-sub-title:before{
+	position:absolute;
+	left:15px;
+	top:10px;
+	content:'';
+	width:4px;
+	height:20px;
+	border-radius:5px;
+	background:#2d93f9;
+}
+.page-contact form{
+	margin-top:0;
+}
+.page-contact .mui-input-row label{
+	font-size:14px;
+	color:#484848;
+}
+/*企业信息*/
+.enterprise-info .mui-bar-nav{
+	box-shadow: none;
+}
+.enterprise-info .mui-table-view{
+	margin-top:15px;
+}
+.enterprise-info .mui-table-view:nth-of-type(1){
+	margin-top:0;
+}
+.enterprise-info .enterprise-header .mui-media-object{
+	line-height:63px;
+	height:63px;
+	max-width:63px;
+}
+.enterprise-info .enterprise-header .mui-media-body{
+	padding-top: 12px;
+	padding-left:10px;
+}
+.enterprise-info .enterprise-talk .mui-media i{
+	font-size:22px;
+	color:#2d93f9;
+}
+.enterprise-info .enterprise-talk .mui-media-object{
+	line-height:28px;
+	height:28px;
+	max-width:28px;
+}
+.enterprise-info .enterprise-talk .mui-media-body{
+	line-height: 28px;
+	font-size:16px;
+}
+.policy{
+	position:relative;
+}
+.policy-subtitle{
+	position:relative;
+	width:100%;
+	height:32px;
+	line-height: 32px;
+	padding-left:30px;
+	margin:0;
+	background: #fff;
+	color:#484848;
+	font-weight: 200;
+	font-size:16px;
+}
+.policy-subtitle:before{
+	position:absolute;
+	left:15px;
+	top:7px;
+	content:'';
+	width:4px;
+	height:20px;
+	border-radius:5px;
+	background:#2d93f9;
+}
+.policy-subtitle .more{
+	padding-right:10px;
+	font-size:14px;
+	color:#929292;
+}
+.policy .inner-nav{
+	position: absolute;
+	top:32px;
+	left:0;
+	background:#fff;
+	-webkit-box-shadow: 0 1px 1px rgba(210,210,210,1);
+	box-shadow: 0 1px 1px rgba(210,210,210,1);
+}
+.policy .mui-control-content{
+	padding-top:42px;	
+	background:#fff;
+}
+.policy .mui-bar-tab{
+	height:42px;
+}
+.policy .mui-bar-tab .mui-tab-item{
+	position:relative;
+	height:42px;
+	padding:5px 15px;
+	font-size:16px;
+}
+.policy .mui-bar-tab .mui-tab-item.mui-active:after{
+	position:absolute;
+	bottom:0;
+	left:28%%;
+	content:"";
+	width:44%;
+	height:4px;
+	background:#2d93f9;
+}
+.policy .mui-media-body{
+	width:100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size:14px;
+}
+.policy .reply-time{
+	text-align: right;
+	color:#8f8f94;
+	font-size:14px;
+}
+/*政策介绍-更多*/
+.mui-bar-nav.mui-bar-nav-noshadow{
+	box-shadow: none;
+}
+.mui-bar-nav~.mui-content.policy-more{
+	padding-top:43px;
+}
+.estimate ul{
+	background:#fff;
+}
+.estimate .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+	margin-top:0;
+	padding:2px 0;
+	height:auto;
+}
+.policy-more .nav-bg{
+	position:relative;
+	width:100%;
+	height:35px;
+	padding-top:10px;
+	background:#2d93f9;
+	z-index:2;
+}
+.policy-more .inner-nav{
+	position:absolute;
+	top:10px;
+	left:10%;
+	width:80%;
+	box-shadow:none;
+	z-index:1000;
+}
+.policy-more .inner-nav a{
+	color:#484848;
+}
+.policy-more .mui-control-content{
+	padding-top:32px;
+	background: transparent;
+}
+/*设置，部分样式与企业信息共用*/
+.enterprise-info.page-setting .mui-table-view:nth-of-type(1){
+	margin-top:15px;
+}
+.page-setting .security{
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	line-height:20px;
+}
+.page-setting .security img{
+	margin-right:6px;
+	width:20px;
+	height:20px;
+	vertical-align: bottom;
+}
+.page-setting .mui-table-view-cell>a.sign-out{
+	color:#2d93f9;
+}
+/*我要咨询,部分样式与企业信息共用*/
+.page-consultation h4{
+	margin:0;
+	padding:11px 15px;
+	font-weight:100;
+	font-size:16px;
+}
+.page-consultation h4 p{
+	font-size:12px;
+	margin-top:6px;
+	margin-bottom: 0;
+}
+.page-consultation .mui-input-group textarea{
+	font-size:12px;
+	color:#484848;
+}
+.page-consultation .mui-input-row .consultation-subtitle{
+	width:100%;
+	background:#efeff4;
+	font-size:16px;
+	padding-left:15px;
+}
+.page-consultation .mui-input-row label{
+	position:relative;
+	width:140px;
+	padding-left:50px;
+	font-size:14px;
+}
+.page-consultation .mui-input-row label span{
+	position:absolute;
+	top:8px;
+	left:15px;
+	font-size:24px;
+	color:#2d93f9;
+}
+.page-consultation .mui-input-row label~input{
+	width:calc(100% - 140px);
+}
+/*我要留言,部分样式与企业信息共用*/
+.page-liuyan .liuyan-talk .mui-media-object{
+	line-height:28px;
+	height:28px;
+	max-width:28px;
+	font-size:22px;
+	color:#2d93f9;
+}
+.page-liuyan .liuyan-talk .mui-media-body{
+	line-height: 28px;
+	font-size:16px;
+}
+/*我的回复*/
+.page-reply>.mui-table-view:first-child{
+	margin-top: 0px;
+}
+.page-reply .mui-media-body{
+	width:100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size:16px;
+}
+.page-reply .reply-time{
+	text-align: right;
+	color:#8f8f94;
+}
+/*资质介绍*/
+.mui-bar-nav.mui-bar .mui-icon-arrowup{
+	margin-right:8px;
+}
+.intro-title,
+.intro-view{
+	border-bottom:1px solid #d5d5d5;
+}
+.intro-title h4{
+	line-height: 1.2em;
+	color:#484848;
+}
+.intro-title{
+	padding-top:10px;
+}
+.intro-view,
+.intro-ctn{
+	padding:10px 0;
+}
+.intro-view i{
+	color:#484848;
+}
+.intro-view .mui-media-body{
+	color:#929292;
+}
+.intro-ctn p{
+	text-indent:2em;
+	color:#484848;
+}
+

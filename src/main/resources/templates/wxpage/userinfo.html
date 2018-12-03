@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预警综合分析平台 | 用户信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body class="mui-bg-gray">
+		<header class="mui-bar mui-bar-nav mui-primary">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-font-white"></a>
+			<h1 class="mui-title mui-font-white">用户</h1>
+		</header>
+		<div class="mui-content registration">
+		    <form class="mui-input-group base-info">
+		    	<div class="mui-input-row">
+			        <label class="registration-sub-title">基本信息</label>
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="yhm">用户名：</label>
+			    	<input type="text" placeholder="(例如:yilinsitian)" id="yhm" name="yhm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="realname">姓名：</label>
+			    	<input type="text" id="xm" name="xm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="phonenumb">电子邮箱：</label>
+			    	<input type="text" id="dzyx" name="dzyx">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">手机号码：</label>
+			    	<input type="text" id="sjhm" name="sjhm">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">学院：</label>
+			    	<input type="text" id="schoolName">
+			    </div>
+			    <div class="mui-input-row">
+			        <label for="enterprise">班级：</label>
+			    	<input type="text" id="className">
+			    </div>
+			</form>
+			
+			<form class="mui-input-group base-info" id="yjjl">
+		    	<!--<div class="mui-input-row">
+			        <label class="registration-sub-title">预警记录</label>
+			    </div>-->
+			    <!--<div class="mui-input-row">
+			        <label for="yhm">用户名：</label>
+			    	<input type="text"  readonly="readonly">
+			    </div>-->
+			</form>
+			
+			<!--<form>
+			    <div class="mui-button-row">
+			        <button type="button" class="mui-btn mui-btn-primary mui-btn-block btn-regist" onclick="addUser()">注册</button>
+			    </div>
+			</form>-->
+		</div>
+	<script src="js/mui.min.js"></script>
+	<script src="js/mui.picker.js"></script>
+	<script src="js/mui.poppicker.js"></script>
+	<script src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript">  
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				
+				getUserInfo();
+				getYjjl();
+			});
+		})(mui, document);
+		
+		function getUserInfo(){
+			$.ajax({
+				type:"post",
+				url:"/wx/userInfo",
+				success:function(data){
+					if(data.code == 1){
+						$("#yhm").val(data.data.yhm);
+						$("#xm").val(data.data.xm);
+						$("#dzyx").val(data.data.dzyx);
+						$("#sjhm").val(data.data.sjhm);
+						$("#schoolName").val(data.data.schoolName);
+						$("#className").val(data.data.className);
+					}else{
+						alert(data.status);
+					}
+					
+				}
+			});
+		}
+		
+		//获取预警记录
+		function getYjjl(){
+			$.ajax({
+				type:"get",
+				url:"/wx/getList",
+				success:function(data){
+					if(data.code == 1){
+						var c = data.data;
+						var html = '<div class="mui-input-row"><label class="registration-sub-title">预警记录</label></div>';
+						for(var i=0;i<c.length;i++){
+							html += "<div class='mui-input-row'><label for='yhm'>预警时间：</label>"+
+			    					"<input type='text'  readonly='readonly' value='" +c[i].time+ "'></div>" + 
+			    					"<div class='mui-input-row'><label for='yhm'>预警地点：</label>"+
+			    					"<input type='text'  readonly='readonly' value='" +c[i].place+ "'></div>";
+						}
+						$("#yjjl").html(html);
+					}
+				}
+			});
+		}
+			
+	</script>
+</body>
+
+</html>
