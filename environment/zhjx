@@ -7,7 +7,7 @@
 #. /etc/rc.d/init.d/functions
 
 #application home
-export APP_HOME=/u01/zftal-boot-zhjx
+export APP_HOME=/u01/zftal-boot-kejiguan
 
 #Document the app path
 echo document the curren path: "$APP_HOME"

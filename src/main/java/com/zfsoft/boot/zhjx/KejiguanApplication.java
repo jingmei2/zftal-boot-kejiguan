@@ -1,5 +1,6 @@
 package com.zfsoft.boot.zhjx;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,16 +16,17 @@ import com.zfsoft.boot.web.ZFBootConfig;
 
 @EnableCaching(proxyTargetClass = true)
 @ServletComponentScan(basePackages = { "com.zfsoft" })
+//@MapperScan("com.zfsoft")
 @Import(ZFBootConfig.class)
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableScheduling
-public class ZhjxApplication implements CommandLineRunner{
+public class KejiguanApplication implements CommandLineRunner{
 
-	Logger logger = LoggerFactory.getLogger(ZhjxApplication.class);
+	Logger logger = LoggerFactory.getLogger(KejiguanApplication.class);
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(ZhjxApplication.class, args);
+		SpringApplication.run(KejiguanApplication.class, args);
 	}
 
 	@Override

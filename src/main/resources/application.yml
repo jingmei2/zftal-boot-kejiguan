@@ -149,7 +149,7 @@ spring:
 
   # 数据源配置：
   datasource:
-    name: ZFTAL_BOOT_SIMPLE
+    name: ZFTAL_BOOT_KEJIGUAN
     driver-class-name: oracle.jdbc.OracleDriver
     #oracle.jdbc.driver.OracleDriver
     #type: com.zfsoft.db.core.datasource.NewDruidDataSource
@@ -159,8 +159,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:oracle:thin:@10.71.19.133:1521:orcl
     #url: jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 10.1.1.71)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = 10.1.1.72)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = 10.1.1.73)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = 10.1.1.74)(PORT = 1521))(LOAD_BALANCE = yes)(FAILOVER = ON)(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = jhc)(FAILOVER_MODE =(TYPE = SELECT)(METHOD = BASIC)(RETIRES = 20)(DELAY = 15))))
-    username: ZFTAL_BOOT_SIMPLE
-    password: ZFTAL_BOOT_SIMPLE
+    username: kejiguanadmin
+    password: kejiguanadmin
     # Druid的数据源配置：
     druid:
       enabled: true
@@ -277,6 +277,26 @@ mybatis:
   mapper-locations:
   - classpath*:com/zfsoft/**/dao/**/sqlmap/*.xml
 
+
+
+################################################################################################################
+###基于 starter 的自动配置
+    #基于 @MapperScan 注解的手工配置
+################################################################################################################
+#pagehelper
+#pagehelper:
+#  helperDialect: oracle
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+#  returnPageInfo: check
+#
+#mapper:
+#  mappers:
+#    - tk.mybatis.mapper.common.Mapper
+#    - tk.mybatis.mapper.common.Mapper2
+#  notEmpty: true
+
 ################################################################################################################
 ###ZFtal安全组件（跨域、XSS等）配置：
 ################################################################################################################
@@ -348,6 +368,9 @@ shiro:
     '[/wxpage/**]' : anon
     '[/druid/*]' : roles[admin]
     '[/api/**]' : anon
+
+    '[/kejiguan/**]': anon
+
     '[/ws/**]' : anon
     '[/sockets/**]' : anon
     '[/topic/**]' : anon
@@ -358,6 +381,7 @@ shiro:
     '[/logout]' : logout
     '[/index]' : sessionExpired,sessionControl,authc
     '[/**]' : sessionExpired,sessionControl,authc
+
 
 
 
