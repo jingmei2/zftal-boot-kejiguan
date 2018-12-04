@@ -8,16 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zfsoft.boot.web.ZFBootConfig;
-
 @EnableCaching(proxyTargetClass = true)
-@ServletComponentScan(basePackages = { "com.zfsoft" })
-//@MapperScan("com.zfsoft")
-@Import(ZFBootConfig.class)
+@ServletComponentScan(basePackages = { "com.zfsoft","com.zfsoft.boot" })
+@ComponentScan(basePackages = {"com.zfsoft.boot.*"})
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableScheduling

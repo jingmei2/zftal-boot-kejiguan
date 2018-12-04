@@ -296,7 +296,11 @@ mybatis:
 #    - tk.mybatis.mapper.common.Mapper
 #    - tk.mybatis.mapper.common.Mapper2
 #  notEmpty: true
-
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+    - tk.mybatis.mapper.common.Mapper2
+  notEmpty: true
 ################################################################################################################
 ###ZFtal安全组件（跨域、XSS等）配置：
 ################################################################################################################

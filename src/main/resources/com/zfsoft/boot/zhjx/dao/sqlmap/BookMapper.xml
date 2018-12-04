@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IBookDao" >
+
+    <resultMap id="bookMap" type="com.zfsoft.boot.zhjx.dao.entities.BookModel">
+		<result property="id" column="id" />
+		<result property="bookDate" column="book_date" />
+		<result property="bookTime" column="book_time" />
+		<result property="starTime" column="book_startime" />
+		<result property="endTime" column="book_endtime" />
+		<result property="type" column="type" />
+		<result property="name" column="name" />
+		<result property="idcard" column="idcard" />
+		<result property="contact" column="contact" />
+		<result property="phone" column="phone" />
+		<result property="companyName" column="company_name" />
+		<result property="companyNum" column="company_num" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+    <!-- 增加预定数据 -->
+    <select id="insert" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel" resultMap="bookMap">
+		insert into "KEJIGUANADMIN"."m_book"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="bookDate != null and bookDate != ''">book_date,</if>
+			<if test="bookTime != null and bookTime != ''">book_time,</if>
+			<if test="starTime != null and starTime != ''">book_startime,</if>
+			<if test="endTime != null and endTime != ''">book_endtime,</if>
+			<if test="type != null and type != ''">type,</if>
+			<if test="name != null and name != ''">name,</if>
+			<if test="idcard != null and idcard != ''">idcard,</if>
+			<if test="contact != null and contact != ''">contact,</if>
+			<if test="phone != null and phone != ''">phone,</if>
+			<if test="companyName != null and companyName != ''">company_name,</if>
+			<if test="companyNum != null and companyNum != ''">company_num,</if>
+			<if test="createTime != null and createTime != ''">create_time,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=INTEGER},</if>
+			<if test="bookDate != null and bookDate != ''">#{book_date,jdbcType=VARCHAR},</if>
+			<if test="bookTime != null and bookTime != ''">#{book_time,jdbcType=VARCHAR},</if>
+			<if test="starTime != null and starTime != ''">#{book_startime,jdbcType=VARCHAR},</if>
+			<if test="endTime != null and endTime != ''">#{book_endtime,jdbcType=VARCHAR},</if>
+			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
+			<if test="name != null and name != ''">#{name,jdbcType=VARCHAR},</if>
+			<if test="idcard != null and idcard != ''">#{idcard,jdbcType=VARCHAR},</if>
+			<if test="contact != null and contact != ''">#{contact,jdbcType=VARCHAR},</if>
+			<if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR},</if>
+			<if test="companyName != null and companyName != ''">#{company_name,jdbcType=VARCHAR},</if>
+			<if test="companyNum != null and companyNum != ''">#{company_num,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">#{create_time,jdbcType=VARCHAR},</if>
+		</trim>
+    </select>
+
+	<update id="update" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
+		update "KEJIGUANADMIN"."m_book" mb
+		<set>
+			<if test="id != null and id != ''">#{id,jdbcType=INTEGER},</if>
+			<if test="bookDate != null and bookDate != ''">#{book_date,jdbcType=VARCHAR},</if>
+			<if test="bookTime != null and bookTime != ''">#{book_time,jdbcType=VARCHAR},</if>
+			<if test="starTime != null and starTime != ''">#{book_startime,jdbcType=VARCHAR},</if>
+			<if test="endTime != null and endTime != ''">#{book_endtime,jdbcType=VARCHAR},</if>
+			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
+			<if test="name != null and name != ''">#{name,jdbcType=VARCHAR},</if>
+			<if test="idcard != null and idcard != ''">#{idcard,jdbcType=VARCHAR},</if>
+			<if test="contact != null and contact != ''">#{contact,jdbcType=VARCHAR},</if>
+			<if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR},</if>
+			<if test="companyName != null and companyName != ''">#{company_name,jdbcType=VARCHAR},</if>
+			<if test="companyNum != null and companyNum != ''">#{company_num,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">#{create_time,jdbcType=VARCHAR},</if>
+		</set>
+		where mb.id = #{id}
+	</update>
+
+	<select id="getModel" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel" resultType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
+		select *  from "KEJIGUANADMIN"."m_book" mb where mb.id = #{id}
+	</select>
+
+
+</mapper>
