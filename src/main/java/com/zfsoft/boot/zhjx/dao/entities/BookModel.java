@@ -1,6 +1,7 @@
 package com.zfsoft.boot.zhjx.dao.entities;
 
-import java.util.Date;
+
+import com.zfsoft.boot.zhjx.util.UUIDUtil;
 
 /**
  * 活动实体类
@@ -8,7 +9,8 @@ import java.util.Date;
  *
  */
 public class BookModel {
-	private int id;
+	private String id = UUIDUtil.getUUID().trim();
+
 	private String bookDate;
 	private String bookTime;
 	private String starTime;
@@ -22,12 +24,14 @@ public class BookModel {
 	private String companyNum;
 	private String createTime;
 
-	public int getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(String id) {
+//		this.id = id;
+		this.id = (null == id ? UUIDUtil.getUUID() : id.trim());
 	}
 
 	public String getBookDate() {

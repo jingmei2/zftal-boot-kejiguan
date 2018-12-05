@@ -20,63 +20,67 @@
 	</resultMap>
 
     <!-- 增加预定数据 -->
-    <select id="insert" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel" resultMap="bookMap">
+    <insert id="insert" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
 		insert into "KEJIGUANADMIN"."m_book"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null and id != ''">id,</if>
-			<if test="bookDate != null and bookDate != ''">book_date,</if>
-			<if test="bookTime != null and bookTime != ''">book_time,</if>
-			<if test="starTime != null and starTime != ''">book_startime,</if>
-			<if test="endTime != null and endTime != ''">book_endtime,</if>
-			<if test="type != null and type != ''">type,</if>
-			<if test="name != null and name != ''">name,</if>
-			<if test="idcard != null and idcard != ''">idcard,</if>
-			<if test="contact != null and contact != ''">contact,</if>
-			<if test="phone != null and phone != ''">phone,</if>
-			<if test="companyName != null and companyName != ''">company_name,</if>
-			<if test="companyNum != null and companyNum != ''">company_num,</if>
-			<if test="createTime != null and createTime != ''">create_time,</if>
+			<if test="id != null and id != ''">"id",</if>
+			<if test="bookDate != null and bookDate != ''">"bookDate",</if>
+			<if test="bookTime != null and bookTime != ''">"bookTime",</if>
+			<if test="starTime != null and starTime != ''">"starTime",</if>
+			<if test="endTime != null and endTime != ''">"endTime",</if>
+			<if test="type != null and type != ''">"type",</if>
+			<if test="name != null and name != ''">"name",</if>
+			<if test="idcard != null and idcard != ''">"idcard",</if>
+			<if test="contact != null and contact != ''">"contact",</if>
+			<if test="phone != null and phone != ''">"phone",</if>
+			<if test="companyName != null and companyName != ''">"companyName",</if>
+			<if test="companyNum != null and companyNum != ''">"companyNum",</if>
+			<if test="createTime != null and createTime != ''">"createTime",</if>
 		</trim>
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
-			<if test="id != null and id != ''">#{id,jdbcType=INTEGER},</if>
-			<if test="bookDate != null and bookDate != ''">#{book_date,jdbcType=VARCHAR},</if>
-			<if test="bookTime != null and bookTime != ''">#{book_time,jdbcType=VARCHAR},</if>
-			<if test="starTime != null and starTime != ''">#{book_startime,jdbcType=VARCHAR},</if>
-			<if test="endTime != null and endTime != ''">#{book_endtime,jdbcType=VARCHAR},</if>
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="bookDate != null and bookDate != ''">#{bookDate,jdbcType=VARCHAR},</if>
+			<if test="bookTime != null and bookTime != ''">#{bookTime,jdbcType=VARCHAR},</if>
+			<if test="starTime != null and starTime != ''">#{starTime,jdbcType=VARCHAR},</if>
+			<if test="endTime != null and endTime != ''">#{endTime,jdbcType=VARCHAR},</if>
 			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
 			<if test="name != null and name != ''">#{name,jdbcType=VARCHAR},</if>
 			<if test="idcard != null and idcard != ''">#{idcard,jdbcType=VARCHAR},</if>
 			<if test="contact != null and contact != ''">#{contact,jdbcType=VARCHAR},</if>
 			<if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR},</if>
-			<if test="companyName != null and companyName != ''">#{company_name,jdbcType=VARCHAR},</if>
-			<if test="companyNum != null and companyNum != ''">#{company_num,jdbcType=VARCHAR},</if>
-			<if test="createTime != null and createTime != ''">#{create_time,jdbcType=VARCHAR},</if>
+			<if test="companyName != null and companyName != ''">#{companyName,jdbcType=VARCHAR},</if>
+			<if test="companyNum != null and companyNum != ''">#{companyNum,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">#{createTime,jdbcType=VARCHAR},</if>
 		</trim>
-    </select>
+    </insert>
 
 	<update id="update" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
-		update "KEJIGUANADMIN"."m_book" mb
+		update "KEJIGUANADMIN"."m_book"
 		<set>
-			<if test="id != null and id != ''">#{id,jdbcType=INTEGER},</if>
-			<if test="bookDate != null and bookDate != ''">#{book_date,jdbcType=VARCHAR},</if>
-			<if test="bookTime != null and bookTime != ''">#{book_time,jdbcType=VARCHAR},</if>
-			<if test="starTime != null and starTime != ''">#{book_startime,jdbcType=VARCHAR},</if>
-			<if test="endTime != null and endTime != ''">#{book_endtime,jdbcType=VARCHAR},</if>
-			<if test="type != null and type != ''">#{type,jdbcType=VARCHAR},</if>
-			<if test="name != null and name != ''">#{name,jdbcType=VARCHAR},</if>
-			<if test="idcard != null and idcard != ''">#{idcard,jdbcType=VARCHAR},</if>
-			<if test="contact != null and contact != ''">#{contact,jdbcType=VARCHAR},</if>
-			<if test="phone != null and phone != ''">#{phone,jdbcType=VARCHAR},</if>
-			<if test="companyName != null and companyName != ''">#{company_name,jdbcType=VARCHAR},</if>
-			<if test="companyNum != null and companyNum != ''">#{company_num,jdbcType=VARCHAR},</if>
-			<if test="createTime != null and createTime != ''">#{create_time,jdbcType=VARCHAR},</if>
+			<if test="id != null and id != ''">"id"=#{id,jdbcType=VARCHAR},</if>
+			<if test="bookDate != null and bookDate != ''">"bookDate"=#{bookDate,jdbcType=VARCHAR},</if>
+			<if test="bookTime != null and bookTime != ''">"bookTime"=#{bookTime,jdbcType=VARCHAR},</if>
+			<if test="starTime != null and starTime != ''">"starTime"=#{starTime,jdbcType=VARCHAR},</if>
+			<if test="endTime != null and endTime != ''">"endTime"=#{endTime,jdbcType=VARCHAR},</if>
+			<if test="type != null and type != ''">"type"=#{type,jdbcType=VARCHAR},</if>
+			<if test="name != null and name != ''">"name"=#{name,jdbcType=VARCHAR},</if>
+			<if test="idcard != null and idcard != ''">"idcard"=#{idcard,jdbcType=VARCHAR},</if>
+			<if test="contact != null and contact != ''">"contact"=#{contact,jdbcType=VARCHAR},</if>
+			<if test="phone != null and phone != ''">"phone"=#{phone,jdbcType=VARCHAR},</if>
+			<if test="companyName != null and companyName != ''">"companyName"=#{companyName,jdbcType=VARCHAR},</if>
+			<if test="companyNum != null and companyNum != ''">"companyNum"=#{companyNum,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">"createTime"=#{createTime,jdbcType=VARCHAR},</if>
 		</set>
-		where mb.id = #{id}
+		where "id" = #{id}
 	</update>
 
 	<select id="getModel" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel" resultType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
-		select *  from "KEJIGUANADMIN"."m_book" mb where mb.id = #{id}
+		select mb.*  from "KEJIGUANADMIN"."m_book" mb where "id" = #{id}
 	</select>
+
+	<delete id="delete" parameterType="com.zfsoft.boot.zhjx.dao.entities.BookModel">
+		delete from "KEJIGUANADMIN"."m_book" mb where mb.id = #{id}
+	</delete>
 
 
 </mapper>
