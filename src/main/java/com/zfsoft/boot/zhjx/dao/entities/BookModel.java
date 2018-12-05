@@ -24,6 +24,8 @@ public class BookModel {
 	private String companyNum;
 	private String createTime;
 
+	private String activityId;
+
 
 	public String getId() {
 		return id;
@@ -129,5 +131,14 @@ public class BookModel {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+
+	public String getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(String activityId) {
+		this.activityId = activityId;
+	}
+
 
 }

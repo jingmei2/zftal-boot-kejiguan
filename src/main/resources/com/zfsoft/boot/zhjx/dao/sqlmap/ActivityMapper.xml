@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.IActivityDao" >
+
+    <resultMap id="activityMap" type="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		<result property="id" column="id" />
+		<result property="picPath" column="picPath" />
+		<result property="title" column="title" />
+		<result property="desc" column="desc" />
+		<result property="number" column="number" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+    <!-- 增加预定数据 -->
+    <insert id="insert" parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		insert into "KEJIGUANADMIN"."m_activity"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">"id",</if>
+			<if test="picPath != null and picPath != ''">"picPath",</if>
+			<if test="title != null and title != ''">"title",</if>
+			<if test="desc != null and desc != ''">"desc",</if>
+			<if test="number != null and number != ''">"number",</if>
+			<if test="createTime != null and createTime != ''">"createTime",</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="picPath != null and picPath != ''">#{picPath,jdbcType=VARCHAR},</if>
+			<if test="title != null and title != ''">#{title,jdbcType=VARCHAR},</if>
+			<if test="desc != null and desc != ''">#{desc,jdbcType=VARCHAR},</if>
+			<if test="number != null and number != ''">#{number,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">#{createTime,jdbcType=VARCHAR},</if>
+		</trim>
+    </insert>
+
+	<update id="update" parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		update "KEJIGUANADMIN"."m_activity"
+		<set>
+			<if test="id != null and id != ''">"id"=#{id,jdbcType=VARCHAR},</if>
+			<if test="picPath != null and picPath != ''">"picPath"=#{picPath,jdbcType=VARCHAR},</if>
+			<if test="title != null and title != ''">"title"=#{title,jdbcType=VARCHAR},</if>
+			<if test="desc != null and desc != ''">"desc"=#{desc,jdbcType=VARCHAR},</if>
+			<if test="number != null and number != ''">"number"=#{number,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">"createTime"=#{createTime,jdbcType=VARCHAR},</if>
+		</set>
+		where "id" = #{id}
+	</update>
+
+	<select id="getModel" parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel" resultType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		select ma.*  from "KEJIGUANADMIN"."m_activity" ma where "id" = #{id}
+	</select>
+
+	<delete id="delete" parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		delete from "KEJIGUANADMIN"."m_activity" ma where ma.id = #{id}
+	</delete>
+
+
+</mapper>
