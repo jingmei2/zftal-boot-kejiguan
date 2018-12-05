@@ -374,6 +374,9 @@ shiro:
     '[/api/**]' : anon
 
     '[/kejiguan/**]': anon
+    '[/swagger-ui.html]': anon
+    '[/swagger-resources/**]': anon
+    '[/webjars/*]': anon
 
     '[/ws/**]' : anon
     '[/sockets/**]' : anon

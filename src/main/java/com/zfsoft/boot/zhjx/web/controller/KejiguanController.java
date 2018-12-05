@@ -1,13 +1,13 @@
 package com.zfsoft.boot.zhjx.web.controller;
 
-import com.zfsoft.api.web.session.User;
 import com.zfsoft.boot.zhjx.dao.entities.ActivityModel;
 import com.zfsoft.boot.zhjx.dao.entities.BookModel;
-import com.zfsoft.boot.zhjx.dao.entities.MobileApModel;
 import com.zfsoft.boot.zhjx.dao.entities.ResultEntity;
 import com.zfsoft.boot.zhjx.service.svcinterface.IActivityService;
 import com.zfsoft.boot.zhjx.service.svcinterface.IBookService;
 import com.zfsoft.boot.zhjx.util.DateUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,8 @@ import java.util.List;
 /**
  * @author Majing
  */
+@Api(tags = "【科技馆】接口")
+@RestController
 @Controller
 @RequestMapping("/kejiguan")
 public class KejiguanController {
@@ -29,7 +31,8 @@ public class KejiguanController {
 	@Autowired
 	private IActivityService activityService;
 
-	@RequestMapping("/addBook")
+	@ApiOperation(value = "新增预定", notes = "", response = String.class)
+	@RequestMapping(value="/addBook",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity addBook(HttpServletRequest request, Model model, BookModel bookModel, String activityId) {
 		boolean flag = false;
@@ -46,8 +49,8 @@ public class KejiguanController {
 
 		return resultEntity;
 	}
-
-	@RequestMapping("/updateBook")
+	@ApiOperation(value="修改预定", notes="")
+	@RequestMapping(value="/updateBook",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity updateBook(HttpServletRequest request, Model model, BookModel bookModel) {
 		boolean flag = false;
@@ -64,6 +67,7 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value="查询预定", notes="")
 	@RequestMapping(value="/selectBookById",method=RequestMethod.GET)
 	@ResponseBody
 	public ResultEntity selectBookById(String id) {
@@ -83,6 +87,7 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value="删除预定", notes="")
 	@RequestMapping(value="/deleteBookById",method=RequestMethod.GET)
 	@ResponseBody
 	public ResultEntity deleteBookById(String id) {
@@ -101,6 +106,7 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value = "查询预定列表", notes = "", response = String.class)
 	@RequestMapping(value="/selectBookListById",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity selectBookListById(HttpServletRequest request, Model model, BookModel bookModel) {
@@ -120,7 +126,8 @@ public class KejiguanController {
 	}
 
 	//*********************************   活动   *************************************************//
-	@RequestMapping("/addActivity")
+	@ApiOperation(value = "新增活动", notes = "", response = String.class)
+	@RequestMapping(value="/addActivity",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity addActivity(HttpServletRequest request, Model model, ActivityModel activityModel) {
 		boolean flag = false;
@@ -137,7 +144,8 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
-	@RequestMapping("/updateActivity")
+	@ApiOperation(value = "修改活动", notes = "", response = String.class)
+	@RequestMapping(value = "/updateActivity",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity updateActivity(HttpServletRequest request, Model model, ActivityModel activityModel) {
 		boolean flag = false;
@@ -154,6 +162,7 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value = "查询活动", notes = "", response = String.class)
 	@RequestMapping(value="/selectActivityById",method=RequestMethod.GET)
 	@ResponseBody
 	public ResultEntity selectActivityById(String id) {
@@ -173,6 +182,7 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value = "删除活动", notes = "", response = String.class)
 	@RequestMapping(value="/deleteActivityById",method=RequestMethod.GET)
 	@ResponseBody
 	public ResultEntity deleteActivityById(String id) {

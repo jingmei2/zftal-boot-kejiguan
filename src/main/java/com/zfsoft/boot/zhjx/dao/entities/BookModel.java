@@ -2,12 +2,14 @@ package com.zfsoft.boot.zhjx.dao.entities;
 
 
 import com.zfsoft.boot.zhjx.util.UUIDUtil;
+import io.swagger.annotations.ApiModel;
 
 /**
  * 活动实体类
  * @author liucb
  *
  */
+@ApiModel(value = "预定对象")
 public class BookModel {
 	private String id = UUIDUtil.getUUID().trim();
 
