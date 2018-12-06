@@ -63,14 +63,15 @@ html, body {
     opacity: 1;
 }
 .content {
-    margin-left: 15px;
-    margin-right: 15px;
+    position: absolute;
+    left: 5%;
+    top: 90%;
     height: 52px;
     background: rgba(25,137,250,1);
     opacity: 1;
     border-radius: 4px;
-
-	text-align:center;   /* 水平居中 */
+    text-align: center;
+    width: 90%;
 }
 .content .btn{
 	position: relative;
