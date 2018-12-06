@@ -1,6 +1,7 @@
 package com.zfsoft.boot.zhjx.dao.entities;
 
 import com.zfsoft.boot.zhjx.util.UUIDUtil;
+import io.swagger.annotations.ApiModel;
 
 
 /**
@@ -8,6 +9,7 @@ import com.zfsoft.boot.zhjx.util.UUIDUtil;
  * @author liucb
  *
  */
+@ApiModel(value = "活动对象")
 public class ActivityModel {
 	private String id = UUIDUtil.getUUID().trim();
 	private String title;

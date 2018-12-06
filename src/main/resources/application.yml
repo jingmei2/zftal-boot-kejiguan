@@ -14,7 +14,7 @@ info:
     description: "@project.description@"
     version: "@project.version@"
     spring-boot-version: "@project.parent.version@"
-    title : 预警分析平台
+    title : 科技馆平台
     company: 正方软件股份有限公司
     ipc-license: 浙ICP备11024936
     addr: 浙江省杭州市西湖区紫霞街176号互联网创新创业园2号301

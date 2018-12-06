@@ -1,0 +1,70 @@
+.activity-title{
+	width:4px;
+	height:20px;
+	background:linear-gradient(180deg,rgba(99,228,255,1) 0%,rgba(0,144,255,1) 100%);
+	opacity:1;
+}
+.activity-title-concent{
+	margin-left: 20px;
+	display:inherit;
+	width:160px;
+	height:28px;
+	font-size:20px;
+	font-family:PingFang SC;
+	font-weight:bold;
+	line-height:20px;
+	color:rgba(78,78,78,1);
+	opacity:1;
+}
+.activity-tab{
+	margin-top: 20px;
+	height:238px;
+	background:rgba(255,255,255,1);
+	opacity:1;
+	border-radius:4px;
+}
+.activity-tab .img{
+	height:167px;
+	width: 100%;
+	background:rgba(0,0,0,0);
+	opacity:1;
+	border-radius:4px 4px 0px 0px;
+
+	border:1px solid;
+	border-radius:5px;
+	-moz-border-radius:5px; /* Old Firefox */
+	box-shadow: 5px 5px 2px #888888;
+}
+.activity-tab .titleStyle{
+	padding: 10px;
+}
+.activity-tab .titleStyle .title{
+	width:300px;
+	height:20px;
+	font-size:15px;
+	font-family:PingFang SC;
+	font-weight:bold;
+	line-height:24px;
+	color:rgba(100,100,100,1);
+	opacity:1;
+}
+.activity-tab .concentStyle{
+	margin-left: 10px;
+	width:16px;
+	height:16px;
+	background:linear-gradient(180deg,rgba(0,153,255,1) 0%,rgba(34,238,217,1) 100%);
+	opacity:1;
+}
+.activity-tab .concentStyle .concent{
+	display:inherit;
+	margin-left: 20px;
+	width:159px;
+	height:20px;
+	font-size:14px;
+	font-family:PingFang SC;
+	font-weight:500;
+	line-height:24px;
+	color:rgba(122,122,122,1);
+	opacity:1;
+}
+
