@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>科技馆</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/kejiguan.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+	</head>
+
+	<body style="background:rgba(246,247,248,1);opacity:1;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">科技馆首页</h1>
+		</header>
+		<div class="body" style="background:rgba(246,247,248,1);">
+			<div class="imgStyle">
+				<img class="img" src="../images/cbd.jpg"/>
+			</div>
+			<!--文字信息展示-->
+			<div class="tab">
+				<div class="line">
+					<div class="textStyle">
+						<img class="img" src="../images/60x60.gif"/>
+						<span class="title">活动简介</span>
+						<p class="text" style="margin-top: 5px;">
+							科学技术馆是科协直属事业单位，是省重点文化建设项目，2011年7月正式动工建设，2013年7月主体建筑竣工，2014年6月进入季节性试运行，2015年4月29日正式开馆。科学技术馆是一座集科普教育、科技交流、休闲旅游为一体的综合性科技馆。
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--地址-->
+			<div class="tab">
+				<div class="line">
+					<div class="textStyle">
+						<img class="img" src="../images/60x60.gif"/>
+						<span class="concent">地址</span>
+						<p class="text">
+							浑南区智慧三街159号.
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--开放时间-->
+			<div class="tab">
+				<div class="line">
+					<div class="textStyle">
+						<img class="img" src="../images/60x60.gif"/>
+						<span class="concent">开放时间</span>
+						<p class="text">
+							开馆：周二至周日9:30—16:00（15:30停止售/领票） <br>
+							闭馆：周一（国家法定节假日另行通知）
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--票价-->
+			<div class="tab">
+				<div class="line">
+					<div class="textStyle">
+						<img class="img" src="../images/60x60.gif"/>
+						<span class="concent">票价</span>
+						<p class="text">
+							成人：12元        儿童：6元 <br>
+							12岁或超过1.5米按成人收费
+						</p>
+					</div>
+				</div>
+			</div>
+			<!--票价-->
+			<div class="tab">
+				<div class="line">
+					<div class="textStyle">
+						<img class="img" src="../images/60x60.gif"/>
+						<span class="concent">温馨提醒</span>
+						<p class="text">
+							提供个人、团体、单位、学校等预约服务
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack:false //启用右滑关闭功能
+			});
+			var slider = mui("#slider");
+//			document.getElementById("switch").addEventListener('toggle', function(e) {
+//				if (e.detail.isActive) {
+//					slider.slider({
+//						interval: 3000
+//					});
+//				} else {
+//					slider.slider({
+//						interval: 0
+//					});
+//				}
+//			});
+			//再加入这段代码
+		    //获得slider插件对象
+		    var gallery = mui('.mui-slider');
+		        gallery.slider({
+		  	    interval:0//自动轮播周期，若为0则不自动播放，默认为0；
+		    });
+		</script>
+	</body>
+
+</html>
