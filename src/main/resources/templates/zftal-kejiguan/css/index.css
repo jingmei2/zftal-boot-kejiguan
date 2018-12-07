@@ -3,7 +3,7 @@ body{
 }
 .slider{
 	width: 95%;
-	/*height:280px;*/
+	height:200px;
 	background:rgba(0,0,0,0);
 	opacity:1;
 	border-radius:4px;
