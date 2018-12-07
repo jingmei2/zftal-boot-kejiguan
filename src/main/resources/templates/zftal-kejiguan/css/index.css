@@ -32,6 +32,8 @@
 	opacity:1;
 }
 .activity-title{
+	margin-top: 100px;
+	margin-left: 15px;
 	width:4px;
 	height:20px;
 	background:linear-gradient(180deg,rgba(99,228,255,1) 0%,rgba(0,144,255,1) 100%);
@@ -47,5 +49,15 @@
 	font-weight:bold;
 	line-height:20px;
 	color:rgba(78,78,78,1);
+	opacity:1;
+}
+.mapStyle{
+	margin-top: 20px;
+}
+.map{
+	width:375px;
+	height:270px;
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(112,112,112,1);
 	opacity:1;
 }
