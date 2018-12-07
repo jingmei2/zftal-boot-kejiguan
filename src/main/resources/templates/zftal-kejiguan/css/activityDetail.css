@@ -47,6 +47,12 @@ html, body {
 	color:rgba(122,122,122,1);
 	opacity:1;
 }
+.activity-tab .concentStyle .imgs{
+	float: left;
+    height: 20px;
+    width: 20px;
+}
+
 
 .textStyle{
 

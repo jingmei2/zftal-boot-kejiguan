@@ -18,7 +18,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">科技馆首页</h1>
+			<h1 class="mui-title">科技馆</h1>
 		</header>
 		<div class="body" style="padding: 15px;background:rgba(246,247,248,1);">
 			<div style="width: 100%;">
@@ -27,37 +27,37 @@
 					<div class="mui-slider-group mui-slider-loop">
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate slider-item">
-							<a href="#">
-								<img src="../images/timg1.jpg" class="slider-item-img">
+							<a href="activityDetail.html">
+								<img src="../images/index1.png" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第一张 -->
 						<div class="mui-slider-item slider-item" >
-							<a href="#">
-								<img src="../images/timg.jpg" class="slider-item-img">
+							<a href="activityDetail.html">
+								<img src="../images/index1.png" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第二张 -->
 						<div class="mui-slider-item slider-item">
-							<a href="#">
+							<a href="activityDetail.html">
 								<img src="../images/timg2.jpg" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第三张 -->
 						<div class="mui-slider-item slider-item">
-							<a href="#">
+							<a href="activityDetail.html">
 								<img src="../images/timg3.jpg" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第四张 -->
 						<div class="mui-slider-item slider-item">
-							<a href="#">
+							<a href="activityDetail.html">
 								<img src="../images/timg1.jpg" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate slider-item" >
-							<a href="#">
+							<a href="activityDetail.html">
 								<img src="../images/timg1.jpg" class="slider-item-img">
 							</a>
 						</div>
@@ -72,10 +72,10 @@
 				<!--活动图-->
 				<div class="about">
 					<span class="about-imgStyle">
-						<img class="about-img" src="../images/timg1.jpg"/>
+						<img class="about-img" id="about_kejiguan" src="../images/index2.png"/>
 					</span>
 					<span class="about-imgStyle">
-						<img class="about-img" src="../images/timg2.jpg"/>
+						<img class="about-img" id="acitvity" src="../images/index3.png"/>
 					</span>
 				</div>
 			</div>
@@ -86,10 +86,11 @@
 			<span class="activity-title-concent">最新活动</span>
 		</div>
 		<div class="mapStyle">
-			<img class="map" src="../images/cbd.jpg"/>
+			<img class="map" src="../images/index4.png"/>
 		</div>
 
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.11.0.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
 				swipeBack:false //启用右滑关闭功能
@@ -110,8 +111,16 @@
 		    //获得slider插件对象
 		    var gallery = mui('.mui-slider');
 		        gallery.slider({
-		  	    interval:0//自动轮播周期，若为0则不自动播放，默认为0；
+		  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
 		    });
+		</script>
+		<script type="text/javascript">
+			$("#about_kejiguan").on('click',function(){
+			    window.location.href="kejiguan.html";
+			})
+			$("#acitvity").on('click',function(){
+			    window.location.href="activity.html";
+			})
 		</script>
 	</body>
 
