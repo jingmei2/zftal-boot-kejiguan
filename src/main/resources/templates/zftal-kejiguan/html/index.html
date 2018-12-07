@@ -17,10 +17,9 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">科技馆</h1>
 		</header>
-		<div class="body" style="padding: 15px;background:rgba(246,247,248,1);">
+		<div class="body" style="margin-top: 29px;padding: 15px;background: rgba(246,247,248,1);">
 			<div style="width: 100%;">
 				<!--轮播图-->
 				<div id="slider" class="mui-slider slider">
@@ -28,13 +27,13 @@
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate slider-item">
 							<a href="activityDetail.html">
-								<img src="../images/index1.png" class="slider-item-img">
+								<img src="../images/timg.jpg" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第一张 -->
 						<div class="mui-slider-item slider-item" >
 							<a href="activityDetail.html">
-								<img src="../images/index1.png" class="slider-item-img">
+								<img src="../images/timg1.jpg" class="slider-item-img">
 							</a>
 						</div>
 						<!-- 第二张 -->
@@ -49,16 +48,10 @@
 								<img src="../images/timg3.jpg" class="slider-item-img">
 							</a>
 						</div>
-						<!-- 第四张 -->
-						<div class="mui-slider-item slider-item">
-							<a href="activityDetail.html">
-								<img src="../images/timg1.jpg" class="slider-item-img">
-							</a>
-						</div>
 						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 						<div class="mui-slider-item mui-slider-item-duplicate slider-item" >
 							<a href="activityDetail.html">
-								<img src="../images/timg1.jpg" class="slider-item-img">
+								<img src="../images/timg.jpg" class="slider-item-img">
 							</a>
 						</div>
 					</div>
@@ -66,20 +59,25 @@
 						<div class="mui-indicator mui-active"></div>
 						<div class="mui-indicator"></div>
 						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
 					</div>
 				</div>
 				<!--活动图-->
 				<div class="about">
+
 					<span class="about-imgStyle">
+						<span id="" class="about-text">
+							关于科技馆
+						</span>
 						<img class="about-img" id="about_kejiguan" src="../images/index2.png"/>
 					</span>
 					<span class="about-imgStyle">
+						<span id="" class="about-text">
+							最新活动
+						</span>
 						<img class="about-img" id="acitvity" src="../images/index3.png"/>
 					</span>
 				</div>
 			</div>
-
 		</div>
 		<!--标题-->
 		<div class="activity-title">
@@ -111,7 +109,7 @@
 		    //获得slider插件对象
 		    var gallery = mui('.mui-slider');
 		        gallery.slider({
-		  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+		  	    interval:0//自动轮播周期，若为0则不自动播放，默认为0；
 		    });
 		</script>
 		<script type="text/javascript">

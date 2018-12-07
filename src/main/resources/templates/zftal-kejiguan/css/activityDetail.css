@@ -30,10 +30,10 @@ html, body {
 }
 .activity-tab .concentStyle{
 	margin-left: 10px;
-	width:16px;
-	height:16px;
-	background:linear-gradient(180deg,rgba(0,153,255,1) 0%,rgba(34,238,217,1) 100%);
-	opacity:1;
+	width: 16px;
+	height: 16px;
+	/* background: linear-gradient(180deg,rgba(0,153,255,1) 0%,rgba(34,238,217,1) 100%); */
+	opacity: 1;
 }
 .activity-tab .concentStyle .concent{
 	display:inherit;
