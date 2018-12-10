@@ -13,6 +13,16 @@
 		<link rel="stylesheet" href="../css/kejiguan.css">
 		<!--App自定义的css-->
 		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+		<style type="text/css">
+			.audioStyle{
+			    position: relative;
+			    left: 40%;
+			    right: 20%;
+			    width: 55%;
+			    height: 30px;
+			    top: 163px;
+			}
+		</style>
 	</head>
 
 	<body style="background:rgba(246,247,248,1);opacity:1;">
@@ -24,6 +34,10 @@
 			<!--<div class="imgStyle">
 				<img class="img" src="../images/cbd.jpg"/>
 			</div>-->
+			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+			  <source src="../source/tianwen.mp3" type="audio/MP3"></source>
+			Your browser does not support the audio element.
+			</audio>
 			<!--文字信息展示-->
 			<div class="tab" style="padding-top: 120px;">
 				<div class="line">
@@ -43,7 +57,7 @@
 						<img class="img" src="../images/kejiguan2.png"/>
 						<span class="concent">地址</span>
 						<p class="text">
-							浑南区智慧三街159号.
+							浙江师范大学科技实验大楼南楼一楼.
 						</p>
 					</div>
 				</div>
@@ -62,7 +76,7 @@
 				</div>
 			</div>
 			<!--票价-->
-			<div class="tab">
+			<!--<div class="tab">
 				<div class="line">
 					<div class="textStyle">
 						<img class="img" src="../images/kejiguan4.png"/>
@@ -73,7 +87,7 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<!--票价-->
 			<div class="tab">
 				<div class="line">
@@ -91,27 +105,9 @@
 
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				swipeBack:false //启用右滑关闭功能
-			});
-			var slider = mui("#slider");
-//			document.getElementById("switch").addEventListener('toggle', function(e) {
-//				if (e.detail.isActive) {
-//					slider.slider({
-//						interval: 3000
-//					});
-//				} else {
-//					slider.slider({
-//						interval: 0
-//					});
-//				}
-//			});
-			//再加入这段代码
-		    //获得slider插件对象
-		    var gallery = mui('.mui-slider');
-		        gallery.slider({
-		  	    interval:0//自动轮播周期，若为0则不自动播放，默认为0；
-		    });
+//			var x = document.getElementById("myAudio");
+//			x.autoplay = true;
+//			x.load();
 		</script>
 	</body>
 
