@@ -201,5 +201,23 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@ApiOperation(value = "查询活动列表", notes = "", response = String.class)
+	@RequestMapping(value="/selectActivityListById",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity selectActivityListById(HttpServletRequest request, Model model, ActivityModel activityModel) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+
+		List<ActivityModel> bookModelList = activityService.getModelList(activityModel);
+
+		if(!bookModelList.isEmpty()) {
+			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",flag);
+			resultEntity.setData(bookModelList);
+		}else {
+			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"查询失败",flag);
+		}
+
+		return resultEntity;
+	}
 
 }

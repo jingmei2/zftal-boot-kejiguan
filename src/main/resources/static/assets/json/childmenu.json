@@ -4,148 +4,33 @@
 		"sfgnym": "0",
 		"children": [
 			{
-				"fjgndm": "N0801",
-				"sfgnym": "1",
-				"dyym": "/yyqs/sssj",
-				"gnmkdm": "N080101",
-				"gnmkmc": "实时数据",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0801",
-				"sfgnym": "1",
-				"dyym": "/yyqs/lsqs",
-				"gnmkdm": "N080102",
-				"gnmkmc": "历史趋势",
-				"tblj":"fa fa-group"
-			}
-		],
-		"dyym": "#",
-		"gnmkdm": "N0801",
-		"tblj": "fa fa-star",
-		"gnmkmc": "应用趋势"
-	}, {
-		"fjgndm": "N08",
-		"sfgnym": "0",
-		"children": [
-			{
-				"fjgndm": "N0802",
-				"sfgnym": "1",
-				"dyym": "/apfx/apjk",
-				"gnmkdm": "N080201",
-				"gnmkmc": "AP监控",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0802",
-				"sfgnym": "1",
-				"dyym": "/apfx/apyj",
-				"gnmkdm": "N080202",
-				"gnmkmc": "AP预警",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0802",
-				"sfgnym": "1",
-				"dyym": "/apfx/apfx",
-				"gnmkdm": "N080203",
-				"gnmkmc": "AP分析",
-				"tblj":"fa fa-group"
-			}
-		],
-		"dyym": "#",
-		"gnmkdm": "N0802",
-		"tblj": "fa fa-line-chart",
-		"gnmkmc": "AP分析"
-	}, {
-		"fjgndm": "N08",
-		"sfgnym": "0",
-		"children": [
-			{
 				"fjgndm": "N0803",
 				"sfgnym": "1",
 				"dyym": "/yhfx/ssyhgj",
 				"gnmkdm": "N080301",
 				"gnmkmc": "实时用户轨迹",
-				"tblj":"fa fa-group"
-			},{
+				"tblj": "fa fa-group"
+			},
+			{
 				"fjgndm": "N0803",
 				"sfgnym": "1",
-				"dyym": "/yhfx/xlyh",
+				"dyym": "/yhfx/activity",
 				"gnmkdm": "N080302",
 				"gnmkmc": "新老用户",
-				"tblj":"fa fa-group"
-			},{
+				"tblj": "fa fa-group"
+			},
+			{
 				"fjgndm": "N0803",
 				"sfgnym": "1",
-				"dyym": "/yhfx/yhhx",
+				"dyym": "/yhfx/book",
 				"gnmkdm": "N080303",
 				"gnmkmc": "用户画像",
-				"tblj":"fa fa-group"
+				"tblj": "fa fa-group"
 			}
 		],
 		"dyym": "#",
 		"gnmkdm": "N0803",
 		"tblj": "fa fa-user",
 		"gnmkmc": "用户分析"
-	}, {
-		"fjgndm": "N08",
-		"sfgnym": "0",
-		"children": [
-			{
-				"fjgndm": "N0804",
-				"sfgnym": "1",
-				"dyym": "/khdfx/qy",
-				"gnmkdm": "N080401",
-				"gnmkmc": "区域",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0804",
-				"sfgnym": "1",
-				"dyym": "/khdfx/yys",
-				"gnmkdm": "N080402",
-				"gnmkmc": "运营商",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0804",
-				"sfgnym": "1",
-				"dyym": "/khdfx/zdxx",
-				"gnmkdm": "N080403",
-				"gnmkmc": "终端信息",
-				"tblj":"fa fa-group"
-			}
-		],
-		"dyym": "#",
-		"gnmkdm": "N0804",
-		"tblj": "fa fa-share-alt",
-		"gnmkmc": "客户端分析 "
-	}, {
-		"fjgndm": "N08",
-		"sfgnym": "0",
-		"children": [
-			{
-				"fjgndm": "N0805",
-				"sfgnym": "1",
-				"dyym": "/ymfx/ymph",
-				"gnmkdm": "N080501",
-				"gnmkmc": "页面排行",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0805",
-				"sfgnym": "1",
-				"dyym": "/ymfx/xnjk",
-				"gnmkdm": "N080502",
-				"gnmkmc": "性能监控",
-				"tblj":"fa fa-group"
-			}, {
-				"fjgndm": "N0805",
-				"sfgnym": "1",
-				"dyym": "/ymfx/fwsd",
-				"gnmkdm": "N080503",
-				"gnmkmc": "访问深度",
-				"tblj":"fa fa-group"
-			}
-		],
-		"dyym": "#",
-		"gnmkdm": "N0805",
-		"tblj": "fa fa-link",
-		"gnmkmc": "页面分析"
 	}
 ]

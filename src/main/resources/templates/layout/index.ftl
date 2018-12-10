@@ -13,7 +13,7 @@
 					<div class="col-lg-4 col-md-4">
 						<a href="#">
 							<img src="assets/images/logo.png" alt="Logo" class="brand-icon">
-							<span class="brand-text">预警分析平台</span>
+							<span class="brand-text">科技馆</span>
 						</a>
 					</div>
 					<div class="col-lg-4 col-md-3">
@@ -42,30 +42,10 @@
 				</div>
 				<div class="navbar-content clearfix">
 					<ul id="navbar-content">
-						<li>
-							<div class="dropdown">
-								<a href="#" data-toggle="dropdown">金华职业...<!--<span class="caret">--></span></a>
-								<!--
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="#">用户分析</a>
-									</li>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="#">页面分析</a>
-									</li>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="#">APP分析</a>
-									</li>
-								</ul>
-								-->
-							</div>
-						</li>
 						<li class="active">
 							<a href="${request.contextPath}/yygl">应用概览</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="${request.contextPath}/jcfx">基础分析</a>
 						</li>
 						<li>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/yhfx")
 public class YhfxController {
 
-	
+
 	/**
 	 * 跳转到用户分析-实时用户轨迹
 	 * @param request
@@ -19,30 +19,30 @@ public class YhfxController {
 	 */
 	@RequestMapping("/ssyhgj")
 	public String ssyhgj(HttpServletRequest request, Model model) {
-		return "html/yhfx/ssyhgj"; 
+		return "html/yhfx/ssyhgj";
 	}
-	
+
 	/**
 	 * 跳转到用户分析-新老用户
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/xlyh")
-	public String xlyh(HttpServletRequest request, Model model) {
-		return "html/yhfx/xlyh"; 
+	@RequestMapping("/activity")
+	public String activity(HttpServletRequest request, Model model) {
+		return "html/yhfx/activity";
 	}
-	
-	
+
+
 	/**
 	 * 跳转到用户分析-用户画像
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/yhhx")
-	public String yhhx(HttpServletRequest request, Model model) {
-		return "html/yhfx/yhhx"; 
+	@RequestMapping("/book")
+	public String book(HttpServletRequest request, Model model) {
+		return "html/yhfx/book";
 	}
-	
+
 }

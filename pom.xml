@@ -16,7 +16,7 @@
 		<!-- Docker Build地址:本地构建需要单独指定 -->
 		<docker.build.repostory>10.71.21.118</docker.build.repostory>
 		<!--appassembler -->
-		<appassembler-app-name>zhjx</appassembler-app-name>
+		<appassembler-app-name>kejiguan</appassembler-app-name>
 	</properties>
 
 	<dependencies>

@@ -54,5 +54,15 @@
 		delete from "KEJIGUANADMIN"."m_activity" ma where ma.id = #{id}
 	</delete>
 
+	<select id="getModelList"  parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel" resultType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
+		select m.* from "KEJIGUANADMIN"."m_activity" m where 1=1
+		/*预约活动名称*/
+		<!--<if test="name != null and name != ''">
+			and name = #{name}
+		</if>-->
+		<if test="title != null and title != ''">
+			and "title" = #{title}
+		</if>
+	</select>
 
 </mapper>
