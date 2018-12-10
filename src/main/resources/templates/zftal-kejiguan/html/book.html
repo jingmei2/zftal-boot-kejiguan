@@ -43,8 +43,9 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">预约日期</a>
 					</span>
+					<div id='resultdemo2' class="ui-alert"></div>
 					<span class="choose">
-						<button id='demo2' data-options='{"type":"date","beginYear":2014,"endYear":2016}' class=" btn mui-btn mui-btn-block choose">请选择</button>
+						<button id='demo2' data-options='{"type":"date","beginYear":2017,"endYear":2019}' class=" btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 				<!--选择时间段-->
@@ -52,6 +53,7 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">选择时间段</a>
 					</span>
+					<div id='resultdemo7' class="ui-alert"></div>
 					<span class="choose">
 						<button id='demo7' data-options='{"type":"hour","customData":{"h":[{"text":"上午","value":"上午"},{"text":"下午","value":"下午"},{"text":"晚上","value":"晚上"}]},"labels":["年", "月", "日", "时段", "分"]}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -61,6 +63,7 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">开始时间</a>
 					</span>
+					<div id='resultdemo5' class="ui-alert"></div>
 					<span class="choose">
 						<button id='demo5' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -70,12 +73,13 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">结束时间</a>
 					</span>
+					<div id='resultdemo55' class="ui-alert"></div>
 					<span class="choose">
 						<button id='demo55' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 
-				<div id='result' class="ui-alert"></div>
+
 			</ul>
 		</div>
 		<div class="book-time">
@@ -92,7 +96,7 @@
 			</div>
 		</form>
 		<div class="content">
-			<span id="" class="btn">
+			<span id="" class="btnStyle">
 				提交
 			</span>
 	  	</div>
@@ -111,14 +115,14 @@
 	   	});
 	   	(function($) {
 				$.init();
-				var result = $('#result')[0];
-				var btns = $('.btn');
+				var result1 = $('#result')[0];
+				var btns = $('.mui-btn');
 				btns.each(function(i, btn) {
 					btn.addEventListener('tap', function() {
 						var _self = this;
 						if(_self.picker) {
 							_self.picker.show(function (rs) {
-								result.innerText = '选择结果: ' + rs.text;
+								$('#result'+btn.id)[0].innerText = '选择结果: ' + rs.text;
 								_self.picker.dispose();
 								_self.picker = null;
 							});
@@ -142,7 +146,7 @@
 								 * rs.h 时，用法同年
 								 * rs.i 分（minutes 的第二个字母），用法同年
 								 */
-								result.innerText = '选择结果: ' + rs.text;
+								$('#result'+btn.id)[0].innerText = '选择结果: ' + rs.text;
 								/*
 								 * 返回 false 可以阻止选择框的关闭
 								 * return false;
