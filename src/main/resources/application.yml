@@ -28,7 +28,7 @@ info:
 ###内置应用容器（Tomcat）配置：
 ################################################################################################################
 server:
-  port: 80
+  port: 8081
   # tomcat设置
   tomcat:
     accesslog:
@@ -46,7 +46,7 @@ server:
 
 management:
   server:
-    port: 54001
+    port: 54002
   health:
     mail:
       enabled: false
