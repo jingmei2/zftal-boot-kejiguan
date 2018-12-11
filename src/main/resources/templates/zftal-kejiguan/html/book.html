@@ -39,43 +39,43 @@
 		<div class="">
 			<ul class="mui-table-view mui-table-view-chevron">
 				<!--预约日期-->
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id='demo2'>
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">预约日期</a>
 					</span>
 					<div id='resultdemo2' class="ui-alert"></div>
 					<span class="choose">
-						<button id='demo2' data-options='{"type":"date","beginYear":2017,"endYear":2019}' class=" btn mui-btn mui-btn-block choose">请选择</button>
+						<button id='buttondemo2' data-options='{"type":"date","beginYear":2017,"endYear":2019}' class=" btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 				<!--选择时间段-->
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id='demo7'>
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">选择时间段</a>
 					</span>
 					<div id='resultdemo7' class="ui-alert"></div>
 					<span class="choose">
-						<button id='demo7' data-options='{"type":"hour","customData":{"h":[{"text":"上午","value":"上午"},{"text":"下午","value":"下午"},{"text":"晚上","value":"晚上"}]},"labels":["年", "月", "日", "时段", "分"]}' class="btn mui-btn mui-btn-block choose">请选择</button>
+						<button id='buttondemo7' data-options='{"type":"hour","customData":{"h":[{"text":"上午","value":"上午"},{"text":"下午","value":"下午"},{"text":"晚上","value":"晚上"}]},"labels":["年", "月", "日", "时段", "分"]}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 				<!--开始时间-->
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id='demo5'>
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">开始时间</a>
 					</span>
 					<div id='resultdemo5' class="ui-alert"></div>
 					<span class="choose">
-						<button id='demo5' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
+						<button id='buttondemo5' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 				<!--结束时间-->
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id='demo55'>
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">结束时间</a>
 					</span>
 					<div id='resultdemo55' class="ui-alert"></div>
 					<span class="choose">
-						<button id='demo55' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
+						<button id='buttondemo55' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
 				</li>
 
@@ -115,8 +115,7 @@
 	   	});
 	   	(function($) {
 				$.init();
-				var result1 = $('#result')[0];
-				var btns = $('.mui-btn');
+				var btns = $('.mui-table-view-cell');
 				btns.each(function(i, btn) {
 					btn.addEventListener('tap', function() {
 						var _self = this;
@@ -127,7 +126,8 @@
 								_self.picker = null;
 							});
 						} else {
-							var optionsJson = this.getAttribute('data-options') || '{}';
+							var obj = $('#button'+btn.id)[0];
+							var optionsJson = $('#button'+btn.id)[0].getAttribute('data-options') || '{}';
 							var options = JSON.parse(optionsJson);
 							var id = this.getAttribute('id');
 							/*
@@ -166,7 +166,7 @@
 				});
 			})(mui);
 //		var url = "http://127.0.0.1";
-		var url = "http://10.71.19.166:8081";
+		var url = "http://10.71.19.166:9097";
 		$("#button").click(function(){
 			var bookDate = $('.ui-alert')[0].innerText;
 			var bookTime = $('.ui-alert')[1].innerText;
@@ -186,18 +186,11 @@
 				function(data,status){
 					//alert("Data: " + data + "\nStatus: " + status);
 					var htm = "";
-					var list = data.data;
-					for(var i=0;i<list.length;i++){
-						var obj = list[i];
-						htm += "<tr><td>"+ obj.title +"</td>";
-						htm += "<td>"+ obj.createTime +"</td>";
-						htm += "<td>"+ obj.number +"</td>";
-						htm += "<td>"+ obj.desc +"</td></tr>";
-					}
-					$("#monthDataTable").append(htm);
-					alert("提交成功！");
+
 
 			});
+			alert("提交成功！");
+			window.location.replace("index.html");
 		});
 		</script>
 	</body>

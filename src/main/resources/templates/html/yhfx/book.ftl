@@ -31,6 +31,8 @@
 						<th>预定时间</th>
 						<th>预定人数</th>
 						<th>活动类型</th>
+						<th>预约个人或单位</th>
+						<th>联系电话</th>
 					</tr>
 				</table>
 			</div>
@@ -54,7 +56,9 @@
 					htm += "<tr><td>"+ obj.name +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ obj.type +"</td>";
-					htm += "<td>"+ obj.type +"</td></tr>";
+					htm += "<td>"+ obj.type +"</td>";
+					htm += "<td>"+ obj.companyName +"</td>";
+					htm += "<td>"+ obj.phone +"</td></tr>";
 				}
 				$("#monthDataTable").append(htm);
 

@@ -18,7 +18,7 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request, Model model) {
 		//model.addAttribute("target", "yygl/index");
-		return "layout/index";
+		return "html/jcfx/index";
 	}
 
 	/**

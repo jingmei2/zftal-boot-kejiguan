@@ -65,11 +65,7 @@
 						<div id="mainnav-menu-wrap">
 							<div class="nano">
 								<div class="nano-content">
-									<div style="text-align:center;">
-									    <div class="btn-group" role="group">
-											  <button type="button" class="btn btn-default" style="width:70px;">微信</button>
-									    </div>
-									</div>
+
 									<!--个人快速链接，默认隐藏-->
 									<div id="mainnav-shortcut" class="hidden">
 										<ul class="list-unstyled">

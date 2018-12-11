@@ -66,7 +66,7 @@
 	opacity:1;
 }
 .content {
-    position: absolute;
+    position: fixed;
     left: 5%;
     top: 90%;
     height: 52px;
