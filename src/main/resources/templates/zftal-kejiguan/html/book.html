@@ -166,7 +166,7 @@
 				});
 			})(mui);
 //		var url = "http://127.0.0.1";
-		var url = "http://10.71.19.166";
+		var url = "http://10.71.19.166:8081";
 		$("#button").click(function(){
 			var bookDate = $('.ui-alert')[0].innerText;
 			var bookTime = $('.ui-alert')[1].innerText;
@@ -195,6 +195,7 @@
 						htm += "<td>"+ obj.desc +"</td></tr>";
 					}
 					$("#monthDataTable").append(htm);
+					alert("提交成功！");
 
 			});
 		});
