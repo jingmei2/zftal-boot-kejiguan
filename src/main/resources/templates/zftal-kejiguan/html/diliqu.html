@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/main.css" rel="stylesheet" />
+		<link href="../css/activityDetail.css" rel="stylesheet" />
+		<style type="text/css">
+			.audioStyle{
+			    position: absolute;
+			    left: 2%;
+			    /* right: 20%; */
+			    /* width: 37%; */
+			    height: 30px;
+			    top: 250px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: white;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">场馆介绍</h1>
+		</header>
+		<div class="body" >
+			<!--内容卡-->
+			<div class="activity-tab">
+				<img class="img" src="../images/diliqu.png"/>
+				<div class="titleStyle">
+					<span class="title">地理区简介</span>
+				</div>
+			</div>
+			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+			  <source src="../source/diliqu.mp3" type="audio/MP3"></source>
+			Your browser does not support the audio element.
+			</audio>
+			<div class="textStyle">
+				<p class="text">
+					该展区以“灿若明霞，色如渥丹”的丹霞地貌与奇特的喀斯特地貌作为总体背景，并配有火山爆发、地震屋、虚拟龙卷风、沙丘模拟、候风地动仪、恐龙、菊石、角石等古生物标本和硅化玉、黄铁矿、孔雀石、紫水晶、翡翠、绿松石等珍稀矿物标本以及地质地貌多媒体查询系统等。在该展区，观众通过参与、游览这些展项可以获取地质地貌知识，了解地震、火山、风沙等自然灾害的状况。
+（1）地震屋 地震屋装饰成家居环境，模拟地震震动时相应级别强度的晃动，让人身临其境地感受地震带来的危害。同时通过动画、展板介绍地震知识，以及地震发生的时候如何逃生、躲避灾难等。
+（2）火山爆发 该展项是一座仿真火山模型。观众可以看到火山口喷涌的岩浆，由地下的火山活动区加热而形成喷泉。从火山模型的剖面，观众可以看到火山的内部构造以及火山喷发的过程。
+（3）虚拟龙卷风 通过信息技术，观众可以看到自己置身于一个龙卷风的场景中，需要左右移动来躲避龙卷风，如果不能及时躲避龙卷风，就会被迅速卷到空中。
+（4）地动仪  了解古代地震监测
+（5）沙丘模拟 通过调整风力、风向，直观演示了沙漠的运动形成过程 ，了解风沙地貌。
+				</p>
+			</div>
+		<div class="content">
+			<span id="" class="btn">
+				我要预约
+			</span>
+	  	</div>
+		</div>
+
+
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$(".content").on('click',function(){
+			    window.location.href="book.html";
+			 })
+		</script>
+	</body>
+
+</html>

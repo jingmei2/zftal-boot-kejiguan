@@ -53,7 +53,7 @@
 
 	</div>
 	<!-- 应用系统自定义函数 -->
-	<script type="text/javascript" src="${request.contextPath}/assets/js/yygl/index.js?ver=${versionUtil()}"></script>
+
 	<script type="text/javascript" src="${request.contextPath}/assets/js/zftal-ui-index.js?ver=${versionUtil()}"></script>
 </body>
 </html>

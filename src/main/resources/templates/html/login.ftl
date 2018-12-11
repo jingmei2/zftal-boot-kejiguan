@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">  
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">  
-    <title>预警综合分析平台  | 登录页</title>
-    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>科技馆  | 登录页</title>
+
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    
+
 </head>
 <body>
 	<header class="mui-handle">
@@ -35,12 +35,12 @@
 			<a class="mui-pull-right" href="#" onclick="goAddUser()">新用户注册</a>
 		</div>
 	</div>
-	
+
 	<script src="js/mui.min.js"></script>
 	<script src="js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
-      	
+
       	function goForget(){
       		if($("#userName").val() == '' || $("#userName").val() == null){
       			alert("请输入用户名");
@@ -62,11 +62,11 @@
       			});
       		}
       	}
-      	
+
       	function goAddUser(){
       		window.location.href = "userregist.html";
       	}
-      	
+
       	function goCheck(){
       		if($("#userName").val() == '' || $("#userName").val() == null){
       			alert("请输入用户名");
@@ -90,8 +90,8 @@
       			});
       		}
       	}
-      	
-      	
+
+
     </script>
 </body>
 </html>

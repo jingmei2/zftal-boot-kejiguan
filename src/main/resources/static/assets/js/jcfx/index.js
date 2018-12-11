@@ -1,19 +1,19 @@
 jQuery(function($) {
-	
+
 	$("#navbar-content").find(">li").removeClass("active");
 	$("#navbar-content").find(">li:eq(2)").addClass("active");
-	
+
 	//计算tabs高度
 	var pageHeight = $(window).height() - $('#tabs').outerHeight(true) - $('#footer').outerHeight(true) - $('#navbar').outerHeight(true);
 	var boxHeight = $(window).height() - $('#footer').outerHeight(true);
-	
+
 	$('#boxed').height(boxHeight);
-	
+
 	$(window).resize(function() {
 		var boxHeight = $(window).height() - $('#footer').outerHeight(true);
 		$('#boxed').height(boxHeight);
 	});
-	
+
 	function buildURL(requestURL,data){
 		data = data || {};
 		requestURL = _path + requestURL;
@@ -30,9 +30,9 @@ jQuery(function($) {
 	};
 
 	$(document).off('menuReady').on('menuReady',function(){
-		
+
 	});
-	
+
 	//根据点击的一级菜单显示二级
 	$.get( _path + "menu/getMenuData", {}, function(data) {
 		if($.founded(data)){
@@ -60,7 +60,7 @@ jQuery(function($) {
 						}
 						html.push('</ul>');
 					html.push('</li>');
-					
+
 				} else {
 					html.push('<li class="first">');
 					html.push('<a href="javascript:void(0);" title="'+item["gnmkmc"]+'" data-addtab="' + item["gnmkdm"] + '"  data-src="' + buildURL(item["dyym"], item) + '" data-tab-layout="default"  data-blank-layout="default-tab">');
@@ -71,24 +71,24 @@ jQuery(function($) {
 				}
 
 			}
-			
+
 			try {
 				if($('#mainnav-menu li').size() > 0) {
 					$('#mainnav-menu').metisMenu('dispose');
 				}
 				$("#mainnav-menu").empty().html(html.join(""));
 				$('#mainnav-menu').metisMenu({ toggle: true });
-				
+
 				//绑定导航相关事件
 				$.niftyNav('bind');
 				$.niftyAside('bind');
-				
+
 	        } catch(err) {
 	            console.error(err.message);
 	        }
 		}
 	}, "json");
-	
+
 	$(document).off('click','#mainnav-menu ul.collapse.in>li').on('click','#mainnav-menu ul.collapse.in>li',function(){
 		$('#mainnav-menu li').removeClass('current');
 	}).off('click','#mainnav-menu>li').on('click','#mainnav-menu>li',function(){
@@ -107,13 +107,13 @@ jQuery(function($) {
 		}else{
 			ul.find('.placeholder').remove();
 		}
-		
+
 	}).off('click','.container-jcfx #mainnav-menu a').on('click','.container-jcfx #mainnav-menu a',function(){
-		$(this).parents(".collapse").find("a").removeClass("on"); 
-		$(this).parents("li").siblings("li").find("a").removeClass("on"); 
+		$(this).parents(".collapse").find("a").removeClass("on");
+		$(this).parents("li").siblings("li").find("a").removeClass("on");
 		$(this).addClass("on");
 	});
-	
+
 	$(window).resize(function(){
 		if($('#mainnav-menu').find('.placeholder').size()>0){
 			var ul=$('.placeholder').closest('ul');
@@ -125,11 +125,11 @@ jQuery(function($) {
 			$('#mainnav-menu .placeholder').height(placeholderHeight);
 		}
 	});
-	
-	
+
+
 	//初始化时button选中样式
 	initBtnClass();
-    //更改css样式
+    更改css样式
     $('button').click(function(){
     	var thisBtn = $(this);
     	//alert(123);
@@ -148,8 +148,8 @@ jQuery(function($) {
       		}
       	},"json");
     });
-	
-}); 
+
+});
 
 function initBtnClass(){
 	//getMtaDeviceType

@@ -51,7 +51,7 @@
 					<ul id="navbar-content">
 
 						<li class="active">
-							<a href="${request.contextPath}/jcfx">基础分析</a>
+							<a href="${request.contextPath}/jcfx">基础数据</a>
 						</li>
 					</ul>
 				</div>
@@ -109,7 +109,9 @@
 				<div id="content-container" class="content-container">
 					<div class="zf-content">
 						<div class="page-content">
-							<iframe id="jcfxFrame" name="jcfxFrame" src="${request.contextPath}/yhgx/book" style="width:100%;height:700px;" frameborder="0" scrolling="yes"></iframe>
+							<iframe id="jcfxFrame" name="jcfxFrame" src="${request.contextPath}/yhfx/book" style="width:100%;height:700px;" frameborder="0" scrolling="yes">
+
+							</iframe>
 						</div>
 					</div>
 

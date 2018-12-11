@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/main.css" rel="stylesheet" />
+		<link href="../css/activityDetail.css" rel="stylesheet" />
+		<style type="text/css">
+			.audioStyle{
+			    position: absolute;
+			    left: 2%;
+			    /* right: 20%; */
+			    /* width: 37%; */
+			    height: 30px;
+			    top: 250px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: white;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">场馆介绍</h1>
+		</header>
+		<div class="body" >
+			<!--内容卡-->
+			<div class="activity-tab">
+				<img class="img" src="../images/tianwenqu.png"/>
+				<div class="titleStyle">
+					<span class="title">天文区简介</span>
+				</div>
+			</div>
+			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+			  <source src="../source/tianwenqu.mp3" type="audio/MP3"></source>
+			Your browser does not support the audio element.
+			</audio>
+			<div class="textStyle">
+				<p class="text">
+
+    “天地苍茫，宇宙洪荒”，该展区以星空作为总背景，利用声、光、电以及计算机技术等，模拟出一个神秘浩瀚的宇宙景象，构造了一种虚实融合、亦真亦幻的太空景观。该展区的展品主要包括：天象馆、数字外投球、内投球幕电影、生日星空、八大星球、嫦娥卫星模型、长征号火箭模型以及相关知识介绍的多媒体平台等。观众可以通过参与、游览这些展示内容，达到进一步了解宇宙，了解太阳系、了解地球、了解航空航天技术。
+    （1）天象馆 球形天幕直径为14m，内配置SA-15型天象仪，可供90余人同时参观。 天象仪可以把星空投影在球幕上，在白天也能观看星空。此设备可放映6.05等以上恒星5000余颗，仙女座大星云、球状星云、猎户星云、蟹状星云、大麦星云、小麦星云6个星云星团，以及银河、行星、太阳、月亮等，并可演示日食、月食、流星雨、日出、朝霞、晚霞等现象。
+    （2）外投球 ：该展品利用数字投影技术，投影出一个动态变化的立体球。观众可通过触摸屏选择所要观看的各种行星，了解各大行星的相关知识；了解地球板快运动状况，气候分带、火山与地震的分布情况等。
+    （3）内投球：播放宇宙大爆炸、星空世界等影片。
+    （4）生日星空：输入自己的出生日期以及城市，观众可以看到自己出生当天在当地的星空图。还可以通过摄像头拍照，给自己制作一张包含生日、星空图、照片、签名等信息的纪念卡片等。
+				</p>
+			</div>
+		<div class="content">
+			<span id="" class="btn">
+				我要预约
+			</span>
+	  	</div>
+		</div>
+
+
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			$(".content").on('click',function(){
+			    window.location.href="book.html";
+			 })
+		</script>
+	</body>
+
+</html>

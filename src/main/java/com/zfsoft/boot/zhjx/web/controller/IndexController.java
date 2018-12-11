@@ -18,9 +18,9 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request, Model model) {
 		//model.addAttribute("target", "yygl/index");
-		return "layout/index"; 
+		return "layout/index";
 	}
-	
+
 	/**
 	 * 跳转到基础分析页面
 	 * @param request
@@ -30,13 +30,13 @@ public class IndexController {
 	@RequestMapping("/jcfx")
 	public String jcfx(HttpServletRequest request, Model model) {
 		//model.addAttribute("target", "jcfx/index");
-		return "html/jcfx/index"; 
+		return "html/jcfx/index";
 	}
-	
+
 	@RequestMapping("/yygl")
 	public String yygl(HttpServletRequest request, Model model) {
 		model.addAttribute("target", "yygl/index");
-		return "layout/index"; 
+		return "layout/index";
 	}
-	
+
 }

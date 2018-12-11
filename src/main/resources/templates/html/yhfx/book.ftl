@@ -17,7 +17,7 @@
 	<!-- 应用系统自定义样式 -->
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
 	<!-- 该页面单独样式 -->
-	<link href="${request.contextPath}/assets/css/yhfx/ssyhgjssyhgj.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 <div class="main-content">

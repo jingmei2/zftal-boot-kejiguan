@@ -125,6 +125,13 @@ public class KejiguanController {
 		return resultEntity;
 	}
 
+	@RequestMapping("/selectBookList")
+	public String selectBookList(HttpServletRequest request, Model model) {
+		//model.addAttribute("target", "jcfx/index");
+		System.out.println("selectBookList");
+		return "/yhfx/book";
+	}
+
 	//*********************************   活动   *************************************************//
 	@ApiOperation(value = "新增活动", notes = "", response = String.class)
 	@RequestMapping(value="/addActivity",method=RequestMethod.POST)
