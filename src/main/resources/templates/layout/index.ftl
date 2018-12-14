@@ -25,12 +25,6 @@
 					<div class="col-lg-4 col-md-5">
 						<ul class="link-info pull-right">
 							<li>
-								<a href="#"><img src="assets/images/icon01.png"><span>数据分析</span></a>
-							</li>
-							<li>
-								<a href="#"><img src="assets/images/icon02.png"><span>我的应用</span></a>
-							</li>
-							<li>
 								<a href="#"><img class="img-circle head-portrait" src="assets/images/admin.png"><span>${Session.user.yhm}</span></a>&nbsp;&nbsp;
 								<a href="${request.contextPath}/logout">
 									注销
