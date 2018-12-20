@@ -3,21 +3,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>场馆介绍</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,14 +19,13 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/shengwuqu.png"/>
-				<div class="titleStyle">
-					<span class="title">生物区简介</span>
-				</div>
+				<div class="titleStyle">生物区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/shengwuqu.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/shengwuqu.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
+			
 			<div class="textStyle">
 				<p class="text">
 					以湿地、荒漠、海洋、林地等生态系统为背景，布置了百余种海洋贝类、昆虫、蝴蝶标本；东北虎、黑熊、金丝猴、秃鹫等93种标本、DNA模型，以及蝴蝶谷、海洋生物互动、湿地互动等科技展品等。该展区展示了众多的奇妙物种和生命奥妙，观众能从中获得生物、生境以及生态系统的有关知识，了解保护生态，与生态和谐的重要性。
@@ -45,11 +34,7 @@
 （3）湿地互动 利用计算机技术，模拟湿地生态系统。当观众踩到湿地上时，会留下水波纹，当踩到鳄鱼的时候，鳄鱼张大嘴巴好象要袭击人。并会出现有关湿地动物的介绍。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -58,11 +43,6 @@
 		<script src="../js/jquery-1.11.0.js"></script>
 		<script type="text/javascript">
 			mui.init()
-		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
 		</script>
 	</body>
 

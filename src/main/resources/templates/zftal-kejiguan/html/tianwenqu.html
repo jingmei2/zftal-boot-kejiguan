@@ -3,21 +3,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>场馆介绍</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,14 +19,13 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/tianwenqu.png"/>
-				<div class="titleStyle">
-					<span class="title">天文区简介</span>
-				</div>
+				<div class="titleStyle">天文区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/tianwenqu.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/tianwenqu.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
+			
 			<div class="textStyle">
 				<p class="text">
 
@@ -47,11 +36,7 @@
     （4）生日星空：输入自己的出生日期以及城市，观众可以看到自己出生当天在当地的星空图。还可以通过摄像头拍照，给自己制作一张包含生日、星空图、照片、签名等信息的纪念卡片等。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -61,11 +46,7 @@
 		<script type="text/javascript">
 			mui.init()
 		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
-		</script>
+		
 	</body>
 
 </html>

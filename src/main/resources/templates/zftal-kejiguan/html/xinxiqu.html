@@ -3,21 +3,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>场馆介绍</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,14 +19,12 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/xinxiqu.png"/>
-				<div class="titleStyle">
-					<span class="title">信息区简介</span>
-				</div>
+				<div class="titleStyle">信息区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/xinxiqu.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/xinxiqu.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
 			<div class="textStyle">
 				<p class="text">
 					该展区主要展示现代信息技术，设置了机器人下棋、机器人表演、虚拟校园漫步、信息传递模拟、摩尔定律、输入输出设备展示、PC机发展历史等展品。在该展区观众既可以了解先进的机器人技术、虚拟现实技术等，又可以了解PC机、以及输入输出设备的发展历史，从而体会科学技术进步对社会的推动作用。
@@ -45,11 +33,7 @@
 （3）虚拟校园  利用虚拟现实技术，构建了一个浙江师范大学的虚拟场景，观众可以在虚拟场景中漫游。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -59,11 +43,7 @@
 		<script type="text/javascript">
 			mui.init()
 		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
-		</script>
+		
 	</body>
 
 </html>

@@ -16,7 +16,7 @@
 	opacity:1;
 }
 .tab{
-	padding: 15px;
+	padding:10px 15px;
 }
 .line{
 	padding: 15px;
@@ -29,20 +29,24 @@
 .textStyle{
 
 }
-.textStyle .img{
+.textStyle .img,.activity-tab .img{
     float: left;
     margin-top: 0px;
     /* padding-top: 1px; */
     height: 20px;
     width: 20px;
 }
+
+.activity-tab .img{
+	margin: 22px 10px 0 0;
+}
 .textStyle .title{
 	width:100px;
-	height:28px;
+	height:65px;
 	font-size:20px;
 	font-family:PingFang SC;
 	font-weight:bold;
-	line-height:20px;
+	line-height:65px;
 	color:rgba(78,78,78,1);
 	opacity:1;
 }
@@ -64,4 +68,26 @@
 	line-height:24px;
 	color:rgba(122,122,122,1);
 	opacity:1;
+}
+.audioStyle{
+    width: 215px; 
+    height: 60px;
+    float: right;
+}
+
+@media only screen and (max-width: 436px) {
+	.audioStyle{
+	    width: 100%; 
+	    display: block;
+	    height: 60px;
+	    margin: 0 auto 15px auto;
+	    float: none;
+	}
+	.textStyle .title{
+		height: 50px;
+		line-height: 50px;
+	}
+	.activity-tab .img{
+		margin: 15px 10px 0 0;
+	}
 }

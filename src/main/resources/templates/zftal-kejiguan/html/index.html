@@ -15,12 +15,12 @@
 		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
 	</head>
 
-	<body style="background: rgba(246,247,248,1);height: 100%;">
+	<body>
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title">科技馆</h1>
 		</header>
-		<div class="body" style="margin-top: 29px;padding: 15px;background: rgba(246,247,248,1);">
-			<div style="width: 100%;">
+		<div class="body">
+			<div class="slide">
 				<!--轮播图-->
 				<div id="slider" class="mui-slider slider">
 					<div class="mui-slider-group mui-slider-loop">
@@ -61,84 +61,84 @@
 						<div class="mui-indicator"></div>
 					</div>
 				</div>
-				<!--活动图-->
-				<div class="about">
-
-					<span class="about-imgStyle">
-						<span id="" class="about-text">
-							关于科技馆
-						</span>
-						<img class="about-img" id="about_kejiguan" src="../images/index2.png"/>
+			</div>
+			<!--活动图-->
+			<div class="about">
+				<a class="about-imgStyle" href="kejiguan.html">
+					<span id="" class="about-text">
+						关于科技馆
 					</span>
-					<span class="about-imgStyle">
-						<span id="" class="about-text">
-							最新活动
-						</span>
-						<img class="about-img" id="acitvity" src="../images/index3.png"/>
+					<img class="about-img" id="about_kejiguan" src="../images/index2.png"/>
+				</a>
+				<a class="about-imgStyle" href="activity.html">
+					<span id="" class="about-text">
+						最新活动
 					</span>
-				</div>
+					<img class="about-img" id="acitvity" src="../images/index3.png"/>
+				</a>
 			</div>
 		</div>
 		<!--标题-->
-		<div class="activity-title">
+		<div class="activity">
+			<span class="activity-title"></span>
 			<span class="activity-title-concent">科技馆导览</span>
 		</div>
 		<!--科技馆导览-->
 		<div class="about-list">
-			<span class="about-list-imgStyle" id="huaxuequ">
+			<a class="about-list-imgStyle" id="huaxuequ" href="huaxuequ.html">
 				<img class="about-list-img" id="" src="../images/huaxuequ.png"/>
 				<span id="" class="about-list-text">
 					化学区
 				</span>
-			</span>
-			<span class="about-list-imgStyle"id="xinliqu">
+			</a>
+			<a class="about-list-imgStyle"id="xinliqu" href="xinliqu.html">
 				<img class="about-list-img" id="" src="../images/xinliqu.png"/>
 				<span id="" class="about-list-text">
 					心理区
 				</span>
-			</span>
+			</a>
 		</div>
 		<div class="about-list">
-			<span class="about-list-imgStyle"id="xinxiqu">
+			<a class="about-list-imgStyle"id="xinxiqu" href="xinxiqu.html">
 				<img class="about-list-img" id="" src="../images/xinxiqu.png"/>
 				<span id="" class="about-list-text">
 					信息区
 				</span>
-			</span>
-			<span class="about-list-imgStyle"id="shengwuqu">
+			</a>
+			<a class="about-list-imgStyle"id="shengwuqu" href="shengwuqu.html">
 				<img class="about-list-img" id="" src="../images/shengwuqu.png"/>
 				<span id="" class="about-list-text">
 					生物区
 				</span>
-			</span>
+			</a>
 		</div>
 		<div class="about-list">
-			<span class="about-list-imgStyle"id="wuliqu">
+			<a class="about-list-imgStyle"id="wuliqu" href="wuliqu.html">
 				<img class="about-list-img" id="" src="../images/wuliqu.png"/>
 				<span id="" class="about-list-text">
 					物理区
 				</span>
-			</span>
-			<span class="about-list-imgStyle"id="diliqu">
+			</a>
+			<a class="about-list-imgStyle"id="diliqu" href="diliqu.html">
 				<img class="about-list-img" id="" src="../images/diliqu.png"/>
 				<span id="" class="about-list-text">
 					地理区
 				</span>
-			</span>
+			</a>
 		</div>
 		<div class="about-list">
-			<span class="about-list-imgStyle"id="tianwenqu">
+			<a class="about-list-imgStyle"id="tianwenqu" href="tianwenqu.html">
 				<img class="about-list-img" id="" src="../images/tianwenqu.png"/>
 				<span id="" class="about-list-text">
 					天文区
 				</span>
-			</span>
-			<span class="about-list-imgStyle"id="tianxiangqu">
+			</a>
+			<a class="about-list-imgStyle"id="tianxiangqu" href="tianxiangqu.html">
 				<img class="about-list-img" id="" src="../images/tianxiangqu.png"/>
 				<span id="" class="about-list-text">
 					天象区
 				</span>
-			</span>
+			</a>
 		</div>
 
 		<script src="../js/mui.min.js"></script>
@@ -166,7 +166,7 @@
 		  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
 		    });
 		</script>
-		<script type="text/javascript">
+		<!--<script type="text/javascript">
 			$("#about_kejiguan").on('click',function(){
 			    window.location.href="kejiguan.html";
 			})
@@ -176,32 +176,7 @@
 			$("#introduction").on('click',function(){
 			    window.location.href="introduction.html";
 			})
-
-			$("#huaxuequ").on('click',function(){
-			    window.location.href="huaxuequ.html";
-			})
-			$("#xinliqu").on('click',function(){
-			    window.location.href="xinliqu.html";
-			})
-			$("#xinxiqu").on('click',function(){
-			    window.location.href="xinxiqu.html";
-			})
-			$("#wuliqu").on('click',function(){
-			    window.location.href="wuliqu.html";
-			})
-			$("#shengwuqu").on('click',function(){
-			    window.location.href="shengwuqu.html";
-			})
-			$("#diliqu").on('click',function(){
-			    window.location.href="diliqu.html";
-			})
-			$("#tianwenqu").on('click',function(){
-			    window.location.href="tianwenqu.html";
-			})
-			$("#tianxiangqu").on('click',function(){
-			    window.location.href="tianxiangqu.html";
-			})
-		</script>
+		</script>-->
 	</body>
 
 </html>

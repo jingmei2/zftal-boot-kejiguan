@@ -8,16 +8,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,24 +19,19 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/huaxuequ.png"/>
-				<div class="titleStyle">
-					<span class="title">化学区简介</span>
-				</div>
+				<div class="titleStyle">化学区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/huaxuequ.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/huaxuequ.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
+			
 			<div class="textStyle">
 				<p class="text">
 					化学区设置了虚拟化学实验室，镁、铝等金属标本，磷酸钛氧钾，磷酸二氘钾，磷酸二氢铵，钽酸锂，硫酸锂，硫酸三甘氨酸等晶体标本等。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -56,11 +41,7 @@
 		<script type="text/javascript">
 			mui.init()
 		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
-		</script>
+		
 	</body>
 
 </html>

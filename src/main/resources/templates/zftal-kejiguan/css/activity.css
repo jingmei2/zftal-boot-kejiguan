@@ -18,25 +18,23 @@
 }
 .activity-tab{
 	margin-top: 20px;
-	height:238px;
+	height:260px;
 	background:rgba(255,255,255,1);
 	opacity:1;
 	border-radius:4px;
 }
 .activity-tab .img{
-	height:167px;
+	height:188px;
 	width: 100%;
 	background:rgba(0,0,0,0);
 	opacity:1;
-	border-radius:4px 4px 0px 0px;
-
-	border:1px solid;
-	border-radius:5px;
-	-moz-border-radius:5px; /* Old Firefox */
-	box-shadow: 5px 5px 2px #888888;
+	border-radius:5px 5px 0 0;
+	-moz-border-radius:5px 5px 0 0; /* Old Firefox */
+	/*box-shadow: 5px 5px 2px #888888;*/
 }
 .activity-tab .titleStyle{
-	padding: 10px;
+	line-height: 32px;
+	padding-left: 15px;
 }
 .activity-tab .titleStyle .title{
 	width:300px;
@@ -50,8 +48,8 @@
 }
 .activity-tab .concentStyle{
 	margin-left: 10px;
-    width: 16px;
-    height: 16px;
+    width: 30px;
+    height: 30px;
     /* background: linear-gradient(180deg,rgba(0,153,255,1) 0%,rgba(34,238,217,1) 100%); */
     opacity: 1;
 }
@@ -59,17 +57,17 @@
 	display:inherit;
 	margin-left: 25px;
 	width:159px;
-	height:20px;
+	height:30px;
 	font-size:14px;
 	font-family:PingFang SC;
 	font-weight:500;
-	line-height:24px;
+	line-height:30px;
 	color:rgba(122,122,122,1);
 	opacity:1;
 }
 .activity-tab .concentStyle .imgs{
 	float: left;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 

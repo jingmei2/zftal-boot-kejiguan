@@ -1,31 +1,44 @@
 body{
 	background:white;
+	height: 100%;
 }
+
+.slide{
+	padding: 59px 15px 15px 15px;
+}
+
 .slider{
-	width: 95%;
-	height:200px;
+	width: 100%;
+	height:150px;
 	background:rgba(0,0,0,0);
 	opacity:1;
 	border-radius:4px;
 
 }
 .slider-item{
-	width: 95%!important;
+	width: 100%!important;
     height: 100%!important;
     border-radius:5px!important;
-
 }
 .slider-item-img{
-	height: 100%!important;
+	/*height: 100%!important;*/
 	border-radius:5px 5px 5px 5px;
 }
 .about{
+	padding:0 15px;
+	height: 101px;
 }
 .about-imgStyle{
 	float:left;
-	width:49%;
+	width:50%;
 	height:101px;
 	opacity:1;
+	position: relative;
+	border-radius:5px 0 0 5px;
+	overflow: hidden;
+}
+.about-imgStyle:last-child{
+	border-radius:0 5px 5px 0;
 }
 .about-img{
 	width: 100%;
@@ -34,10 +47,9 @@ body{
 	opacity:1;
 }
 .about-text{
-	position: relative;
+	position: absolute;
     left: 10%;
-    top: 43%;
-
+    top: 15%;
     width:100px;
 	height:28px;
 	font-size:20px;
@@ -47,25 +59,29 @@ body{
 	color:rgba(255,255,255,1);
 	opacity:1;
 }
+.activity{
+	height: 50px;
+	margin: 15px 0;
+}
 .activity-title{
-	margin-top: 120px;
-	margin-left: 15px;
+	margin:16px 10px 0 15px;
 	width:4px;
 	height:20px;
 	background:linear-gradient(180deg,rgba(99,228,255,1) 0%,rgba(0,144,255,1) 100%);
 	opacity:1;
+	display: inline-block;
+	vertical-align: top;
 }
 .activity-title-concent{
-	margin-left: 20px;
-	display:inherit;
 	width:160px;
-	height:28px;
+	height:50px;
 	font-size:20px;
 	font-family:PingFang SC;
 	font-weight:bold;
-	line-height:20px;
+	line-height:50px;
 	color:rgba(78,78,78,1);
 	opacity:1;
+	display: inline-block;
 }
 .mapStyle{
 	padding: 15px;
@@ -137,39 +153,38 @@ body{
 
 
 .about-list{
-    padding-top: 15px;
-    padding-right: 15px;
-
+    padding:0 15px;
     border-radius:5px;
 	-moz-border-radius:5px; /* Old Firefox */
+	height: 140px;
 }
 .about-list-imgStyle{
 	border-radius: 5px;
-    margin-left: 15px;
     background-color: white;
     float: left;
-    width: 45%;
+    width: 48%;
     opacity: 1;
 }
+.about-list .about-list-imgStyle:last-child{
+	 float: right;
+}
+
 .about-list-img{
 	width: 100%;
 	height:101px;
 	background:linear-gradient(155deg,rgba(150,99,255,1) 0%,rgba(0,144,255,1) 100%);
 	opacity:1;
-
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-radius: 5px;
 	-moz-border-radius:5px; /* Old Firefox */
 }
 .about-list-text{
-    margin-left: 25%;
-
-    width:45px;
-	height:21px;
+    display: block;
+	height:30px;
 	font-size:15px;
 	font-family:PingFang SC;
 	font-weight:500;
-	line-height: 35px;
+	line-height: 30px;
 	color:rgba(122,122,122,1);
 	opacity:1;
+	text-align: center;
 }

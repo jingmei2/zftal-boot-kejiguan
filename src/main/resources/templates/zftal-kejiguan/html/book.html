@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>科技馆</title>
+		<title>我要预约</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,15 +22,18 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">我要预约</h1>
 		</header>
-		<div class="body" style="padding:15px 0px 0px 15px;">
-			<span>
-				<label class="label">个人预约</label>
-				<input name="radioStatus" class="radio" id="person" type="radio">
-			</span>
-			<span style="margin-left: 30px;">
-				<label class="label">单位预约</label>
-				<input name="radioStatus" class="radio" id="company" type="radio" checked>
-			</span>
+		<div class="body">
+			<div class="choose_type">
+				<div class="mui-input-row mui-radio mui-left">
+					<label>个人预约</label>
+					<input name="radioStatus" type="radio" id="person" checked value='1'> 
+				</div>
+				<div class="mui-input-row mui-radio mui-left">
+					<label>单位预约</label>
+					<input name="radioStatus" type="radio" id="company" value='2'>
+				</div>
+				
+			</div>
 		</div>
 
 		<div class="book-time">
@@ -43,7 +46,7 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">预约日期</a>
 					</span>
-					<div id='resultdemo2' class="ui-alert"></div>
+					<!--<div id='resultdemo2' class="ui-alert"></div>-->
 					<span class="choose">
 						<button id='buttondemo2' data-options='{"type":"date","beginYear":2017,"endYear":2019}' class=" btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -53,7 +56,7 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">选择时间段</a>
 					</span>
-					<div id='resultdemo7' class="ui-alert"></div>
+					<!--<div id='resultdemo7' class="ui-alert"></div>-->
 					<span class="choose">
 						<button id='buttondemo7' data-options='{"type":"hour","customData":{"h":[{"text":"上午","value":"上午"},{"text":"下午","value":"下午"},{"text":"晚上","value":"晚上"}]},"labels":["年", "月", "日", "时段", "分"]}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -63,7 +66,7 @@
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">开始时间</a>
 					</span>
-					<div id='resultdemo5' class="ui-alert"></div>
+					<!--<div id='resultdemo5' class="ui-alert"></div>-->
 					<span class="choose">
 						<button id='buttondemo5' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -72,8 +75,8 @@
 				<li class="mui-table-view-cell" id='demo55'>
 					<span class="choose-title">
 						<a href="#notifications" class="mui-navigate-right">结束时间</a>
-					</span>
-					<div id='resultdemo55' class="ui-alert"></div>
+					<!--</span>
+					<div id='resultdemo55' class="ui-alert"></div>-->
 					<span class="choose">
 						<button id='buttondemo55' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 					</span>
@@ -82,37 +85,55 @@
 
 			</ul>
 		</div>
-		<div class="book-time">
-			个人信息
-		</div>
+		
 		<form class="mui-input-group">
-			<div class="mui-input-row">
-				<label class="label">姓名:</label>
-				<input type="text" class="mui-input-clear inputStyle" id="name" placeholder="请输入名字">
+			<div class="person">
+				<div class="book-time">个人信息</div>
+				<div class="mui-input-row">
+					<label class="label">姓名:</label>
+					<input type="text" class="mui-input-clear inputStyle" name="name" placeholder="请输入名字">
+				</div>
+				<div class="mui-input-row">
+					<label class="label">手机号:</label>
+					<input type="text" class="mui-input-clear inputStyle" name="phone" placeholder="请输入您的手机号">
+				</div>
 			</div>
-			<div class="mui-input-row">
-				<label class="label">手机号:</label>
-				<input type="text" class="mui-input-clear inputStyle" id="phone" placeholder="请输入您的手机号">
+			<div class="company" style="display: none;">
+				<div class="book-time">单位信息</div>
+				<div class="mui-input-row">
+					<label class="label">单位名称 :</label>
+					<input type="text" class="mui-input-clear inputStyle" name="" placeholder="请输入单位名称 ">
+				</div>
+				<div class="mui-input-row">
+					<label class="label">参与人数 :</label>
+					<input type="text" class="mui-input-clear inputStyle" name="" placeholder="请输入参与人数">
+				</div>
+				<div class="book-time">联系信息</div>
+				<div class="mui-input-row">
+					<label class="label">联系人 :</label>
+					<input type="text" class="mui-input-clear inputStyle" name="name" placeholder="请输入姓名">
+				</div>
+				<div class="mui-input-row">
+					<label class="label">联系电话 :</label>
+					<input type="text" class="mui-input-clear inputStyle" name="phone" placeholder="请输入联系电话">
+				</div>
 			</div>
 		</form>
-		<div class="content" id="button">
-			<span class="btnStyle">
-				提交
-			</span>
-	  	</div>
-
+		<div class="submit" href="book.html"><button id="button" type="button" class="content">提交</button></div>
 		<script src="../js/jquery-1.11.0.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.picker.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		$('input[type=radio][name=radioStatus]').change(function() {
 	        if (this.id == 'person') {
-	            //alert("123");
+	           $('.company').hide();
+	           $('.person').show();
 	        }
 	        else if (this.id == 'company') {
-	            //alert("345");
+	            $('.company').show();
+	            $('.person').hide();
 	        }
-	   	});
+	   });
 	   	(function($) {
 				$.init();
 				var btns = $('.mui-table-view-cell');
@@ -121,7 +142,7 @@
 						var _self = this;
 						if(_self.picker) {
 							_self.picker.show(function (rs) {
-								$('#result'+btn.id)[0].innerText = '' + rs.text;
+								$('#button'+btn.id)[0].innerText = '' + rs.text;
 								_self.picker.dispose();
 								_self.picker = null;
 							});
@@ -146,7 +167,9 @@
 								 * rs.h 时，用法同年
 								 * rs.i 分（minutes 的第二个字母），用法同年
 								 */
-								$('#result'+btn.id)[0].innerText = '' + rs.text;
+								
+								$('#button'+btn.id)[0].innerText = '' + rs.text;
+								console.log(rs.text)
 								/*
 								 * 返回 false 可以阻止选择框的关闭
 								 * return false;
@@ -168,30 +191,35 @@
 //		var url = "http://127.0.0.1";
 		var url = "http://10.71.19.166:9097";
 		$("#button").click(function(){
-			var bookDate = $('.ui-alert')[0].innerText;
-			var bookTime = $('.ui-alert')[1].innerText;
-			var starTime = $('.ui-alert')[2].innerText;
-			var endTime = $('.ui-alert')[3].innerText;
-			var name = $('#name').val();
-			var phone = $('#phone').val();
-			$.post(url+"/kejiguan/addBook",
-				{
-					bookDate:bookDate,//预约时间
-					bookTime:bookTime,//时间段
-					starTime:starTime,//开始时间
-					endTime:endTime,//结束时间
-					name:name,//名字
-					phone:phone//手机号
-				},
-				function(data,status){
-					//alert("Data: " + data + "\nStatus: " + status);
-					var htm = "";
+			var book=$('.mui-table-view-cell button');
+			var bookDate = book.eq(0).html()=='请选择'?'':book.eq(0).html();//预约时间
+			var bookTime = book.eq(1).html()=='请选择'?'':book.eq(1).html();//时间段
+			var starTime = book.eq(2).html()=='请选择'?'':book.eq(2).html();//开始时间
+			var endTime = book.eq(3).html()=='请选择'?'':book.eq(3).html();//结束时间
+			var name = $('#name').val();//名字
+			var phone = $('#phone').val();//手机号
 
-
-			});
-			alert("提交成功！");
-			window.location.replace("index.html");
+			var data;
+	        var datas='bookDate='+bookDate+'&bookTime='+bookTime+'&starTime='+starTime+'&endTime='+endTime+'';
+			var radioStatus = $('input[name="radioStatus"]:checked').val();
+			if(radioStatus==1){
+				data=datas+'&name='+name+'&phone='+phone+'';
+			}else{
+				data=datas+'&name='+name+'&phone='+phone+'&name='+name+'&phone='+phone+'';
+			}
+//			$.post(url+"/kejiguan/addBook",data,
+//				function(res){
+//					//alert("Data: " + data + "\nStatus: " + status);
+//					var htm = "";
+// 					if(res.data==true){
+//// 						mui.toast('提交成功');
+////						window.location.replace("success.html");
+// 					}
+//			});
+			mui.toast('提交成功');
+//		    window.location.replace("success.html");
 		});
+		
 		</script>
 	</body>
 

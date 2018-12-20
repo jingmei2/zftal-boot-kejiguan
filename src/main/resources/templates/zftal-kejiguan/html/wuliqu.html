@@ -3,21 +3,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>场馆介绍</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,24 +19,19 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/wuliqu.png"/>
-				<div class="titleStyle">
-					<span class="title">物理区简介</span>
-				</div>
+				<div class="titleStyle">物理区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/wuliqu.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/wuliqu.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
+			
 			<div class="textStyle">
 				<p class="text">
 馆内有30余件展品，涉及力、热、光、电等物理学分支。主要展品包括：喷泉、幻影合成、电磁炮、空间滤波、避雷针、能量转换轮、弹性碰撞、击鼓共振、辉光球、脚踏发电机、多角镜、科里奥利力演示仪、光栅、静电风轮、陀螺振动、魔球、发波水槽、流动演示仪、飞机升力、伯努利悬浮球、激光琴、弹簧纵驻波、茹可夫斯基凳等。观众能在娱乐中了解力学、热学、光学、电磁学等基本原理。游客可以通过参与这些展项了解到是科技进步、知识积累创造了今天的世界文明，并感受到人类科技进步过程中，有多少科学巨匠、科学先哲留下了深深的历史印迹。后人应该沿着前人的脚印，踏着前人的肩膀继续攀登科技高峰。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -56,11 +41,7 @@
 		<script type="text/javascript">
 			mui.init()
 		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
-		</script>
+		
 	</body>
 
 </html>

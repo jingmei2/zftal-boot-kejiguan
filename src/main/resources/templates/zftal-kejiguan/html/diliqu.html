@@ -8,16 +8,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
-		<style type="text/css">
-			.audioStyle{
-			    position: absolute;
-			    left: 2%;
-			    /* right: 20%; */
-			    /* width: 37%; */
-			    height: 30px;
-			    top: 250px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -29,14 +19,13 @@
 			<!--内容卡-->
 			<div class="activity-tab">
 				<img class="img" src="../images/diliqu.png"/>
-				<div class="titleStyle">
-					<span class="title">地理区简介</span>
-				</div>
+				<div class="titleStyle">地理区简介</div>
+				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
+				  <source src="../source/diliqu.mp3" type="audio/MP3"></source>
+				Your browser does not support the audio element.
+				</audio>
 			</div>
-			<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-			  <source src="../source/diliqu.mp3" type="audio/MP3"></source>
-			Your browser does not support the audio element.
-			</audio>
+			
 			<div class="textStyle">
 				<p class="text">
 					该展区以“灿若明霞，色如渥丹”的丹霞地貌与奇特的喀斯特地貌作为总体背景，并配有火山爆发、地震屋、虚拟龙卷风、沙丘模拟、候风地动仪、恐龙、菊石、角石等古生物标本和硅化玉、黄铁矿、孔雀石、紫水晶、翡翠、绿松石等珍稀矿物标本以及地质地貌多媒体查询系统等。在该展区，观众通过参与、游览这些展项可以获取地质地貌知识，了解地震、火山、风沙等自然灾害的状况。
@@ -47,11 +36,7 @@
 （5）沙丘模拟 通过调整风力、风向，直观演示了沙漠的运动形成过程 ，了解风沙地貌。
 				</p>
 			</div>
-		<div class="content">
-			<span id="" class="btn">
-				我要预约
-			</span>
-	  	</div>
+			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
 		</div>
 
 
@@ -61,11 +46,7 @@
 		<script type="text/javascript">
 			mui.init()
 		</script>
-		<script type="text/javascript">
-			$(".content").on('click',function(){
-			    window.location.href="book.html";
-			 })
-		</script>
+		
 	</body>
 
 </html>

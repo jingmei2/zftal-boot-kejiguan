@@ -1,12 +1,14 @@
 html, body {
-  height: 95%;
+  height: 100%;
   margin: 0;
+  background: #fff;
 }
 .activity-tab{
-	height:238px;
+/*	height:238px;*/
 	background:rgba(255,255,255,1);
 	opacity:1;
 	border-radius:4px;
+	overflow: hidden;
 }
 .activity-tab .img{
 	height:167px;
@@ -16,70 +18,77 @@ html, body {
 
 }
 .activity-tab .titleStyle{
-	padding: 10px;
-}
-.activity-tab .titleStyle .title{
-	width:300px;
-	height:20px;
-	font-size:15px;
+	padding-left: 15px;
+	height:70px;
+	font-size:18px;
 	font-family:PingFang SC;
 	font-weight:bold;
-	line-height:24px;
+	line-height:70px;
 	color:rgba(100,100,100,1);
 	opacity:1;
+	float: left;
 }
 .activity-tab .concentStyle{
-	margin-left: 10px;
-	width: 16px;
-	height: 16px;
+	margin-left: 15px;
+	width: 100%;
+	height: 30px;
 	/* background: linear-gradient(180deg,rgba(0,153,255,1) 0%,rgba(34,238,217,1) 100%); */
 	opacity: 1;
+	clear:both;
 }
 .activity-tab .concentStyle .concent{
 	display:inherit;
-	margin-left: 20px;
+	margin-left: 25px;
 	width:159px;
-	height:20px;
+	height:30px;
 	font-size:14px;
 	font-family:PingFang SC;
 	font-weight:500;
-	line-height:24px;
+	line-height:30px;
 	color:rgba(122,122,122,1);
 	opacity:1;
 }
 .activity-tab .concentStyle .imgs{
 	float: left;
-    height: 20px;
-    width: 20px;
-}
-
-
-.textStyle{
-
-}
-.textStyle .text{
+	height: 20px;
+	width: 20px;
 	margin-top: 5px;
+}
+.textStyle{
+	padding: 0 15px;
+}
+.textStyle .title{
 	display: inherit;
-    margin-left: 10px;
-    height: 20px;
-    font-size: 14px;
-    font-family: PingFang SC;
-    line-height: 24px;
-    color: rgba(122,122,122,1);
-    opacity: 1;
+	height: 40px;
+	font-size: 16px;
+	font-family: PingFang SC;
+	line-height: 40px;
+	color: rgba(122,122,122,1);
+	opacity: 1;
+	font-weight: bold;
 }
 .content {
-    position: absolute;
-    left: 5%;
-    top: 90%;
-    height: 52px;
+    height: 50px;
     background: rgba(25,137,250,1);
     opacity: 1;
-    border-radius: 4px;
+    font-size:18px;
+    line-height:50px;
+    border-radius: 8px;
     text-align: center;
-    width: 90%;
+    width: 100%;
+    color: #fff;
+    padding: 0;
 }
-.content .btn{
+.submit{
+	/*position: absolute;
+	left:5%;
+	top: 90%;*/
+	height: 50px;
+	width: 90%;
+	display: block;
+	margin:15px auto;
+}
+/*.content .btn{
 	position: relative;
 	left: 0%;
 	top: 33%;
@@ -93,5 +102,25 @@ html, body {
 	color:rgba(255,255,255,1);
 	opacity:1;
 
-}
+}*/
 
+.audioStyle{
+    width: 240px; 
+    height: 60px;
+    float: right;
+    margin-right: 15px;
+}
+			
+@media only screen and (max-width: 375px) {
+	.audioStyle{
+	    width: 90%; 
+	    display: block;
+	    height: 60px;
+	    margin: 15px auto;
+	    float: none;
+	}
+	.activity-tab .titleStyle{
+		height: 50px;
+		line-height: 50px;
+	}
+}
