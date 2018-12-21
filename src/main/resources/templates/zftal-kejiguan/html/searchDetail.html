@@ -39,43 +39,86 @@
 			<div class="searchData">
 				<div class="item" href="">
 					<label class="itemName">预约日期</label>
-					<label class="itemTime">2018-12-01</label>
+					<label class="itemTime bookDate"></label>
 				</div>
 				<div class="item" href="">
 					<label class="itemName">时间段</label>
-					<label class="itemTime">上午</label>
+					<label class="itemTime bookTime"></label>
 				</div>
 				<div class="item" href="">
 					<label class="itemName">开始时间</label>
-					<label class="itemTime">12：00</label>
+					<label class="itemTime starTime"></label>
 				</div>
 				<div class="item" href="">
 					<label class="itemName">结束时间</label>
-					<label class="itemTime">14：00</label>
+					<label class="itemTime endTime"></label>
 				</div>
 			</div>
-			<div class="searchData">
+			<div class="searchData person">
+				<div class="item" href="">
+					<label class="itemName">姓名</label>
+					<label class="itemTime name"></label>
+				</div>
+				<div class="item" href="">
+					<label class="itemName">身份证号</label>
+					<label class="itemTime idcard"></label>
+				</div>
+			</div>
+			<div class="searchData company">
 				<div class="item" href="">
 					<label class="itemName">单位名称</label>
-					<label class="itemTime">电力公司</label>
+					<label class="itemTime companyName"></label>
 				</div>
 				<div class="item" href="">
 					<label class="itemName">参与人数</label>
-					<label class="itemTime">120人</label>
+					<label class="itemTime companyNum"></label>
 				</div>
-			</div>
-			<div class="searchData">
-				<div class="item" href="">
+				<div class="item" href="" style="margin-top: 10px;">
 					<label class="itemName">联系人</label>
-					<label class="itemTime">陈晨</label>
+					<label class="itemTime contact"></label>
 				</div>
 				<div class="item" href="">
 					<label class="itemName">联系电话</label>
-					<label class="itemTime">13856242125</label>
+					<label class="itemTime phone"></label>
 				</div>
 			</div>
 		</div>
-		
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
+		<script>
+			var time;
+			$.get(host+'/kejiguan/selectBookById',{
+				id:GetUrlParam('id')
+			},function(res){
+				if(res.code==1){
+					var time;
+					if(res.data.bookTime==1){
+						time='上午';
+					}else if(res.data.bookTime==2){
+						time='中午';
+					}else if(res.data.bookTime==3){
+						time='晚上';
+					}
+					$('.wrap').find('.bookDate').text(res.data.bookDate);
+					$('.wrap').find('.bookTime').text(time);
+					$('.wrap').find('.starTime').text(res.data.starTime);
+					$('.wrap').find('.endTime').text(res.data.endTime);
+					if(res.data.type==1 || res.data.type==null){
+						$('.company').hide();
+					    $('.wrap').find('.name').text(res.data.name)
+					    $('.wrap').find('.idcard').text(res.data.idcard);
+					}else if(res.data.type==2){
+						$('.person').hide();
+						$('.wrap').find('.companyName').text(res.data.companyName);
+						$('.wrap').find('.companyNum').text(res.data.companyNum);
+						$('.wrap').find('.contact').text(res.data.contact);
+						$('.wrap').find('.phone').text(res.data.phone);
+					}
+				}
+				
+			})
+		</script>
 	</body>
 
 </html>

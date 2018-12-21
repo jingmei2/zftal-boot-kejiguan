@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel(value = "活动对象")
 public class ActivityModel {
-	private String id = UUIDUtil.getUUID().trim();
+	private String id ;
 	private String titles;
 	private String picPath;
 	private String desc;

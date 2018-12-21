@@ -21,16 +21,19 @@
 				<span class="activity-title-concent">最新活动</span>
 			</div>
 			<!--内容卡-->
-			<div class="activity-tab">
+			<div class="activity">
+				
+			</div>
+			<!--<a class="activity-tab" href="activityDetail.html">
 				<img class="img" src="../images/timg3.jpg"/>
 				<div class="titleStyle">太空漫步之旅</div>
 				<div class="concentStyle">
 					<img class="imgs" src="../images/kejiguan3.png"/>
 					<span class="concent">2018年12月1日至12日</span>
 				</div>
-			</div>
+			</a>-->
 
-			<div class="activity-tab">
+			<!--<div class="activity-tab">
 				<img class="img" src="../images/timg1.jpg"/>
 				<div class="titleStyle">全国青少年科学影像展</div>
 				<div class="concentStyle">
@@ -47,19 +50,30 @@
 					<img class="imgs" src="../images/kejiguan3.png"/>
 					<span class="concent">2018年12月1日至12日</span>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
 		<script type="text/javascript">
 			mui.init()
-		</script>
-		<script type="text/javascript">
-			$(".activity-tab").on('click',function(){
-			    window.location.href="activityDetail.html";
-			 })
+			$.post(host+'/kejiguan/selectActivityListById','',
+				function(res){
+					if(res.code==1){
+						for(var i in res.data){
+							var html='';
+							html+='<a class="activity-tab" href="activityDetail.html?id='+res.data[i].id+'">'+
+								'<img class="img" src="'+res.data[i].picPath+'" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
+								'<div class="titleStyle">'+res.data[i].titles+'</div>'+
+								'<div class="concentStyle">'+
+								'<img class="imgs" src="../images/kejiguan3.png"/>'+
+								'<span class="concent">'+res.data[i].createTime+'</span></div></a>';
+							$('.activity').append(html);
+						}
+					}
+			})
 		</script>
 	</body>
 

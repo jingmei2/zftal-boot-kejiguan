@@ -1,5 +1,6 @@
 package com.zfsoft.boot.zhjx.web.controller;
 
+import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
 import com.zfsoft.boot.zhjx.dao.entities.ActivityModel;
 import com.zfsoft.boot.zhjx.dao.entities.BookModel;
 import com.zfsoft.boot.zhjx.dao.entities.ResultEntity;
@@ -7,6 +8,7 @@ import com.zfsoft.boot.zhjx.service.svcinterface.IActivityService;
 import com.zfsoft.boot.zhjx.service.svcinterface.IBookService;
 import com.zfsoft.boot.zhjx.util.DateUtil;
 import com.zfsoft.boot.zhjx.util.FileUntils;
+import com.zfsoft.boot.zhjx.util.UUIDUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -183,7 +185,7 @@ public class KejiguanController {
 	@ApiOperation(value = "活动图片接口", notes = "", response = String.class)
 	@RequestMapping(value="/saveorupdatePic",method=RequestMethod.POST)
 	public ResultEntity saveorupdate(HttpServletRequest request,
-							   HttpServletResponse response, Model model, ActivityModel activityModel,@RequestParam("faceLegalFile") MultipartFile file){
+							   HttpServletResponse response, Model model, ActivityModel activityModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
 		ResultEntity resultEntity = new ResultEntity();
 
 		FileUntils fileunits=new FileUntils();
@@ -194,12 +196,12 @@ public class KejiguanController {
 		 *是：删除原图片， 保存新上传图片
 		 *否：只更新服务
 		 */
-		if(!file.isEmpty()){
+		if(!faceLegalFile.isEmpty()){
 
 			/**
 			 **是：保存新上传图片
 			 */
-			Map<String,Object> map = fileunits.savePic(file,realpath,FileUntils.PICPATHSERVICE);
+			Map<String,Object> map = fileunits.savePic(faceLegalFile,realpath,FileUntils.PICPATHSERVICE);
 			if(map!=null){
 				if((boolean) map.get("issuccess")){
 					//删除原文件
@@ -207,13 +209,27 @@ public class KejiguanController {
 					//获取新文件
 					String path = (String) map.get("path");
 					activityModel.setPicPath(path);
-					//修改数据库
-					activityModel.setCreateTime(DateUtil.fSecond(new Date()));
-					boolean flag = activityService.update(activityModel);
-					resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增图片成功",activityModel);
-				} else {
-					resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增图片失败",activityModel);
 				}
+			}
+		}
+		//id=null 说明是新增
+		if(null!=activityModel&&activityModel.getId()!=null){
+			//修改数据库
+			activityModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = activityService.update(activityModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改成功",activityModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改失败",activityModel);
+			}
+		} else {
+			activityModel.setId(UUIDUtil.getUUID().trim());
+			activityModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = activityService.insert(activityModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增成功",activityModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增失败",activityModel);
 			}
 		}
 

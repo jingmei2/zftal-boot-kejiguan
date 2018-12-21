@@ -277,7 +277,8 @@ public class FileUntils {
 	        String path = realpath+ picfolder;
 
 	        System.out.println(path);
-			path = "d:/picture";
+			//path = "/u01/zftal-boot-kejiguan/"+PICPATHCATA;
+			path = "/u01/apache-tomcat-6.0.43_Meeting/webapps/zftal-kejiguan/"+PICPATHCATA;
 			File f = new File(path);
 			if(!f.exists()) {
 				f.mkdirs();
@@ -288,7 +289,8 @@ public class FileUntils {
 			fos.flush();
 	        fos.close();
 			map.put("newfilename",newfilename);
-			map.put("path",path + "/"+ newfilename);
+			String realUrl = "http://portal.zfsoft.com:9098/zftal-kejiguan/"+PICPATHCATA;
+			map.put("path",realUrl + "/"+ newfilename);
 	        map.put("issuccess",true);
 			map.put("msg","保存成功");
 		}catch (UnsupportedEncodingException e) {

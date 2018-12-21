@@ -93,78 +93,23 @@
 				</div>
 			</div>
 			<div class="searchData">
-				<div class="data">
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					
-					<a class="item" href="">
-						<label class="itemName">个人-陈晨</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-					<a class="item" href="">
-						<label class="itemName">单位-电力公司</label>
-						<label class="itemTime">2018-12-01</label>
-					</a>
-				</div>
+				<div class="data"></div>
 				<div class="nomore">没有更多了...</div>
 			</div>
 		</div>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
 		<script>
 			var pageIndex=1;
 			var pageNum=8;
 			//回车搜索
+			getData(1);
 			$("input[type='text']").on('keypress', function(e) {
 		        var keycode = e.keyCode;
 		        if (keycode == '13') {
 		            e.preventDefault();
-		            console.log($("input[name='name']").val())
+		            $('.data').html('');
 		            getData(1);
 		        }
 		    });
@@ -183,30 +128,29 @@
 			//获取数据
 			function getData(pageIndex){
 				var name=$("input[name='name']").val();
-				console.log(name)
-				var data='pageIndex='+pageIndex+'&pageNum='+pageNum+'&name='+name+'';
 				$.ajax({
-					url:'',
+					url:host+'/kejiguan/selectBookListById',
 					type:'post',
-					data:data,
+					data:{
+						name:name
+					},
 					success:function(res){
-						if(res.status==1){
-							console.log(pageIndex);
+						if(res.code==1){
+							console.log(res);
 							//res.data!=null || res.data!='' || res.data!=undefined
-							if(pageIndex<2){
 								for(var j in res.data){
-									html='<a class="item" href="'+res.data[j].url+'">'+
+									html='<a class="item" href="searchDetail.html?id='+res.data[j].id+'">'+
 										 '<label class="itemName">'+res.data[j].name+'</label>'+
-										 '<label class="itemTime">'+res.data[j].time+'</label></a>'
+										 '<label class="itemTime">'+res.data[j].createTime+'</label></a>'
 									$('.searchData .data').append(html);
 									html='';
 								}
-							}else{
-								//数据太少，不能显示‘没有更多’
-								if(pageIndex>1){
-									$('.searchData .data').parent().find('.nomore').show();
-								}
-							}
+//							}else{
+//								//数据太少，不能显示‘没有更多’
+//								if(pageIndex>1){
+//									$('.searchData .data').parent().find('.nomore').show();
+//								}
+//							}
 						}
 					}
 				})

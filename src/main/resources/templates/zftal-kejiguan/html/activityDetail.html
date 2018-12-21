@@ -24,25 +24,41 @@
 		<div class="body" >
 			<!--内容卡-->
 			<div class="activity-tab">
-				<img class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544072875886&di=e6cd3cbe73f0acec4efaa2da24e48207&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9213b07eca806538695d693e9cdda144ad34826c.jpg"/>
-				<div class="titleStyle">太空漫步之旅</div>
+				<img class="img" src=""/>
+				<div class="titleStyle"></div>
 				<div class="concentStyle">
 					<img class="imgs" src="../images/kejiguan3.png"/>
-					<span class="concent">2018年12月1日至12日</span>
+					<span class="concent"></span>
 				</div>
 			</div>
 			<div class="textStyle">
 				<span class="title">活动简介</span>
-				<p class="text">
-					太空漫步之旅是本科技馆科普系列活动，我们决定带领学生亲临东高地青少年科技馆，与航天专家见面、尝试科技小实验、聆听航天知识讲座、亲身体验箭模发射表演。以此丰富学生们的航天知识，弘扬爱国主义，普及科技知识。
-				</p>
+				<p class="text"></p>
 			</div>
-			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
+			<a class="submit" href><button type="button" class="content">我要预约</button></a>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			$.ajax({
+				type:'get',
+				url:host+'/kejiguan/selectActivityById',
+				data:{
+					id:GetUrlParam('id')
+				},
+				success:function(res){
+					if(res.code==1){
+						$('.titleStyle').html(res.data.titles);
+						$('.img').attr('src',res.data.picPath);
+						$('.concentStyle .concent').html(res.data.createTime);
+						$('.textStyle .text').html(res.data.desc);
+						$('.submit').attr('href','book.html?id='+res.data.id+'');
+					}
+				}
+			})
+
 		</script>
 	</body>
 </html>
