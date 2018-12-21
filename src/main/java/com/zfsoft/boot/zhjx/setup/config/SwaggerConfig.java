@@ -1,7 +1,6 @@
 /**
- * Copyright (C), 2012-2018, 杭州卓健信息科技有限公司
  * FileName: SwaggerConfig
- * Author:   YS-MJ-1391
+ * Author:   马靖
  * Date:     2018/7/27 10:22
  * Description: Swagger的配置
  */
@@ -29,21 +28,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
-//    @Bean
+    //    @Bean
 //    public Docket docket() {
 //        return new Docket(DocumentationType.SWAGGER_2).groupName("学工系统")
 //                .apiInfo(new ApiInfoBuilder().title("学工系统接口文档").version("1.0").build())
 //                .select().paths(PathSelectors.ant("/api/**")).build();
 //    }
-
     @Bean
-    public Docket kejiguan() {
+    public Docket test() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("科技馆")
                 .apiInfo(apiInfo())
                 .select().paths(PathSelectors.ant("/kejiguan/**")).build();
     }
-
     private ApiInfo apiInfo() {
         Contact contact = new Contact("Majing", "http://127.0.0.1:8080", "751496272@qq.com");
         return new ApiInfoBuilder()

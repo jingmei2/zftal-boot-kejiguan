@@ -6,16 +6,21 @@ import com.zfsoft.boot.zhjx.dao.entities.ResultEntity;
 import com.zfsoft.boot.zhjx.service.svcinterface.IActivityService;
 import com.zfsoft.boot.zhjx.service.svcinterface.IBookService;
 import com.zfsoft.boot.zhjx.util.DateUtil;
+import com.zfsoft.boot.zhjx.util.FileUntils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Majing
@@ -35,11 +40,10 @@ public class KejiguanController {
 	@RequestMapping(value="/addBook",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity addBook(HttpServletRequest request, Model model, BookModel bookModel, String activityId) {
-		boolean flag = false;
 		ResultEntity resultEntity ;
 		bookModel.setCreateTime(DateUtil.fSecond(new Date()));
 		bookModel.setActivityId(activityId);
-		flag = bookService.insert(bookModel);
+		boolean flag = bookService.insert(bookModel);
 
 		if(flag) {
 			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"新增成功",flag);
@@ -54,15 +58,10 @@ public class KejiguanController {
 	@ResponseBody
 	public ResultEntity updateBook(HttpServletRequest request, Model model, BookModel bookModel) {
 		boolean flag = false;
-		ResultEntity resultEntity ;
 		bookModel.setCreateTime(DateUtil.fSecond(new Date()));
 		flag = bookService.update(bookModel);
 
-		if(flag) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"修改失败",flag);
-		}
+		ResultEntity resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
 
 		return resultEntity;
 	}
@@ -77,12 +76,8 @@ public class KejiguanController {
 		bm.setId(id);
 		BookModel bookModel = bookService.getModel(bm);
 
-		if(null!=bookModel) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",flag);
-			resultEntity.setData(bookModel);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"查询失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModel);
+
 
 		return resultEntity;
 	}
@@ -97,11 +92,7 @@ public class KejiguanController {
 		bookMode.setId(id);
 		flag = bookService.delete(bookMode);
 
-		if(flag) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"删除失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
 
 		return resultEntity;
 	}
@@ -110,26 +101,9 @@ public class KejiguanController {
 	@RequestMapping(value="/selectBookListById",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultEntity selectBookListById(HttpServletRequest request, Model model, BookModel bookModel) {
-		boolean flag = false;
-		ResultEntity resultEntity;
-
 		List<BookModel> bookModelList = bookService.getModelList(bookModel);
-
-		if(!bookModelList.isEmpty()) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",flag);
-			resultEntity.setData(bookModelList);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"查询失败",flag);
-		}
-
+		ResultEntity resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModelList);
 		return resultEntity;
-	}
-
-	@RequestMapping("/selectBookList")
-	public String selectBookList(HttpServletRequest request, Model model) {
-		//model.addAttribute("target", "jcfx/index");
-		System.out.println("selectBookList");
-		return "/yhfx/book";
 	}
 
 	//*********************************   活动   *************************************************//
@@ -142,11 +116,7 @@ public class KejiguanController {
 		activityModel.setCreateTime(DateUtil.fSecond(new Date()));
 		flag = activityService.insert(activityModel);
 
-		if(flag) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"新增成功",flag);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"新增失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"新增成功",flag);
 
 		return resultEntity;
 	}
@@ -160,11 +130,7 @@ public class KejiguanController {
 		activityModel.setCreateTime(DateUtil.fSecond(new Date()));
 		flag = activityService.update(activityModel);
 
-		if(flag) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"修改失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
 
 		return resultEntity;
 	}
@@ -172,19 +138,14 @@ public class KejiguanController {
 	@ApiOperation(value = "查询活动", notes = "", response = String.class)
 	@RequestMapping(value="/selectActivityById",method=RequestMethod.GET)
 	@ResponseBody
-	public ResultEntity selectActivityById(String id) {
+	public ResultEntity selectActivityById(@RequestParam("id") String id) {
 		boolean flag = false;
 		ResultEntity resultEntity;
 		ActivityModel activityModel = new ActivityModel();
 		activityModel.setId(id);
 		ActivityModel bookModel = activityService.getModel(activityModel);
 
-		if(null!=bookModel) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",flag);
-			resultEntity.setData(bookModel);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"查询失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModel);
 
 		return resultEntity;
 	}
@@ -199,11 +160,7 @@ public class KejiguanController {
 		activityModel.setId(id);
 		flag = activityService.delete(activityModel);
 
-		if(flag) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"删除失败",flag);
-		}
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
 
 		return resultEntity;
 	}
@@ -216,15 +173,52 @@ public class KejiguanController {
 		ResultEntity resultEntity;
 
 		List<ActivityModel> bookModelList = activityService.getModelList(activityModel);
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModelList);
 
-		if(!bookModelList.isEmpty()) {
-			resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",flag);
-			resultEntity.setData(bookModelList);
-		}else {
-			resultEntity = new ResultEntity(ResultEntity.ERROR_CODE,"查询失败",flag);
+		return resultEntity;
+	}
+
+
+	//接口服务不可有相同的服务
+	@ApiOperation(value = "活动图片接口", notes = "", response = String.class)
+	@RequestMapping(value="/saveorupdatePic",method=RequestMethod.POST)
+	public ResultEntity saveorupdate(HttpServletRequest request,
+							   HttpServletResponse response, Model model, ActivityModel activityModel,@RequestParam("faceLegalFile") MultipartFile file){
+		ResultEntity resultEntity = new ResultEntity();
+
+		FileUntils fileunits=new FileUntils();
+
+		String realpath=request.getSession().getServletContext().getRealPath("/");
+		/**
+		 *修改服务，判断是否属于进行了图片修改；
+		 *是：删除原图片， 保存新上传图片
+		 *否：只更新服务
+		 */
+		if(!file.isEmpty()){
+
+			/**
+			 **是：保存新上传图片
+			 */
+			Map<String,Object> map = fileunits.savePic(file,realpath,FileUntils.PICPATHSERVICE);
+			if(map!=null){
+				if((boolean) map.get("issuccess")){
+					//删除原文件
+					fileunits.deletePic(realpath,activityModel.getPicPath());
+					//获取新文件
+					String path = (String) map.get("path");
+					activityModel.setPicPath(path);
+					//修改数据库
+					activityModel.setCreateTime(DateUtil.fSecond(new Date()));
+					boolean flag = activityService.update(activityModel);
+					resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增图片成功",activityModel);
+				} else {
+					resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增图片失败",activityModel);
+				}
+			}
 		}
 
 		return resultEntity;
 	}
+
 
 }

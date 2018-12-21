@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(value = "活动对象")
 public class ActivityModel {
 	private String id = UUIDUtil.getUUID().trim();
-	private String title;
+	private String titles;
 	private String picPath;
 	private String desc;
 	private String number;
@@ -28,13 +28,7 @@ public class ActivityModel {
 		this.id = (null == id ? UUIDUtil.getUUID() : id.trim());
 	}
 
-	public String getTitle() {
-		return title;
-	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	public String getPicPath() {
 		return picPath;
@@ -66,5 +60,13 @@ public class ActivityModel {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getTitles() {
+		return titles;
+	}
+
+	public void setTitles(String titles) {
+		this.titles = titles;
 	}
 }

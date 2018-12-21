@@ -6,7 +6,7 @@
     <resultMap id="activityMap" type="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
 		<result property="id" column="id" />
 		<result property="picPath" column="picPath" />
-		<result property="title" column="title" />
+		<result property="titles" column="titles" />
 		<result property="desc" column="desc" />
 		<result property="number" column="number" />
 		<result property="createTime" column="createTime" />
@@ -18,7 +18,7 @@
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != ''">"id",</if>
 			<if test="picPath != null and picPath != ''">"picPath",</if>
-			<if test="title != null and title != ''">"title",</if>
+			<if test="titles != null and titles != ''">"titles",</if>
 			<if test="desc != null and desc != ''">"desc",</if>
 			<if test="number != null and number != ''">"number",</if>
 			<if test="createTime != null and createTime != ''">"createTime",</if>
@@ -26,7 +26,7 @@
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
 			<if test="picPath != null and picPath != ''">#{picPath,jdbcType=VARCHAR},</if>
-			<if test="title != null and title != ''">#{title,jdbcType=VARCHAR},</if>
+			<if test="titles != null and titles != ''">#{titles,jdbcType=VARCHAR},</if>
 			<if test="desc != null and desc != ''">#{desc,jdbcType=VARCHAR},</if>
 			<if test="number != null and number != ''">#{number,jdbcType=VARCHAR},</if>
 			<if test="createTime != null and createTime != ''">#{createTime,jdbcType=VARCHAR},</if>
@@ -38,7 +38,7 @@
 		<set>
 			<if test="id != null and id != ''">"id"=#{id,jdbcType=VARCHAR},</if>
 			<if test="picPath != null and picPath != ''">"picPath"=#{picPath,jdbcType=VARCHAR},</if>
-			<if test="title != null and title != ''">"title"=#{title,jdbcType=VARCHAR},</if>
+			<if test="titles != null and titles != ''">"titles"=#{titles,jdbcType=VARCHAR},</if>
 			<if test="desc != null and desc != ''">"desc"=#{desc,jdbcType=VARCHAR},</if>
 			<if test="number != null and number != ''">"number"=#{number,jdbcType=VARCHAR},</if>
 			<if test="createTime != null and createTime != ''">"createTime"=#{createTime,jdbcType=VARCHAR},</if>
@@ -57,11 +57,20 @@
 	<select id="getModelList"  parameterType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel" resultType="com.zfsoft.boot.zhjx.dao.entities.ActivityModel">
 		select m.* from "KEJIGUANADMIN"."m_activity" m where 1=1
 		/*预约活动名称*/
-		<!--<if test="name != null and name != ''">
-			and name = #{name}
-		</if>-->
-		<if test="title != null and title != ''">
-			and "title" = #{title}
+		<if test="titles != null and titles != ''">
+			and "titles" = #{titles}
+		</if>
+		<if test="picPath != null and picPath != ''">
+			and "picPath" = #{picPaths}
+		</if>
+		<if test="desc != null and desc != ''">
+			and "desc" = #{desc}
+		</if>
+		<if test="number != null and number != ''">
+			and "number" = #{number}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and "createTime" = #{createTime}
 		</if>
 	</select>
 

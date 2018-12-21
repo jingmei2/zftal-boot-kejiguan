@@ -26,13 +26,13 @@
 			<div class="choose_type">
 				<div class="mui-input-row mui-radio mui-left">
 					<label>个人预约</label>
-					<input name="radioStatus" type="radio" id="person" checked value='1'> 
+					<input name="radioStatus" type="radio" id="person" checked value='1'>
 				</div>
 				<div class="mui-input-row mui-radio mui-left">
 					<label>单位预约</label>
 					<input name="radioStatus" type="radio" id="company" value='2'>
 				</div>
-				
+
 			</div>
 		</div>
 
@@ -85,7 +85,7 @@
 
 			</ul>
 		</div>
-		
+
 		<form class="mui-input-group">
 			<div class="person">
 				<div class="book-time">个人信息</div>
@@ -167,7 +167,7 @@
 								 * rs.h 时，用法同年
 								 * rs.i 分（minutes 的第二个字母），用法同年
 								 */
-								
+
 								$('#button'+btn.id)[0].innerText = '' + rs.text;
 								console.log(rs.text)
 								/*
@@ -188,7 +188,7 @@
 					}, false);
 				});
 			})(mui);
-//		var url = "http://127.0.0.1";
+//		var url = "http://127.0.0.1:9097";
 		var url = "http://10.71.19.166:9097";
 		$("#button").click(function(){
 			var book=$('.mui-table-view-cell button');
@@ -207,19 +207,19 @@
 			}else{
 				data=datas+'&name='+name+'&phone='+phone+'&name='+name+'&phone='+phone+'';
 			}
-//			$.post(url+"/kejiguan/addBook",data,
-//				function(res){
-//					//alert("Data: " + data + "\nStatus: " + status);
-//					var htm = "";
-// 					if(res.data==true){
-//// 						mui.toast('提交成功');
-////						window.location.replace("success.html");
-// 					}
-//			});
-			mui.toast('提交成功');
+			$.post(url+"/kejiguan/addBook",data,
+				function(res){
+					//alert("Data: " + data + "\nStatus: " + status);
+					var htm = "";
+   					if(res.data==true){
+   						mui.toast('提交成功');
+						window.location.replace("success.html");
+   					}
+			});
+//			mui.toast('提交成功');
 //		    window.location.replace("success.html");
 		});
-		
+
 		</script>
 	</body>
 
