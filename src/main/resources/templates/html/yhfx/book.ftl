@@ -82,7 +82,7 @@
 						phone = obj.contact;
 						type = "单位";
 					}
-					htm += "<tr><td>"+ obj.name +"</td>";
+					htm += "<tr><td>"+ obj.contact +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ number +"</td>";
 					htm += "<td>"+ obj.type +"</td>";

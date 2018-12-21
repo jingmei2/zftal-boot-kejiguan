@@ -8,6 +8,70 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
+		<style type="text/css">
+			/*遮罩*/
+
+			.shandow {
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				display: none;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: -1;
+				background: rgba(0, 0, 0, 0.6);
+			}
+			/* 二维码  */
+
+			.add_QR {
+				height: 280px;
+				position: absolute;
+				top: 30%;
+				left: 10%;
+				right: 10%;
+				background: #fff;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				font-size: 14px;
+				color: #666666;
+				position: fixed;
+				top: 35%;
+				/* left: 26%; */
+				/* width: 39%; */
+				/* height: 20%; */
+				z-index: 11;
+				padding: 0 3%;
+				text-align: center;
+			}
+
+			.add_QR img {
+				width: 180px;
+				height: 180px;
+				margin: 0 auto;
+				display: block;
+				margin-top: 20px;
+			}
+
+			.add_QR p {
+				text-align: center;
+				font-size: 16px;
+				color: #333333;
+				margin-top: 25px;
+			}
+
+			.close {
+				background: url("../images/delete_btn.png")no-repeat center;
+				background-size: contain;
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+		</style>
 	</head>
 
 	<body style="background-color: white;">
@@ -15,6 +79,14 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">场馆介绍</h1>
 		</header>
+		<!--遮罩-->
+		<div class="shandow"></div>
+		<!--生成二维码S-->
+		<div class="add_QR" id="qrcode" style="display: none;">
+			<div class="close" id="close"></div>
+			<p>扫一扫或者长按保存截图，识别二维码，分享</p>
+		</div>
+		<!--生成二维码E-->
 		<div class="body" >
 			<!--内容卡-->
 			<div class="activity-tab">
@@ -25,23 +97,58 @@
 				Your browser does not support the audio element.
 				</audio>
 			</div>
-			
+
 			<div class="textStyle">
 				<p class="text">
 					心理区设置了倾斜屋、错觉画、错觉屋、心理查询系统等心理区展品；在该展区观众可以了解心理知识。
 				</p>
 			</div>
-			<a class="submit" href="book.html"><button type="button" class="content">我要预约</button></a>
+			<!--<a class="submit" href="book.html?id=321149bc95f24428b47c1ccad85b6c32"><button type="button" class="content">我要预约</button></a>-->
+			<a style="padding: 0 5%;"><button type="button" class="content">分享二维码</button></a>
 		</div>
-
-
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/qrcode.js"></script>
 		<script type="text/javascript">
 			mui.init()
+
+			//--------------------------
+			var qrcode = new QRCode(document.getElementById("qrcode"), {
+				width: 100,
+				height: 100
+			});
+			//生成二维码
+			function madeCode(sharePage) {
+				qrcode.makeCode(sharePage);
+				$("#qrcode").show(); //二维码展示
+			}
+			//$('.shandow').hide();
+			/*生成二维码*/
+			$('.content').click(function() {
+				//显示遮罩
+				$('.shandow').show().css('z-index', '11');
+				$('.add_QR').show().css('z-index', '30');
+				var link = window.location.href;
+
+				madeCode(link); //生成二维码
+
+			})
+			//生成二维码
+			$('.become_QR').click(function() {
+				$('.add_QR').show().css('z-index', '30');
+				$('.zyj_container').hide();
+				$('.shandow').show().css('z-index', '11');
+
+			})
+			//关闭二维码
+			$('#close').click(function() {
+				$('#qrcode').hide();
+				$('.shandow').hide();
+
+			})
 		</script>
-		
+
 	</body>
 
 </html>
