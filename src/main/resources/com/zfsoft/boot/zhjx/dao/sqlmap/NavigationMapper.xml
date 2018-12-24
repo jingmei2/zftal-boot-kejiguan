@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfsoft.boot.zhjx.dao.daointerface.INavigationDao" >
+
+    <resultMap id="activityMap" type="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		<result property="id" column="id" />
+		<result property="picPath" column="picPath" />
+		<result property="state" column="state" />
+		<result property="desc" column="desc" />
+		<result property="url" column="url" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+    <!-- 增加数据 -->
+    <insert id="insert" parameterType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		insert into "KEJIGUANADMIN"."m_navigation"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">"id",</if>
+			<if test="picPath != null and picPath != ''">"picPath",</if>
+			<if test="state != null and state != ''">"state",</if>
+			<if test="desc != null and desc != ''">"desc",</if>
+			<if test="url != null and url != ''">"url",</if>
+			<if test="createTime != null and createTime != ''">"createTime",</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="picPath != null and picPath != ''">#{picPath,jdbcType=VARCHAR},</if>
+			<if test="state != null and state != ''">#{state,jdbcType=VARCHAR},</if>
+			<if test="desc != null and desc != ''">#{desc,jdbcType=VARCHAR},</if>
+			<if test="url != null and url != ''">#{url,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">#{createTime,jdbcType=VARCHAR},</if>
+		</trim>
+    </insert>
+
+	<update id="update" parameterType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		update "KEJIGUANADMIN"."m_navigation"
+		<set>
+			<if test="id != null and id != ''">"id"=#{id,jdbcType=VARCHAR},</if>
+			<if test="picPath != null and picPath != ''">"picPath"=#{picPath,jdbcType=VARCHAR},</if>
+			<if test="state != null and state != ''">"state"=#{state,jdbcType=VARCHAR},</if>
+			<if test="desc != null and desc != ''">"desc"=#{desc,jdbcType=VARCHAR},</if>
+			<if test="url != null and url != ''">"url"=#{url,jdbcType=VARCHAR},</if>
+			<if test="createTime != null and createTime != ''">"createTime"=#{createTime,jdbcType=VARCHAR},</if>
+		</set>
+		where "id" = #{id}
+	</update>
+
+	<select id="getModel" parameterType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel" resultType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		select ma.*  from "KEJIGUANADMIN"."m_navigation" ma where "id" = #{id}
+	</select>
+
+	<delete id="delete" parameterType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		delete from "KEJIGUANADMIN"."m_navigation" ma where ma.id = #{id}
+	</delete>
+
+	<select id="getModelList"  parameterType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel" resultType="com.zfsoft.boot.zhjx.dao.entities.NavigationModel">
+		select m.* from "KEJIGUANADMIN"."m_navigation" m where 1=1
+		/*预约活动名称*/
+		<if test="state != null and state != ''">
+			and "state" = #{state}
+		</if>
+		<if test="picPath != null and picPath != ''">
+			and "picPath" = #{picPaths}
+		</if>
+		<if test="desc != null and desc != ''">
+			and "desc" = #{desc}
+		</if>
+		<if test="url != null and url != ''">
+			and "url" = #{url}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and "createTime" = #{createTime}
+		</if>
+	</select>
+
+</mapper>

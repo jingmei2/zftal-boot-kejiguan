@@ -1,11 +1,10 @@
 package com.zfsoft.boot.zhjx.web.controller;
 
-import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
-import com.zfsoft.boot.zhjx.dao.entities.ActivityModel;
-import com.zfsoft.boot.zhjx.dao.entities.BookModel;
-import com.zfsoft.boot.zhjx.dao.entities.ResultEntity;
+import com.zfsoft.boot.zhjx.dao.entities.*;
 import com.zfsoft.boot.zhjx.service.svcinterface.IActivityService;
 import com.zfsoft.boot.zhjx.service.svcinterface.IBookService;
+import com.zfsoft.boot.zhjx.service.svcinterface.INavigationService;
+import com.zfsoft.boot.zhjx.service.svcinterface.IVenueService;
 import com.zfsoft.boot.zhjx.util.DateUtil;
 import com.zfsoft.boot.zhjx.util.FileUntils;
 import com.zfsoft.boot.zhjx.util.UUIDUtil;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +35,10 @@ public class KejiguanController {
 	private IBookService bookService;
 	@Autowired
 	private IActivityService activityService;
+	@Autowired
+	private IVenueService venueService;
+	@Autowired
+	private INavigationService navigationService;
 
 	@ApiOperation(value = "新增预定", notes = "", response = String.class)
 	@RequestMapping(value="/addBook",method=RequestMethod.POST)
@@ -174,8 +176,8 @@ public class KejiguanController {
 		boolean flag = false;
 		ResultEntity resultEntity;
 
-		List<ActivityModel> bookModelList = activityService.getModelList(activityModel);
-		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModelList);
+		List<ActivityModel> list = activityService.getModelList(activityModel);
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",list);
 
 		return resultEntity;
 	}
@@ -230,6 +232,262 @@ public class KejiguanController {
 				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增成功",activityModel);
 			} else {
 				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增失败",activityModel);
+			}
+		}
+
+		return resultEntity;
+	}
+
+	//*********************************   场馆   *************************************************//
+	@ApiOperation(value = "新增场馆", notes = "", response = String.class)
+	@RequestMapping(value="/addVenue",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity addVenue(HttpServletRequest request, Model model, VenueModel venueModel) {
+		boolean flag = false;
+		ResultEntity resultEntity ;
+		venueModel.setCreateTime(DateUtil.fSecond(new Date()));
+		flag = venueService.insert(venueModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"新增成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "修改场馆", notes = "", response = String.class)
+	@RequestMapping(value = "/updateVenue",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity updateVenue(HttpServletRequest request, Model model, VenueModel venueModel) {
+		boolean flag = false;
+		ResultEntity resultEntity ;
+		venueModel.setCreateTime(DateUtil.fSecond(new Date()));
+		flag = venueService.update(venueModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "查询场馆", notes = "", response = String.class)
+	@RequestMapping(value="/selectVenueById",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultEntity selectVenueById(@RequestParam("id") String id) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+		VenueModel venueModel = new VenueModel();
+		venueModel.setId(id);
+		VenueModel bookModel = venueService.getModel(venueModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModel);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "删除场馆", notes = "", response = String.class)
+	@RequestMapping(value="/deleteVenueById",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultEntity deleteVenueById(String id) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+		VenueModel venueModel = new VenueModel();
+		venueModel.setId(id);
+		flag = venueService.delete(venueModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "查询场馆列表", notes = "", response = String.class)
+	@RequestMapping(value="/selectVenueListById",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity selectVenueListById(HttpServletRequest request, Model model, VenueModel venueModel) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+
+		List<VenueModel> bookModelList = venueService.getModelList(venueModel);
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModelList);
+
+		return resultEntity;
+	}
+
+
+	//接口服务不可有相同的服务
+	@ApiOperation(value = "场馆图片接口", notes = "", response = String.class)
+	@RequestMapping(value="/saveorupdatePicForVenue",method=RequestMethod.POST)
+	public ResultEntity saveorupdatePicForVenue(HttpServletRequest request,
+									 HttpServletResponse response, Model model, VenueModel venueModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
+		ResultEntity resultEntity = new ResultEntity();
+
+		FileUntils fileunits=new FileUntils();
+
+		String realpath=request.getSession().getServletContext().getRealPath("/");
+		/**
+		 *修改服务，判断是否属于进行了图片修改；
+		 *是：删除原图片， 保存新上传图片
+		 *否：只更新服务
+		 */
+		if(!faceLegalFile.isEmpty()){
+
+			/**
+			 **是：保存新上传图片
+			 */
+			Map<String,Object> map = fileunits.savePic(faceLegalFile,realpath,FileUntils.PICPATHSERVICE);
+			if(map!=null){
+				if((boolean) map.get("issuccess")){
+					//删除原文件
+					fileunits.deletePic(realpath,venueModel.getPicPath());
+					//获取新文件
+					String path = (String) map.get("path");
+					venueModel.setPicPath(path);
+				}
+			}
+		}
+		//id=null 说明是新增
+		if(null!=venueModel&&venueModel.getId()!=null){
+			//修改数据库
+			venueModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = venueService.update(venueModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改成功",venueModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改失败",venueModel);
+			}
+		} else {
+			venueModel.setId(UUIDUtil.getUUID().trim());
+			venueModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = venueService.insert(venueModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增成功",venueModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增失败",venueModel);
+			}
+		}
+
+		return resultEntity;
+	}
+
+	//*********************************   导航图   *************************************************//
+	@ApiOperation(value = "新增导航图", notes = "", response = String.class)
+	@RequestMapping(value="/addNavigation",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity addNavigation(HttpServletRequest request, Model model, NavigationModel navigationModel) {
+		boolean flag = false;
+		ResultEntity resultEntity ;
+		navigationModel.setCreateTime(DateUtil.fSecond(new Date()));
+		flag = navigationService.insert(navigationModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"新增成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "修改导航图", notes = "", response = String.class)
+	@RequestMapping(value = "/updateNavigation",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity updateNavigation(HttpServletRequest request, Model model, NavigationModel navigationModel) {
+		boolean flag = false;
+		ResultEntity resultEntity ;
+		navigationModel.setCreateTime(DateUtil.fSecond(new Date()));
+		flag = navigationService.update(navigationModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"修改成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "查询导航图", notes = "", response = String.class)
+	@RequestMapping(value="/selectNavigationById",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultEntity selectNavigationById(@RequestParam("id") String id) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+		NavigationModel navigationModel = new NavigationModel();
+		navigationModel.setId(id);
+		NavigationModel bookModel = navigationService.getModel(navigationModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModel);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "删除导航图", notes = "", response = String.class)
+	@RequestMapping(value="/deleteNavigationById",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultEntity deleteNavigationById(String id) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+		NavigationModel navigationModel = new NavigationModel();
+		navigationModel.setId(id);
+		flag = navigationService.delete(navigationModel);
+
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"删除成功",flag);
+
+		return resultEntity;
+	}
+
+	@ApiOperation(value = "查询导航图列表", notes = "", response = String.class)
+	@RequestMapping(value="/selectNavigationListById",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultEntity selectNavigationListById(HttpServletRequest request, Model model, NavigationModel navigationModel) {
+		boolean flag = false;
+		ResultEntity resultEntity;
+
+		List<NavigationModel> bookModelList = navigationService.getModelList(navigationModel);
+		resultEntity = new ResultEntity(ResultEntity.SUCCESS_CODE,"查询成功",bookModelList);
+
+		return resultEntity;
+	}
+
+
+	//接口服务不可有相同的服务
+	@ApiOperation(value = "导航图图片接口", notes = "", response = String.class)
+	@RequestMapping(value="/saveorupdatePicForNavigation",method=RequestMethod.POST)
+	public ResultEntity saveorupdatePicForVenue(HttpServletRequest request,
+												HttpServletResponse response, Model model, NavigationModel navigationModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
+		ResultEntity resultEntity = new ResultEntity();
+
+		FileUntils fileunits=new FileUntils();
+
+		String realpath=request.getSession().getServletContext().getRealPath("/");
+		/**
+		 *修改服务，判断是否属于进行了图片修改；
+		 *是：删除原图片， 保存新上传图片
+		 *否：只更新服务
+		 */
+		if(!faceLegalFile.isEmpty()){
+
+			/**
+			 **是：保存新上传图片
+			 */
+			Map<String,Object> map = fileunits.savePic(faceLegalFile,realpath,FileUntils.PICPATHSERVICE);
+			if(map!=null){
+				if((boolean) map.get("issuccess")){
+					//删除原文件
+					fileunits.deletePic(realpath,navigationModel.getPicPath());
+					//获取新文件
+					String path = (String) map.get("path");
+					navigationModel.setPicPath(path);
+				}
+			}
+		}
+		//id=null 说明是新增
+		if(null!=navigationModel&&navigationModel.getId()!=null){
+			//修改数据库
+			navigationModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = navigationService.update(navigationModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改成功",navigationModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"修改失败",navigationModel);
+			}
+		} else {
+			navigationModel.setId(UUIDUtil.getUUID().trim());
+			navigationModel.setCreateTime(DateUtil.fSecond(new Date()));
+			boolean flag = navigationService.insert(navigationModel);
+			if(flag){
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增成功",navigationModel);
+			} else {
+				resultEntity = new ResultEntity( ResultEntity.SUCCESS_CODE,"新增失败",navigationModel);
 			}
 		}
 
