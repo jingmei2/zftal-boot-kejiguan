@@ -23,6 +23,20 @@
 				display: block;
 				font-size: 18px;
 			}
+			.backBook{
+				width: 90%;
+				margin: 0 auto;
+				height: 50px;
+			    background: rgba(25,137,250,1);
+			    opacity: 1;
+			    font-size:18px;
+			    line-height:50px;
+			    border-radius: 4px;
+			    text-align: center;
+			    color: #fff;
+			    padding: 0;
+			    display: block;
+			}
 		</style>
 	</head>
 	<body style="background-color: white;">
@@ -35,9 +49,16 @@
 				<img class="statusImg" src="../images/success.png" width="100%"/>
 				<label class="statusText">预约成功！</label>
 			</div>
-			<a class="submit" href="activity.html"><button type="button" class="content">确定</button></a>
+			<button class="backBook" type="button" class="content">确定</button>
 		</div>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+		<script>
+			$('.backBook').click(function(){
+				window.location.replace('index.html');
+        		window.history.back(-1);
+			})
+		</script>
 	</body>
 
 </html>

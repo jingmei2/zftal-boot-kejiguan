@@ -17,7 +17,9 @@
 	<!-- 应用系统自定义样式 -->
 
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
-	<link href="${request.contextPath}/assets/css/book.css" />
+	<link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css"/>
+	
+	<!--<link href="${request.contextPath}/assets/css/datetimepicker.css"/>-->
 	<!-- 该页面单独样式 -->
 
 </head>
@@ -35,8 +37,8 @@
 					<i class="fa fa-search icon-right search-icon" aria-hidden="true"></i>
 				</div>
 				<div class="add" style="display:none;width: 400px;position: fixed;top: 10%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
-				    <form method="post" enctype="multipart/form-data" action="">
-					    <label style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;">新增活动</label>
+				    <form id="form" enctype="multipart/form-data">
+					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;">新增活动</label>
 					    <div style="margin: 20px 0;">
 				            <label style="width: 100px;font-size: 16px;color: #000;">活动标题</label>
 				            <input name="titles" type="text" placeholder="请输入活动标题" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
@@ -56,23 +58,25 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;">活动描述</label>
 				            <input name="desc" type="text" placeholder="请输入活动描述" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
 				        </div>
+				        
 				        <div style="margin-bottom: 20px;">
 				            <label style="width: 100px;font-size: 16px;color: #000;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
 				            <div style="width: 92px;height: 45px;position: relative;display: inline-block;">
+				            	
 				            	<input type="hidden" id="img" name="picPath"/>
 					        	<input name="faceLegalFile" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 45px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
 					        </div>
 				        </div>
-					    <button class="addAct" type="submit" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增活动</button>
+					    <button class="addAct" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增活动</button>
 					    <button class="back" type="button" style="border:1px solid #ccc;background:#fff;color:#000;padding:10px 30px;border-radius:6px;font-size:16px;margin-right:10px;">取消</button>
 					</form>
 				</div>
 			</div>
 			<div class="sssj-xssj-xxsj">
 				<table id="monthDataTable" class="table table-bordered table-striped">
-					<tr>
+					<tr class="actName">
 					    <th>
 							<input class="allCheck" type="checkbox">
 						</th>
@@ -80,6 +84,7 @@
 						<th>预定时间</th>
 						<th>预定人数</th>
 						<th>活动描述</th>
+						<th>背景图片</th>
 					</tr>
 				</table>
 			</div>
@@ -87,21 +92,27 @@
 
 	</div>
 </div>
-
+<script src="https://malsup.github.io/jquery.form.js"></script>
 <script type="text/javascript" src="${request.contextPath}/assets/js/yhfx/ssyhgj.js?ver=${versionUtil()}"></script>
-<!--<script src="${request.contextPath}/assets/js/yhfx/bootstrap-datetimepicker.js"></script>-->
+<script type="text/javascript" src="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<!--<script type="text/javascript" src="${request.contextPath}/assets/js/datetimepicker.js"></script>-->
 <script>
 	var tip;
 	actList();
-//	$(".form_datetime").datetimepicker({
-//		format: 'yyyy-mm-dd hh:ii',
-//		language: 'cn',
-//	});
+	$(".form_datetime").datetimepicker({
+		format: 'yyyy-mm-dd hh:ii',
+	});
 	//新增
 	$('.xinzeng').click(function(){
+		console.log($('body').find('.actId').attr('class')=='actId')
+		if($('body').find('.actId').attr('class')=='actId'){
+			$('body').find('.actId').remove();
+		}
 		if($('.add').is(':hidden')){
 			tip=1;
 			$('.add').show().find('input').val('');
+			$('.formTitle').text('新增活动');
+			$('.addAct').text('新增活动');
 			$('#showImg').attr('src','').hide();
 		}
 	})
@@ -115,6 +126,9 @@
 			alert('请勾选活动！');
 		}else{
 			//根据id找活动赋值
+			$('.formTitle').text('修改活动');
+			$('.addAct').text('修改活动');
+			$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
 			$.get("${request.contextPath}/kejiguan/selectActivityById?id="+$("input[type=checkbox]:checked").val()+"",function(res){
 	           if(res.code==1){
 	           	 tip=2;
@@ -124,6 +138,7 @@
 	           	 $('input[name="number"]').val(res.data.number);
 	           	 $('input[name="desc"]').val(res.data.desc);
 	           	 $('input[name="picPath"]').val(res.data.picPath);
+	           	 $('input[name="id"]').val(res.data.id);
 	           	 $('#showImg').attr('src',res.data.picPath).show();
 	           }
 			});
@@ -134,19 +149,21 @@
 	$('.add .back').click(function(){
 		$('.add').hide();
 	})
-
-	//添加/修改
+    
+    //添加/修改
 	$('.addAct').click(function(){
-//		console.log($('.add form').serialize())
-		$('form').attr('action','http://10.71.19.166:9097/kejiguan/saveorupdatePic');
-		$('form').submit();
-//		$.post("http://10.71.21.98:9097/kejiguan/saveorupdatePic",$('.add form').serialize(),function(res){
-//         if(res.code==1){
-////         	  window.location.reload();
-//            console.log(res)
-//         }
-//		});
-	})
+		$('#form').ajaxSubmit({
+			url: 'http://10.71.19.166:9097/kejiguan/saveorupdatePic',
+            type: "Post",
+            success:function(res){
+            	alert(res.status);
+            	$('.add').hide();
+            	$('body').find('#monthDataTable tr').not('.actName').remove();
+            	actList();
+            }
+		});
+		
+	})	
 
 	//删除
 	$('.shanchu').click(function(){
@@ -175,7 +192,7 @@
 //		}
 //	})
 
-	//上传图片
+	//显示图片
 	function changepic() {
 	   var image = '';
 	   var base64;
@@ -186,27 +203,18 @@
 		  image = document.getElementById('showImg');
 		  image.style.display='inline-block';
 		  image.src = event.target.result;//读入文件的base64数据(可直接作为src属性来显示图片)
-		  //图片读取完成的回调函数（必须加上否则数据读入不完整导致出错！）
-//		  image.onload = function(){
-//			   base64 = event.target.result;
-//			   $.post("",
-//				{
-//					data:base64
-//				},
-//				function(res) {
-//					$('#img').val('');
-//				}, "json");
-//		  }
 	   }
 	}
+	//搜索活动
 	$("input[name='title']").on('keypress', function(e) {
 		var keycode = e.keyCode;
 		if (keycode == '13') {
 			e.preventDefault();
+			$('body').find('#monthDataTable tr').not('.actName').remove();
 			actList();
 		}
 	});
-
+    //请求数据
 	function actList(){
 		var title=$(".form-group").find("input[name='title']").val();
 		console.log(title)
@@ -221,10 +229,11 @@
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
 					htm += "<tr><td><input type='checkbox' name='checkLine' value="+obj.id+"></td>";
-					htm += "<td>"+ obj.title +"</td>";
+					htm += "<td>"+ obj.titles +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ obj.number +"</td>";
-					htm += "<td>"+ obj.desc +"</td></tr>";
+					htm += "<td>"+ obj.desc +"</td>";
+					htm += "<td><img width='100px' src="+ obj.picPath +" ></td></tr>";
 				}
 				$("#monthDataTable").append(htm);
 
