@@ -131,9 +131,12 @@ html,body{
 
 .submit{
 	height: 50px;
-	width: 90%;
+	width: 100%;
 	display: block;
 	margin:15px auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
 }
 
 
@@ -145,9 +148,10 @@ html,body{
     line-height:50px;
     border-radius: 4px;
     text-align: center;
-    width: 100%;
+    width: 90%;
     color: #fff;
     padding: 0;
+    margin: 0 5%;
 }
 
 .time .mui-radio{

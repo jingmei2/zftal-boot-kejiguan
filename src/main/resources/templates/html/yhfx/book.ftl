@@ -17,7 +17,7 @@
 	<!-- 应用系统自定义样式 -->
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
 	<!-- 该页面单独样式 -->
-
+     
 </head>
 <body style="background: #fff;">
 <div class="main-content">
@@ -58,7 +58,7 @@
 			list();
 		}
 	});
-
+	
 	function  list(){
 		var name=$("input[name='name']").val();
 		$.post("${request.contextPath}/kejiguan/selectBookListById",
@@ -71,31 +71,19 @@
 				var list = data.data;
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
-					var type = obj.type;
-					var number = obj.companyNum;
-					var phone = obj.phone;
-
-					if(type ==1){//个人
-						number = 1;
-						type = "个人";
-					} else {
-						phone = obj.contact;
-						type = "单位";
-					}
 					htm += "<tr><td>"+ obj.contact +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
-					htm += "<td>"+ number +"</td>";
 					htm += "<td>"+ obj.type +"</td>";
-					htm += "<td>"+ type +"</td>";
-					htm += "<td>"+ phone +"</td></tr>";
+					htm += "<td>"+ obj.type +"</td>";
+					htm += "<td>"+ obj.companyName +"</td>";
+					htm += "<td>"+ obj.phone +"</td></tr>";
 				}
-
 				$("#monthDataTable").append(htm);
 
 			});
-
+	
 	}
-
+	
 </script>
 </body>
 </html>

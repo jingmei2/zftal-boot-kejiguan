@@ -63,7 +63,6 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
 				            <div style="width: 92px;height: 45px;position: relative;display: inline-block;">
-				            	
 				            	<input type="hidden" id="img" name="picPath"/>
 					        	<input name="faceLegalFile" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 45px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
@@ -129,7 +128,9 @@
 			$('.formTitle').text('修改活动');
 			$('.addAct').text('修改活动');
 			$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
-			$.get("${request.contextPath}/kejiguan/selectActivityById?id="+$("input[type=checkbox]:checked").val()+"",function(res){
+			$.get("${request.contextPath}/kejiguan/selectActivityById",{
+				id:$("input[type=checkbox]:checked").val()
+				},function(res){
 	           if(res.code==1){
 	           	 tip=2;
 	           	 $('.add').show();
@@ -193,7 +194,7 @@
 //	})
 
 	//显示图片
-	function changepic() {
+	function changepic(){
 	   var image = '';
 	   var base64;
 	   var reader = new FileReader();//读取文件
@@ -228,7 +229,7 @@
 				var list = data.data;
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
-					htm += "<tr><td><input type='checkbox' name='checkLine' value="+obj.id+"></td>";
+					htm += "<tr><td><input type='checkbox' name='id' value="+obj.id+"></td>";
 					htm += "<td>"+ obj.titles +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ obj.number +"</td>";

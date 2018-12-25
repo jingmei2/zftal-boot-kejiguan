@@ -9,7 +9,7 @@
 		<link href="../css/main.css" rel="stylesheet" />
 		<link href="../css/activityDetail.css" rel="stylesheet" />
 		<style>
-			.activity-tab .titleStyle{
+			.activity-tab .titleStyle {
 				height: 40px;
 				line-height: 40px;
 			}
@@ -21,13 +21,13 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">活动详情</h1>
 		</header>
-		<div class="body" >
+		<div class="body">
 			<!--内容卡-->
 			<div class="activity-tab">
-				<img class="img" src=""/>
+				<div class="pic"></div>
 				<div class="titleStyle"></div>
 				<div class="concentStyle">
-					<img class="imgs" src="../images/kejiguan3.png"/>
+					<img class="imgs" src="../images/kejiguan3.png" />
 					<span class="concent"></span>
 				</div>
 			</div>
@@ -39,26 +39,26 @@
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
-		<script type="text/javascript" src="../js/main.js" ></script>
+		<script type="text/javascript" src="../js/main.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			$.ajax({
-				type:'get',
-				url:host+'/kejiguan/selectActivityById',
-				data:{
-					id:GetUrlParam('id')
+				type: 'get',
+				url: host + '/kejiguan/selectActivityById',
+				data: {
+					id: GetUrlParam('id')
 				},
-				success:function(res){
-					if(res.code==1){
+				success: function(res) {
+					if(res.code == 1) {
 						$('.titleStyle').html(res.data.titles);
-						$('.img').attr('src',res.data.picPath);
+						$('.pic').append('<img class="img" src=' + res.data.picPath + ' onerror="javascript:this.src=\' ../images/default.png\'"/>')
 						$('.concentStyle .concent').html(res.data.createTime);
 						$('.textStyle .text').html(res.data.desc);
-						$('.submit').attr('href','book.html?id='+res.data.id+'');
+						$('.submit').attr('href', 'book.html?id=' + res.data.id + '');
 					}
 				}
 			})
-			
 		</script>
 	</body>
+
 </html>

@@ -187,7 +187,7 @@ public class KejiguanController {
 	@ApiOperation(value = "活动图片接口", notes = "", response = String.class)
 	@RequestMapping(value="/saveorupdatePic",method=RequestMethod.POST)
 	public ResultEntity saveorupdate(HttpServletRequest request,
-							   HttpServletResponse response, Model model, ActivityModel activityModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
+							   HttpServletResponse response, Model model, ActivityModel activityModel,@RequestParam(value="faceLegalFile", required=false) MultipartFile faceLegalFile){
 		ResultEntity resultEntity = new ResultEntity();
 
 		FileUntils fileunits=new FileUntils();
@@ -198,7 +198,7 @@ public class KejiguanController {
 		 *是：删除原图片， 保存新上传图片
 		 *否：只更新服务
 		 */
-		if(!faceLegalFile.isEmpty()){
+		if(faceLegalFile!=null){
 
 			/**
 			 **是：保存新上传图片
@@ -315,7 +315,7 @@ public class KejiguanController {
 	@ApiOperation(value = "场馆图片接口", notes = "", response = String.class)
 	@RequestMapping(value="/saveorupdatePicForVenue",method=RequestMethod.POST)
 	public ResultEntity saveorupdatePicForVenue(HttpServletRequest request,
-									 HttpServletResponse response, Model model, VenueModel venueModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
+									 HttpServletResponse response, Model model, VenueModel venueModel,@RequestParam(value="faceLegalFile", required=false) MultipartFile faceLegalFile,@RequestParam(value="voice", required=false) MultipartFile voice){
 		ResultEntity resultEntity = new ResultEntity();
 
 		FileUntils fileunits=new FileUntils();
@@ -326,7 +326,7 @@ public class KejiguanController {
 		 *是：删除原图片， 保存新上传图片
 		 *否：只更新服务
 		 */
-		if(!faceLegalFile.isEmpty()){
+		if(faceLegalFile!=null){
 
 			/**
 			 **是：保存新上传图片
@@ -340,6 +340,29 @@ public class KejiguanController {
 					String path = (String) map.get("path");
 					venueModel.setPicPath(path);
 				}
+
+			}
+		}
+		/**
+		 *修改服务，判断是否属于进行了音频修改；
+		 *是：删除原音频， 保存新上传音频
+		 *否：只更新服务
+		 */
+		if(voice!=null){
+
+			/**
+			 **是：保存新上传音频
+			 */
+			Map<String,Object> map = fileunits.savePic(voice,realpath,FileUntils.PICPATHSERVICE);
+			if(map!=null){
+				if((boolean) map.get("issuccess")){
+					//删除原文件
+					fileunits.deletePic(realpath,venueModel.getPicPath());
+					//获取新文件
+					String path = (String) map.get("path");
+					venueModel.setVoicePath(path);
+				}
+
 			}
 		}
 		//id=null 说明是新增
@@ -443,7 +466,7 @@ public class KejiguanController {
 	@ApiOperation(value = "导航图图片接口", notes = "", response = String.class)
 	@RequestMapping(value="/saveorupdatePicForNavigation",method=RequestMethod.POST)
 	public ResultEntity saveorupdatePicForVenue(HttpServletRequest request,
-												HttpServletResponse response, Model model, NavigationModel navigationModel,@RequestParam("faceLegalFile") MultipartFile faceLegalFile){
+												HttpServletResponse response, Model model, NavigationModel navigationModel,@RequestParam(value="faceLegalFile", required=false) MultipartFile faceLegalFile){
 		ResultEntity resultEntity = new ResultEntity();
 
 		FileUntils fileunits=new FileUntils();
@@ -454,7 +477,7 @@ public class KejiguanController {
 		 *是：删除原图片， 保存新上传图片
 		 *否：只更新服务
 		 */
-		if(!faceLegalFile.isEmpty()){
+		if(faceLegalFile!=null){
 
 			/**
 			 **是：保存新上传图片

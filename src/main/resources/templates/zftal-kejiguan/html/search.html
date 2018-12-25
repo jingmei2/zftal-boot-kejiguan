@@ -91,6 +91,18 @@
 			    line-height: 40px;
 			    color: #999;
 			}
+			.searchButton{
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				background: rgba(25,137,250,1);
+				border:0;
+				color: #fff;
+				padding: 6px 16px;
+			}
+			.search .mui-input-row{
+				position: relative;
+			}
 		</style>
 	</head>
 
@@ -103,7 +115,8 @@
 			<div class="search">
 				<div class="mui-input-row mui-search">
 				    <span class="search_icon"></span>
-					<input class="mui-input-clear" name="name" type="text" maxlength="12" placeholder="输入关键词" value="">
+					<input name="name" type="text" maxlength="12" placeholder="输入关键词" value="">
+					<button class="searchButton" type="button">搜索</button>
 				</div>
 			</div>
 			<div class="searchData">
@@ -131,6 +144,12 @@
 		            getData(1);
 		        }
 		    });
+		    
+		    $('.searchButton').click(function(){
+		    	$('.data').html('');
+		        getData(1);
+		    })
+		    
 		    //滚动事件
 		    window.onscroll=function(){
 		    	var clientHeight = $(this).height();
