@@ -161,12 +161,11 @@ body{
 .about-list-imgStyle{
 	border-radius: 5px;
     background-color: white;
-    float: left;
     width: 48%;
     opacity: 1;
 }
 .about-list .about-list-imgStyle:last-child{
-	 float: right;
+	/* float: right;*/
 }
 
 .about-list-img{

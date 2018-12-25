@@ -23,48 +23,13 @@
 			<div class="slide">
 				<!--轮播图-->
 				<div id="slider" class="mui-slider slider">
-					<div class="mui-slider-group mui-slider-loop">
-						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate slider-item">
-							<a href="activityDetail.html">
-								<img src="../images/timg.jpg" class="slider-item-img">
-							</a>
-						</div>
-						<!-- 第一张 -->
-						<div class="mui-slider-item slider-item" >
-							<a href="activityDetail.html">
-								<img src="../images/timg1.jpg" class="slider-item-img">
-							</a>
-						</div>
-						<!-- 第二张 -->
-						<div class="mui-slider-item slider-item">
-							<a href="activityDetail.html">
-								<img src="../images/timg2.jpg" class="slider-item-img">
-							</a>
-						</div>
-						<!-- 第三张 -->
-						<div class="mui-slider-item slider-item">
-							<a href="activityDetail.html">
-								<img src="../images/timg3.jpg" class="slider-item-img">
-							</a>
-						</div>
-						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate slider-item" >
-							<a href="activityDetail.html">
-								<img src="../images/timg.jpg" class="slider-item-img">
-							</a>
-						</div>
-					</div>
-					<div class="mui-slider-indicator">
-						<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
-					</div>
+					<div class="mui-slider-group mui-slider-loop"></div>
+					<div class="mui-slider-indicator"></div>
 				</div>
 			</div>
 			<!--活动图-->
 			<div class="about">
-				<a class="about-imgStyle" href="kejiguan.html">
+				<a class="about-imgStyle kjg" src="">
 					<span id="" class="about-text">
 						关于科技馆
 					</span>
@@ -85,7 +50,7 @@
 		</div>
 		<!--科技馆导览-->
 		<div class="about-list">
-			<a class="about-list-imgStyle" id="huaxuequ" href="huaxuequ.html">
+			<!--<a class="about-list-imgStyle" id="huaxuequ" href="huaxuequ.html">
 				<img class="about-list-img" id="" src="../images/huaxuequ.png"/>
 				<span id="" class="about-list-text">
 					化学区
@@ -97,8 +62,6 @@
 					心理区
 				</span>
 			</a>
-		</div>
-		<div class="about-list">
 			<a class="about-list-imgStyle"id="xinxiqu" href="xinxiqu.html">
 				<img class="about-list-img" id="" src="../images/xinxiqu.png"/>
 				<span id="" class="about-list-text">
@@ -110,39 +73,13 @@
 				<span id="" class="about-list-text">
 					生物区
 				</span>
-			</a>
+			</a>-->
 		</div>
-		<div class="about-list">
-			<a class="about-list-imgStyle"id="wuliqu" href="wuliqu.html">
-				<img class="about-list-img" id="" src="../images/wuliqu.png"/>
-				<span id="" class="about-list-text">
-					物理区
-				</span>
-			</a>
-			<a class="about-list-imgStyle"id="diliqu" href="diliqu.html">
-				<img class="about-list-img" id="" src="../images/diliqu.png"/>
-				<span id="" class="about-list-text">
-					地理区
-				</span>
-			</a>
-		</div>
-		<div class="about-list">
-			<a class="about-list-imgStyle"id="tianwenqu" href="tianwenqu.html">
-				<img class="about-list-img" id="" src="../images/tianwenqu.png"/>
-				<span id="" class="about-list-text">
-					天文区
-				</span>
-			</a>
-			<a class="about-list-imgStyle"id="tianxiangqu" href="tianxiangqu.html">
-				<img class="about-list-img" id="" src="../images/tianxiangqu.png"/>
-				<span id="" class="about-list-text">
-					天象区
-				</span>
-			</a>
-		</div>
+		
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
 				swipeBack:false //启用右滑关闭功能
@@ -161,10 +98,75 @@
 //			});
 			//再加入这段代码
 		    //获得slider插件对象
-		    var gallery = mui('.mui-slider');
-		        gallery.slider({
-		  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
-		    });
+		    
+		    
+		    
+		    play();
+		    list();
+		    
+		    function play(){
+		    	$.post(host+'/kejiguan/selectNavigationListById','',function(res){
+		    		if(res.data.length!=0){
+		    			var html='';
+		    			var num=res.data.length;
+		    			var data=res.data;
+		    			var first=res.data[0];
+		    			var last=res.data[num-1];
+		    			var classname;
+		    			if(res.data.length>1){
+		    				data.push(first);
+		    				data.unshift(last);
+		    			}
+		    			console.log(res.data)
+		    			for(var i in res.data){
+		    				console.log(11)
+		    				if(i==0 ||i==3){
+		    					classname='mui-slider-item-duplicate';
+		    				}else{
+		    					classname='';
+		    				}
+		    				html+='<div class="mui-slider-item slider-item '+classname+'" >'+
+							'<a href="'+res.data[i].url+'">'+
+							'<img src="'+res.data[i].picPath+'" class="slider-item-img" onerror="javascript:this.src=\' ../images/default.png\'"/></a></div>';
+		    			}
+					    $('.mui-slider-group').append(html);
+					    var gallery = mui('.mui-slider');
+					        gallery.slider({
+					  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+					    });
+		    		}
+		    	})
+		    }
+		    
+		    function list(){
+		    	$.post(host+'/kejiguan/selectVenueListById','',function(res){
+		    		if(res.data.length!=0){
+			    		var html='';
+			    		var name;
+			    		var n=0;
+			    		//取第一个id
+			    		var num=res.data.length;
+			    		$('.kjg').attr('src',res.data[num-1].id);
+			    		for(var i in res.data){
+			    			if(i==2*n+1){
+			    				console.log(i)
+			    				name='mui-pull-right';
+			    				n++;
+			    			}else{
+			    				name='mui-pull-left';
+			    			}
+			    			
+		    				html+='<a class="about-list-imgStyle ' +name+'" id="xinliqu" href="venueDetail.html?id='+res.data[i].id+'">'+
+							'<img class="about-list-img" id="" src="'+res.data[i].picPath+'" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
+							'<span id="" class="about-list-text">'+res.data[i].titles+'</span></a>';
+			    		}
+						$('.about-list').append(html);
+				    }
+		    	})
+		    }
+		    $('.kjg').click(function(){
+		    	window.location.href='venueDetail.html?id='+$(this).attr('src');
+		    })
 	</script>
 	</body>
 

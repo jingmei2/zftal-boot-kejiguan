@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel(value = "场馆对象")
 public class VenueModel {
-    private String id = UUIDUtil.getUUID().trim();
+    private String id ;
 	private String titles;
 	private String picPath;
 	private String desc;

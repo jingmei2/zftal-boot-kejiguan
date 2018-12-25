@@ -1,4 +1,4 @@
-var host='http://10.71.19.166:9097';
+var host='http://10.71.21.98:9097';
 function GetUrlParam(name) {
 　　　　var url = document.location.toString();
 　　　　var arrObj = url.split("?");

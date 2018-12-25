@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel(value = "导航图对象")
 public class NavigationModel {
-    private String id = UUIDUtil.getUUID().trim();
+    private String id ;
 	private String picPath;
 	private String desc;
 	private String state;

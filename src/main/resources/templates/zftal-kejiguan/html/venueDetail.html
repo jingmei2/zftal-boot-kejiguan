@@ -74,13 +74,19 @@
 			.content{
 				width:90%;
 			}
+			.titleStyle{
+				width: 70%; 
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    white-space: nowrap;
+			}
 		</style>
 	</head>
 
 	<body style="background-color: white;">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">场馆介绍</h1>
+			<h1 class="mui-title"></h1>
 		</header>
 		<!--遮罩-->
 		<div class="shandow"></div>
@@ -93,17 +99,17 @@
 		<div class="body" >
 			<!--内容卡-->
 			<div class="activity-tab">
-				<img class="img" src="../images/tianxiangqu.png"/>
-				<div class="titleStyle">天象馆简介</div>
+				<div class="pic"></div>
+				<div class="titleStyle"></div>
 				<audio controls="controls" class="audioStyle" autoplay="autoplay" id="myAudio">
-				  <source src="../source/tianwen.mp3" type="audio/MP3"></source>
+				  <source src="../source/xinliqu.mp3" type="audio/MP3"></source>
 				Your browser does not support the audio element.
 				</audio>
 			</div>
 
 			<div class="textStyle">
 				<p class="text">
-					天象馆的球形天幕直径14m，配置有SA-15型天象仪，可容纳百余人同时参观。内设的天象仪可以把星空投影在球幕上，从而在白天也能观看星空。此设备可放映6.05等以上恒星5000余颗，仙女座大星云、球状星云、猎户星云、蟹状星云、大麦星云、小麦星云星云星团6个，以及月亮、太阳、行星、银河等，并可演示日食、月食、流星雨、日出、朝霞、晚霞等现象。
+					
 				</p>
 			</div>
 			<!--<a class="submit" href="book.html?id=321149bc95f24428b47c1ccad85b6c32"><button type="button" class="content">我要预约</button></a>-->
@@ -112,6 +118,7 @@
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.11.0.js"></script>
+		<script src="../js/main.js"></script>
 		<script type="text/javascript" src="../js/qrcode.js"></script>
 		<script type="text/javascript">
 			mui.init()
@@ -148,8 +155,19 @@
 			$('#close').click(function() {
 				$('#qrcode').hide();
 				$('.shandow').hide();
-
 			})
+			
+			$.get(host+'/kejiguan/selectVenueById',{id:GetUrlParam('id')},function(res){
+				if(res.data.length!=0){
+					$('.titleStyle').html(res.data.titles);
+					$('.mui-title').html(res.data.titles);
+					$('.pic').append('<img class="img" src='+res.data.picPath+' onerror="javascript:this.src=\' ../images/default.png\'"/>')
+					$('.textStyle .text').html(res.data.desc);
+					$('audio source').attr('src',res.data.voicePath);
+					
+				}
+			})
+			 
 		</script>
 
 	</body>

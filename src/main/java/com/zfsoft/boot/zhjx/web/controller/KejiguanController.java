@@ -482,6 +482,7 @@ public class KejiguanController {
 			}
 		} else {
 			navigationModel.setId(UUIDUtil.getUUID().trim());
+			System.out.println();
 			navigationModel.setCreateTime(DateUtil.fSecond(new Date()));
 			boolean flag = navigationService.insert(navigationModel);
 			if(flag){
