@@ -19,11 +19,11 @@ html, body {
 }
 .activity-tab .titleStyle{
 	padding-left: 15px;
-	height:70px;
+	height:65px;
 	font-size:18px;
 	font-family:PingFang SC;
 	font-weight:bold;
-	line-height:70px;
+	line-height:65px;
 	color:rgba(100,100,100,1);
 	opacity:1;
 	float: left;
@@ -55,7 +55,7 @@ html, body {
 	margin-top: 5px;
 }
 .textStyle{
-	padding: 0 15px;
+	padding:15px;
 }
 .textStyle .title{
 	display: inherit;
@@ -73,20 +73,21 @@ html, body {
     opacity: 1;
     font-size:18px;
     line-height:50px;
-    border-radius: 8px;
+    border-radius: 4px;
     text-align: center;
-    width: 100%;
+    width: 90%;
     color: #fff;
     padding: 0;
+    margin: 0 5%;
 }
 .submit{
-	/*position: absolute;
-	left:5%;
-	top: 90%;*/
 	height: 50px;
-	width: 90%;
+	width: 100%;
 	display: block;
 	margin:15px auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
 }
 /*.content .btn{
 	position: relative;
@@ -105,7 +106,7 @@ html, body {
 }*/
 
 .audioStyle{
-    width: 20%; 
+    width: 55%; 
     height: 60px;
     float: right;
     margin-right: 15px;

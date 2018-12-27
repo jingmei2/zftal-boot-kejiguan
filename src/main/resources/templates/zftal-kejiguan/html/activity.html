@@ -31,14 +31,19 @@
 		<script src="../js/jquery-1.11.0.js"></script>
 		<script type="text/javascript" src="../js/main.js" ></script>
 		<script type="text/javascript">
-			mui.init()
-			$.post(host+'/kejiguan/selectActivityListById','',
-				function(res){
+			mui.init();
+			console.log(host)
+			$.ajax({
+				url:host+"/kejiguan/selectActivityListById",
+				type:"POST",
+				data:"",
+				dataType:"json",
+				success:function(res){
 					if(res.code==1){
 						for(var i in res.data){
 							var html='';
 							html+='<a class="activity-tab" href="activityDetail.html?id='+res.data[i].id+'">'+
-								'<img class="img" src="'+res.data[i].picPath+'" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
+								'<img class="img" src="" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
 								'<div class="titleStyle">'+res.data[i].titles+'</div>'+
 								'<div class="concentStyle">'+
 								'<img class="imgs" src="../images/kejiguan3.png"/>'+
@@ -46,7 +51,38 @@
 							$('.activity').append(html);
 						}
 					}
+				},
+				complete:function(xhr,ts){
+					if(ts=='success'){
+						setTimeout(function(){
+                        	$.post(host+"/kejiguan/selectActivityListById","",
+								function(res){
+									if(res.code==1){
+										for(var i in res.data){
+											$('.activity').find('.img').eq(i).attr('src',res.data[i].picPath);
+										}
+									}
+							    })
+	                        
+						},3000)
+					}
+				}
 			})
+//			$.post(host+'/kejiguan/selectActivityListById','',
+//				function(res){
+//					if(res.code==1){
+//						for(var i in res.data){
+//							var html='';
+//							html+='<a class="activity-tab" href="activityDetail.html?id='+res.data[i].id+'">'+
+//								'<img class="img" src="'+res.data[i].picPath+'" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
+//								'<div class="titleStyle">'+res.data[i].titles+'</div>'+
+//								'<div class="concentStyle">'+
+//								'<img class="imgs" src="../images/kejiguan3.png"/>'+
+//								'<span class="concent">'+res.data[i].createTime+'</span></div></a>';
+//							$('.activity').append(html);
+//						}
+//					}
+//			})
 		</script>
 	</body>
 

@@ -36,6 +36,7 @@
 .activity-tab .titleStyle{
 	line-height: 32px;
 	padding-left: 15px;
+	color: #646464;
 }
 .activity-tab .titleStyle .title{
 	width:300px;

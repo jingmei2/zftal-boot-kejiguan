@@ -77,96 +77,134 @@
 		</div>
 		
 
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
 		<script type="text/javascript" src="../js/main.js" ></script>
-		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				swipeBack:false //启用右滑关闭功能
-			});
-			var slider = mui("#slider");
-//			document.getElementById("switch").addEventListener('toggle', function(e) {
-//				if (e.detail.isActive) {
-//					slider.slider({
-//						interval: 3000
-//					});
-//				} else {
-//					slider.slider({
-//						interval: 0
-//					});
+		<script type="text/javascript">
+           
+//		        alert('host='+host);
+//		       $.ajax({
+//		       	url:host+"/kejiguan/selectNavigationListById",
+//		        data:"",
+//		        type:'POST',
+//		        dataType:"json",
+//		        success:function(res){
+//		       	alert("NavigationList"+JSON.stringify(res));
+//		       },
+//				error:function(data){
+//					alert('error'+JSON.stringify(data))
 //				}
-//			});
-			//再加入这段代码
-		    //获得slider插件对象
-		    
-		    
-		    
-		    play();
-		    list();
-		    
-		    function play(){
-		    	$.post(host+'/kejiguan/selectNavigationListById','',function(res){
-		    		if(res.data.length!=0){
-		    			var html='';
-		    			var num=res.data.length;
-		    			var data=res.data;
-		    			var first=res.data[0];
-		    			var last=res.data[num-1];
-		    			var classname;
-		    			if(res.data.length>1){
-		    				data.push(first);
-		    				data.unshift(last);
-		    			}
-		    			console.log(res.data)
-		    			for(var i in res.data){
-		    				console.log(11)
-		    				if(i==0 ||i==3){
-		    					classname='mui-slider-item-duplicate';
-		    				}else{
-		    					classname='';
-		    				}
-		    				html+='<div class="mui-slider-item slider-item '+classname+'" >'+
-							'<a href="'+res.data[i].url+'">'+
-							'<img src="'+res.data[i].picPath+'" class="slider-item-img" onerror="javascript:this.src=\' ../images/default.png\'"/></a></div>';
-		    			}
-					    $('.mui-slider-group').append(html);
-					    var gallery = mui('.mui-slider');
-					        gallery.slider({
-					  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
-					    });
-		    		}
-		    	})
-		    }
-		    
-		    function list(){
-		    	$.post(host+'/kejiguan/selectVenueListById','',function(res){
-		    		if(res.data.length!=0){
-			    		var html='';
-			    		var name;
-			    		var n=0;
-			    		//取第一个id
-			    		var num=res.data.length;
-			    		$('.kjg').attr('src',res.data[num-1].id);
-			    		for(var i in res.data){
-			    			if(i==2*n+1){
-			    				console.log(i)
-			    				name='mui-pull-right';
-			    				n++;
-			    			}else{
-			    				name='mui-pull-left';
+//		        });
+		    	$.ajax({
+					url:host+"/kejiguan/selectNavigationListById",
+					type:"POST",
+					data:"",
+					dataType:"json",
+					success:function(res){
+//						alert('NavigationList'+JSON.stringify(res));
+			    		if(res.data.length!=0){
+			    			var html='';
+			    			var classname;
+			    			var n=0;
+			    			for(var i in res.data){
+			    				console.log(11)
+			    				if(n>5){
+				    				continue;
+				    			}
+			    				if(i==0 ||i==5){
+			    					classname='mui-slider-item-duplicate';
+			    				}else{
+			    					classname='';
+			    				}
+			    				html+='<div class="mui-slider-item slider-item '+classname+'" >'+
+								'<a href="'+res.data[i].url+'">'+
+								'<img src="" class="slider-item-img" onerror="javascript:this.src=\' ../images/default.png\'"/></a></div>';
+			    			    n++;
 			    			}
-			    			
-		    				html+='<a class="about-list-imgStyle ' +name+'" id="xinliqu" href="venueDetail.html?id='+res.data[i].id+'">'+
-							'<img class="about-list-img" id="" src="'+res.data[i].picPath+'" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
-							'<span id="" class="about-list-text">'+res.data[i].titles+'</span></a>';
+						    $('.mui-slider-group').append(html);
+						    var slider = mui("#slider");
+						    var gallery = mui('.mui-slider');
+						    gallery.slider({
+						  	    interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+						    });
 			    		}
-						$('.about-list').append(html);
-				    }
-		    	})
-		    }
-//		    $('.kjg').click(function(){
-//		    	window.location.href='venueDetail.html?id='+$(this).attr('src');
-//		    })
+		    		},
+		    		complete:function(xhr,ts){
+		    			if(ts=='success'){
+		    				setTimeout(function(){
+			    				$.post(host+"/kejiguan/selectNavigationListById","",function(res){
+									if(res.data.length!=0){
+										var data=res.data;
+										var num=res.data.length;
+						    			var last=res.data[3];
+						    			var n=0;
+										if(res.data.length>1){
+						    				data.unshift(last);
+						    		    }
+										$('.mui-slider-group').find('img').eq(5).attr('src',res.data[1].picPath);
+										for(var i in res.data){
+											if(n>4){
+							    				continue;
+							    		    }
+											$('.mui-slider-group').find('img').eq(i).attr('src',res.data[i].picPath);
+											n++;
+										}
+									}
+								})
+		    				},3000);
+		    			}
+					},
+					error:function(data){
+						alert('error'+JSON.stringify(data))
+					}
+		       })
+				$.ajax({
+					url:host+"/kejiguan/selectVenueListById",
+					type:"POST",
+					data:"",
+					dataType:"json",
+					success:function(res){
+//						alert('VenueList'+JSON.stringify(res));
+			    		if(res.data.length!=0){
+				    		var html='';
+				    		var name;
+				    		var n=0;
+				    		//取第一个id
+				    		var num=res.data.length;
+				    		$('.kjg').attr('src',res.data[num-1].id);
+				    		for(var i in res.data){
+				    			if(i==2*n+1){
+				    				name='mui-pull-right';
+				    				n++;
+				    			}else{
+				    				name='mui-pull-left';
+				    			}
+			    				html+='<a class="about-list-imgStyle ' +name+'" id="xinliqu" href="venueDetail.html?id='+res.data[i].id+'">'+
+								'<img class="about-list-img" id="" src="" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
+								'<span id="" class="about-list-text">'+res.data[i].titles+'</span></a>';
+				    		}
+							$('.about-list').append(html);
+					    }
+					},
+					complete:function(xhr,ts){	
+						if(ts=='success'){
+							setTimeout(function(){
+	                        	$.post(host+"/kejiguan/selectVenueListById","",function(res){
+									if(res.data.length!=0){
+										for(var i in res.data){
+											$('.about-list').find('img').eq(i).attr('src',res.data[i].picPath);
+										}
+									}
+								})
+							},3000);
+						}
+					},
+					error:function(data){
+						alert('error'+JSON.stringify(data))
+					}
+				})
+		    	
+		 
 	</script>
 	</body>
 

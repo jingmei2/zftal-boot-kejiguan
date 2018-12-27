@@ -1,5 +1,5 @@
 body{
-	background:white;
+	background:#F6F7F8;
 	height: 100%;
 }
 
@@ -163,6 +163,7 @@ body{
     background-color: white;
     width: 48%;
     opacity: 1;
+    margin-bottom: 15px;
 }
 .about-list .about-list-imgStyle:last-child{
 	/* float: right;*/
@@ -173,8 +174,8 @@ body{
 	height:101px;
 	background:linear-gradient(155deg,rgba(150,99,255,1) 0%,rgba(0,144,255,1) 100%);
 	opacity:1;
-	border-radius: 5px;
-	-moz-border-radius:5px; /* Old Firefox */
+	border-radius: 4px 4px 0 0;
+	-moz-border-radius:4px 4px 0 0; /* Old Firefox */
 }
 .about-list-text{
     display: block;
@@ -182,7 +183,7 @@ body{
 	font-size:15px;
 	font-family:PingFang SC;
 	font-weight:500;
-	line-height: 30px;
+	line-height: 25px;
 	color:rgba(122,122,122,1);
 	opacity:1;
 	text-align: center;

@@ -40,27 +40,27 @@
 				    <form id="form" enctype="multipart/form-data">
 					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;">新增活动</label>
 					    <div style="margin: 20px 0;">
-				            <label style="width: 100px;font-size: 16px;color: #000;">活动标题</label>
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">活动标题</label>
 				            <input name="titles" type="text" placeholder="请输入活动标题" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
 				        </div>
 
 						<div style="margin-bottom: 20px;">
-				            <label style="width: 100px;font-size: 16px;color: #000;">预定时间</label>
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">预定时间</label>
 <!--				            <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime">-->
 				            <input size="16" value="" class="form_datetime" name="createTime" readonly="readonly" type="text" placeholder="请选择预定时间" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
 				        </div>
 
 						<div style="margin-bottom: 20px;">
-				            <label style="width: 100px;font-size: 16px;color: #000;">预定人数</label>
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">预定人数</label>
 				            <input name="number" type="text" placeholder="请输入预定人数" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
 				        </div>
 						<div style="margin-bottom: 20px;">
-				            <label style="width: 100px;font-size: 16px;color: #000;">活动描述</label>
-				            <input name="desc" type="text" placeholder="请输入活动描述" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;vertical-align: bottom;">活动描述</label>
+				            <textarea style="width: 245px;" name="desc" placeholder="请输入活动描述"></textarea>
 				        </div>
 				        
 				        <div style="margin-bottom: 20px;">
-				            <label style="width: 100px;font-size: 16px;color: #000;">上传图片</label>
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
 				            <div style="width: 92px;height: 45px;position: relative;display: inline-block;">
 				            	<input type="hidden" id="img" name="picPath"/>
@@ -110,6 +110,7 @@
 		if($('.add').is(':hidden')){
 			tip=1;
 			$('.add').show().find('input').val('');
+			$('.add').find('textarea').val('');
 			$('.formTitle').text('新增活动');
 			$('.addAct').text('新增活动');
 			$('#showImg').attr('src','').hide();
@@ -137,7 +138,7 @@
 	           	 $('input[name="titles"]').val(res.data.titles);
 	           	 $('input[name="createTime"]').val(res.data.createTime);
 	           	 $('input[name="number"]').val(res.data.number);
-	           	 $('input[name="desc"]').val(res.data.desc);
+	           	 $('textarea[name="desc"]').val(res.data.desc);
 	           	 $('input[name="picPath"]').val(res.data.picPath);
 	           	 $('input[name="id"]').val(res.data.id);
 	           	 $('#showImg').attr('src',res.data.picPath).show();

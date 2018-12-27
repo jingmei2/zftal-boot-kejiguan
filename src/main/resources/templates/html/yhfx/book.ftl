@@ -35,10 +35,11 @@
 					<tr class="actName">
 						<th>预定活动名称</th>
 						<th>预定时间</th>
-						<th>预定人数</th>
 						<th>活动类型</th>
-						<th>预约个人或单位</th>
-						<th>联系电话</th>
+						<th>身份证号码</th>
+						<th>预定人数</th>
+						<th>预定公司名字</th>
+						<th>手机号码</th>
 					</tr>
 				</table>
 			</div>
@@ -68,15 +69,27 @@
 			function(data,status){
 				//alert("Data: " + data + "\nStatus: " + status);
 				var htm = "";
+				
 				var list = data.data;
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
-					htm += "<tr><td>"+ obj.contact +"</td>";
+					var nam =obj.name;
+					obj.idcard=obj.idcard==null?'':obj.idcard;
+					obj.companyNum=obj.companyNum==null?'':obj.companyNum;
+					obj.companyName=obj.companyName==null?'':obj.companyName;
+					obj.phone=obj.phone==null?'':obj.phone;
+					if(obj.type=='2'||obj.type==2){
+						console.log(obj.type)
+						nam=obj.contact;
+					}
+					htm += "<tr><td>"+nam+"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ obj.type +"</td>";
-					htm += "<td>"+ obj.type +"</td>";
-					htm += "<td>"+ obj.companyName +"</td>";
-					htm += "<td>"+ obj.phone +"</td></tr>";
+					htm +="<td>"+ obj.idcard +"</td>";
+					htm +="<td>"+ obj.companyNum +"</td>";
+					htm +="<td>"+ obj.companyName +"</td>";
+					htm +="<td>"+ obj.phone +"</td></tr>";
+				
 				}
 				$("#monthDataTable").append(htm);
 

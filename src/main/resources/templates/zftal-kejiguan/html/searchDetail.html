@@ -88,36 +88,42 @@
 		<script type="text/javascript" src="../js/main.js" ></script>
 		<script>
 			var time;
-			$.get(host+'/kejiguan/selectBookById',{
-				id:GetUrlParam('id')
-			},function(res){
-				if(res.code==1){
-					var time;
-					if(res.data.bookTime==1){
-						time='上午';
-					}else if(res.data.bookTime==2){
-						time='中午';
-					}else if(res.data.bookTime==3){
-						time='晚上';
-					}
-					$('.wrap').find('.bookDate').text(res.data.bookDate);
-					$('.wrap').find('.bookTime').text(time);
-					$('.wrap').find('.starTime').text(res.data.starTime);
-					$('.wrap').find('.endTime').text(res.data.endTime);
-					if(res.data.type==1 || res.data.type==null){
-						$('.company').hide();
-					    $('.wrap').find('.name').text(res.data.name)
-					    $('.wrap').find('.idcard').text(res.data.idcard);
-					}else if(res.data.type==2){
-						$('.person').hide();
-						$('.wrap').find('.companyName').text(res.data.companyName);
-						$('.wrap').find('.companyNum').text(res.data.companyNum);
-						$('.wrap').find('.contact').text(res.data.contact);
-						$('.wrap').find('.phone').text(res.data.phone);
+			$.ajax({
+				url:host+"/kejiguan/selectBookById",
+				type:"GET",
+				data:{
+					id:GetUrlParam("id")
+				},
+				dataType:"json",
+				success:function(res){
+					if(res.code==1){
+						var time;
+						if(res.data.bookTime==1){
+							time='上午';
+						}else if(res.data.bookTime==2){
+							time='中午';
+						}else if(res.data.bookTime==3){
+							time='晚上';
+						}
+						$('.wrap').find('.bookDate').text(res.data.bookDate);
+						$('.wrap').find('.bookTime').text(time);
+						$('.wrap').find('.starTime').text(res.data.starTime);
+						$('.wrap').find('.endTime').text(res.data.endTime);
+						if(res.data.type==1 || res.data.type==null){
+							$('.company').hide();
+						    $('.wrap').find('.name').text(res.data.name)
+						    $('.wrap').find('.idcard').text(res.data.idcard);
+						}else if(res.data.type==2){
+							$('.person').hide();
+							$('.wrap').find('.companyName').text(res.data.companyName);
+							$('.wrap').find('.companyNum').text(res.data.companyNum);
+							$('.wrap').find('.contact').text(res.data.contact);
+							$('.wrap').find('.phone').text(res.data.phone);
+						}
 					}
 				}
-				
 			})
+			
 		</script>
 	</body>
 

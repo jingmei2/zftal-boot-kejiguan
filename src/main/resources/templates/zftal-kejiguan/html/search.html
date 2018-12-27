@@ -75,11 +75,11 @@
 				font-size: 18px;
 				line-height: 60px;
 				text-align: center;
-				background: #f9f9f9;	
+				background: #fff;	
 			}
 			.noData{
 				width: 50%;
-			    position: absolute;
+			    position: fixed;
 			    left: 50%;
 			    transform: translate(-50%,-50%);
 			    -moz-transform: translate(-50%,-50%);
@@ -166,28 +166,37 @@
 			function getData(pageIndex){
 				var name=$("input[name='name']").val();
 				$.ajax({
-					url:host+'/kejiguan/selectBookListById',
-					type:'post',
+					url:host+"/kejiguan/selectBookListById",
+					type:"POST",
 					data:{
 						name:name
 					},
+					dataType:"json",
 					success:function(res){
 						if(res.code==1){
-							$('.noData').hide();
-							//res.data!=null || res.data!='' || res.data!=undefined
+							if(res.data.length == 0 ||res.data==null || res.data=='' || res.data== undefined){
+							   $('.noData').hide();
+							   console.log(111)
+							   $('.searchData .data').parent().find('.nomore').show();
+							}else{	
+								$('.searchData .data').parent().find('.nomore').hide();
+								$('.noData').hide();
 								for(var j in res.data){
+									var nam=res.data[j].name;
+									if(res.data[j].type==2 || res.data[j].type=='2'){
+										nam=res.data[j].contact;
+									}
+									nam=nam==null?'':nam;
+									res.data[j].createTime=res.data[j].createTime==null?'':res.data[j].createTime;
 									html='<a class="item" href="searchDetail.html?id='+res.data[j].id+'">'+
-										 '<label class="itemName">'+res.data[j].name+'</label>'+
+										 '<label class="itemName">'+nam+'</label>'+
 										 '<label class="itemTime">'+res.data[j].createTime+'</label></a>'
 									$('.searchData .data').append(html);
 									html='';
 								}
-//							}else{
-//								//数据太少，不能显示‘没有更多’
-//								if(pageIndex>1){
-//									$('.searchData .data').parent().find('.nomore').show();
-//								}
-//							}
+
+							
+							}
 						}
 					}
 				})
