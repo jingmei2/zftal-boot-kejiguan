@@ -77,6 +77,12 @@ spring:
     #设定Message bundles的编码，默认: UTF-8
     encoding: UTF-8
 
+    http:
+      multipart:
+        enabled: true
+        max-file-size: 50MB
+        max-request-size: 100MB
+
   profiles:
     active: dev
 

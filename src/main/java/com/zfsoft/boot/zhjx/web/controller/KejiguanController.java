@@ -315,7 +315,7 @@ public class KejiguanController {
 	@ApiOperation(value = "场馆图片接口", notes = "", response = String.class)
 	@RequestMapping(value="/saveorupdatePicForVenue",method=RequestMethod.POST)
 	public ResultEntity saveorupdatePicForVenue(HttpServletRequest request,
-									 HttpServletResponse response, Model model, VenueModel venueModel,@RequestParam(value="faceLegalFile", required=false) MultipartFile faceLegalFile,@RequestParam(value="voice", required=false) MultipartFile voice){
+									 HttpServletResponse response, Model model, VenueModel venueModel,@RequestParam(value="faceLegalFile", required=false) MultipartFile faceLegalFile,@RequestParam(value="voice", required=false) MultipartFile voice,@RequestParam(value="video", required=false) MultipartFile video){
 		ResultEntity resultEntity = new ResultEntity();
 
 		FileUntils fileunits=new FileUntils();
@@ -361,6 +361,28 @@ public class KejiguanController {
 					//获取新文件
 					String path = (String) map.get("path");
 					venueModel.setVoicePath(path);
+				}
+
+			}
+		}
+		/**
+		 *修改服务，判断是否属于进行了视频修改；
+		 *是：删除原视频， 保存新上传视频
+		 *否：只更新服务
+		 */
+		if(video!=null){
+
+			/**
+			 **是：保存新上传视频
+			 */
+			Map<String,Object> map = fileunits.savePic(video,realpath,FileUntils.PICPATHSERVICE);
+			if(map!=null){
+				if((boolean) map.get("issuccess")){
+					//删除原文件
+					fileunits.deletePic(realpath,venueModel.getPicPath());
+					//获取新文件
+					String path = (String) map.get("path");
+					venueModel.setVideoPath(path);
 				}
 
 			}

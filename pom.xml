@@ -14,7 +14,7 @@
 
 	<properties>
 		<!-- Docker Build地址:本地构建需要单独指定 -->
-		<docker.build.repostory>10.71.21.118</docker.build.repostory>
+		<docker.build.repostory>10.71.21.110</docker.build.repostory>
 		<!--appassembler -->
 		<appassembler-app-name>kejiguan</appassembler-app-name>
 	</properties>

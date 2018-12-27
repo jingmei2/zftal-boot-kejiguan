@@ -34,4 +34,5 @@ public class KejiguanApplication implements CommandLineRunner{
 		logger.debug("start");
 		logger.error("######################start######################");
 	}
+
 }

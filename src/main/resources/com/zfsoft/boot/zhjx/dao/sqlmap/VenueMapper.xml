@@ -9,6 +9,7 @@
 		<result property="titles" column="titles" />
 		<result property="desc" column="desc" />
 		<result property="voicePath" column="voicePath" />
+		<result property="videoPath" column="videoPath" />
 		<result property="createTime" column="createTime" />
 	</resultMap>
 
@@ -21,6 +22,7 @@
 			<if test="titles != null and titles != ''">"titles",</if>
 			<if test="desc != null and desc != ''">"desc",</if>
 			<if test="voicePath != null and voicePath != ''">"voicePath",</if>
+			<if test="videoPath != null and videoPath != ''">"videoPath",</if>
 			<if test="createTime != null and createTime != ''">"createTime",</if>
 		</trim>
 		<trim prefix=" values (" suffix=")" suffixOverrides=",">
@@ -29,6 +31,7 @@
 			<if test="titles != null and titles != ''">#{titles,jdbcType=VARCHAR},</if>
 			<if test="desc != null and desc != ''">#{desc,jdbcType=VARCHAR},</if>
 			<if test="voicePath != null and voicePath != ''">#{voicePath,jdbcType=VARCHAR},</if>
+			<if test="videoPath != null and videoPath != ''">#{videoPath,jdbcType=VARCHAR},</if>
 			<if test="createTime != null and createTime != ''">#{createTime,jdbcType=VARCHAR},</if>
 		</trim>
     </insert>
@@ -41,6 +44,7 @@
 			<if test="titles != null and titles != ''">"titles"=#{titles,jdbcType=VARCHAR},</if>
 			<if test="desc != null and desc != ''">"desc"=#{desc,jdbcType=VARCHAR},</if>
 			<if test="voicePath != null and voicePath != ''">"voicePath"=#{voicePath,jdbcType=VARCHAR},</if>
+			<if test="videoPath != null and videoPath != ''">"videoPath"=#{videoPath,jdbcType=VARCHAR},</if>
 			<if test="createTime != null and createTime != ''">"createTime"=#{createTime,jdbcType=VARCHAR},</if>
 		</set>
 		where "id" = #{id}
@@ -68,6 +72,9 @@
 		</if>
 		<if test="voicePath != null and voicePath != ''">
 			and "voicePath" = #{voicePath}
+		</if>
+		<if test="videoPath != null and videoPath != ''">
+			and "videoPath" = #{videoPath}
 		</if>
 		<if test="createTime != null and createTime != ''">
 			and "createTime" = #{createTime}

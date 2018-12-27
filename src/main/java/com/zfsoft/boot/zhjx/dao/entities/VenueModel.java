@@ -16,6 +16,7 @@ public class VenueModel {
 	private String picPath;
 	private String desc;
 	private String voicePath;
+	private String videoPath;
 	private String createTime;
 
 
@@ -66,5 +67,13 @@ public class VenueModel {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
     }
 }
