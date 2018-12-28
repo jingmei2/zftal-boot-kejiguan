@@ -24,23 +24,7 @@
 				"sfgnym": "1",
 				"dyym": "/yhfx/book",
 				"gnmkdm": "N080303",
-				"gnmkmc": "预定列表",
-				"tblj": "fa fa-group"
-			},
-			{
-				"fjgndm": "N0803",
-				"sfgnym": "1",
-				"dyym": "/yhfx/venue",
-				"gnmkdm": "N080304",
-				"gnmkmc": "场馆列表",
-				"tblj": "fa fa-group"
-			},
-			{
-				"fjgndm": "N0803",
-				"sfgnym": "1",
-				"dyym": "/yhfx/navigation",
-				"gnmkdm": "N080305",
-				"gnmkmc": "导航图列表",
+				"gnmkmc": "用户画像",
 				"tblj": "fa fa-group"
 			}
 		],

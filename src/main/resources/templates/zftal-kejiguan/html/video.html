@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="wrap">
+			<form id="upload">
+				<div class="wrap-item">图片
+					<input name="faceLegalFile" type="file" placeholder="请选择" id="image" accept="image/*">
+				</div>
+				<div class="wrap-item">音频
+					<input name="voice" type="file" placeholder="请选择" id="audio" accept="audio/*">
+				</div>
+				<div class="wrap-item">视频
+					<input name="video" type="file" placeholder="请选择" id="video" accept="video/*">
+				</div>
+				<button type="button" class="submit">提交</button>
+			</form>
+			
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			$('.submit').click(function(){
+				if(!window.FormData) {　
+			        alert('your brower is too old');
+			        return false;
+			    }
+				var formData=new FormData(document.getElementById('upload'));
+				
+				console.log(formData.get('video'))
+				console.log(formData.get('voice'))
+				console.log(formData.get('faceLegalFile'))
+				$.ajax({
+					url:"http://10.71.19.166:9097/kejiguan/saveorupdatePicForVenue",
+					type:"POST",
+					data:formData,
+					dataType: "JSON",
+				    cache: false,
+					contentType:false,
+					processData:false,
+					success:function(res){
+						alert(JSON.stringify(res))
+					},
+					fail:function(data){
+						alert(JSON.stringify(data))
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -51,6 +51,8 @@
 				dataType:"json",
 				success:function(res){
 					if(res.code==1){
+						res.data.titles=res.data.titles==null?'':res.data.titles;
+						res.data.desc=res.data.desc==null?'':res.data.desc;
 						$('.titleStyle').html(res.data.titles);
 						$('.pic').append('<img class="img" src='+res.data.picPath+' onerror="javascript:this.src=\' ../images/default.png\'"/>')
 						$('.concentStyle .concent').html(res.data.createTime);

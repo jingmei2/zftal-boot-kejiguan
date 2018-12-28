@@ -106,8 +106,20 @@
 			    			var html='';
 			    			var classname;
 			    			var n=0;
+			    			var cal=0;
+			    			var dataArr=[];
+			    			var webUrl;
 			    			for(var i in res.data){
-			    				console.log(11)
+			    				if(res.data[i].state==1||res.data[i].state=='1'){
+			    					console.log(i)
+			    					dataArr[cal]=res.data[i].url;
+			    					cal++;
+			    				}
+			    			}
+			    			dataArr.unshift(dataArr[3]);
+			    			dataArr.push(dataArr[1]);
+			    			for(var i=0;i<6;i++){
+			    				console.log(dataArr)
 			    				if(n>5){
 				    				continue;
 				    			}
@@ -117,7 +129,7 @@
 			    					classname='';
 			    				}
 			    				html+='<div class="mui-slider-item slider-item '+classname+'" >'+
-								'<a href="'+res.data[i].url+'">'+
+								'<a href="'+dataArr[i]+'">'+
 								'<img src="" class="slider-item-img" onerror="javascript:this.src=\' ../images/default.png\'"/></a></div>';
 			    			    n++;
 			    			}
@@ -135,20 +147,23 @@
 			    				$.post(host+"/kejiguan/selectNavigationListById","",function(res){
 									if(res.data.length!=0){
 										var data=res.data;
-										var num=res.data.length;
-						    			var last=res.data[3];
 						    			var n=0;
-										if(res.data.length>1){
-						    				data.unshift(last);
-						    		    }
-										$('.mui-slider-group').find('img').eq(5).attr('src',res.data[1].picPath);
-										for(var i in res.data){
-											if(n>4){
-							    				continue;
-							    		    }
-											$('.mui-slider-group').find('img').eq(i).attr('src',res.data[i].picPath);
-											n++;
+						    			var arr=[];
+										for(var i in res.data){											
+											if(res.data[i].state==1||res.data[i].state=='1'){
+												arr[n]=res.data[i].picPath;
+												if(n>4){
+								    				continue;
+								    		    }
+							    		    	$('.mui-slider-group').find('img').eq(n+1).attr('src',arr[n]);
+							    		    	n++;
+							    		   }
 										}
+										console.log(arr)
+										var first=$('.mui-slider-group').find('img').eq(1).attr('src');
+										var last=$('.mui-slider-group').find('img').eq(4).attr('src');
+										$('.mui-slider-group').find('img').eq(0).attr('src',last);
+										$('.mui-slider-group').find('img').eq(5).attr('src',first);
 									}
 								})
 		    				},3000);
@@ -179,6 +194,7 @@
 				    			}else{
 				    				name='mui-pull-left';
 				    			}
+				    			res.data[i].titles=res.data[i].titles==null?'':res.data[i].titles;
 			    				html+='<a class="about-list-imgStyle ' +name+'" id="xinliqu" href="venueDetail.html?id='+res.data[i].id+'">'+
 								'<img class="about-list-img" id="" src="" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
 								'<span id="" class="about-list-text">'+res.data[i].titles+'</span></a>';

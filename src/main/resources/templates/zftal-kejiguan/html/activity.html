@@ -42,6 +42,7 @@
 					if(res.code==1){
 						for(var i in res.data){
 							var html='';
+							res.data[i].titles=res.data[i].titles==null?'':res.data[i].titles;
 							html+='<a class="activity-tab" href="activityDetail.html?id='+res.data[i].id+'">'+
 								'<img class="img" src="" onerror="javascript:this.src=\' ../images/default.png\'"/>'+
 								'<div class="titleStyle">'+res.data[i].titles+'</div>'+

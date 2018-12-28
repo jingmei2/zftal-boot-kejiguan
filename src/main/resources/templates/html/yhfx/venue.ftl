@@ -36,7 +36,8 @@
 					<input name="title" type="text" id="search-input" class="form-control" placeholder="请输入关键词" style="border-radius: 4px;background: #fff;line-height:40px;height:40px;">
 					<i class="fa fa-search icon-right search-icon" aria-hidden="true"></i>
 				</div>
-				<div class="add" style="display:none;width: 400px;position: fixed;top: 10%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
+				<div class="mask" style="display:none;background: #000;width: 100%;height: 100%;position: fixed;z-index: 100;opacity: 0.68;top: 0;left: 0;"></div>
+				<div class="add" style="display:none;width: 400px;position: fixed;top: 5%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
 				    <form id="form" enctype="multipart/form-data">
 					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;"></label>
 					    <div style="margin: 20px 0;">
@@ -54,7 +55,7 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
 				            <div style="width: 92px;height: 45px;position: relative;display: inline-block;">
-				            	<input type="hidden" id="img" name="picPath"/>
+				            	<!--<input type="hidden" id="img" name="picPath"/>-->
 					        	<input name="faceLegalFile" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 45px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
 					        </div>
@@ -63,8 +64,17 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传音频</label>
 				            <audio controls src="" id="showAudio" style="width: 150px;vertical-align: bottom;margin-right: 10px;">您的浏览器不支持 audio 标签。</audio>
 				            <div style="width: 92px;height: 50px;position: relative;display: inline-block;">
-					        	<input type="hidden" id="img" name="voicePath"/>
+					        	<!--<input type="hidden" id="img" name="voicePath"/>-->
 					        	<input name="voice" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 50px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file1" onchange="changeAudio(this)" accept="audio/*">
+					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
+					        </div>
+				        </div>
+				         <div style="margin: 20px 0;">
+				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传视频</label>
+				            <video src="" id="showVideo" width="150px" height="150px" style="vertical-align: bottom;margin-right: 10px;" controls="controls"></video>
+				            <div style="width: 92px;height: 50px;position: relative;display: inline-block;">
+					        	<input type="hidden" id="img" name="videoPath"/>
+					        	<input name="video" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 50px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file2" onchange="changeVideo(this)" accept="video/*">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
 					        </div>
 				        </div>
@@ -83,6 +93,7 @@
 						<th>场馆介绍</th>
 						<th>预定时间</th>
 						<th>音频</th>
+						<th>视频</th>
 						<th>场馆详情</th>
 						<th>场馆图片</th>
 					</tr>
@@ -92,9 +103,9 @@
 
 	</div>
 </div>
-<script src="https://malsup.github.io/jquery.form.js"></script>
+<script src="${request.contextPath}/assets/js/jquery.form.js"></script>
 <script type="text/javascript" src="${request.contextPath}/assets/js/yhfx/ssyhgj.js?ver=${versionUtil()}"></script>
-
+<script src="${request.contextPath}/assets/js/jquery.min.js"></script>
 <!--<script type="text/javascript" src="${request.contextPath}/assets/js/datetimepicker.js"></script>-->
 <script>
 	var tip;
@@ -106,12 +117,14 @@
 		}
 		if($('.add').is(':hidden')){
 			tip=1;
+			$('.mask').show();
 			$('.add').show().find('input').val('');
 			$('.add').find('textarea').val('');
 			$('.formTitle').text('新增场馆');
 			$('.addAct').text('新增场馆');
 			$('#showImg').attr('src','').hide();
 			$('#showAudio').attr('src','').hide();
+			$('#showVideo').attr('src','').hide();
 		}
 	})
 
@@ -129,18 +142,20 @@
 			if($('body').find('.actId').attr('name')!='id'){
 				$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
 			}
-			$.get("${request.contextPath}/kejiguan/selectVenueById",{
+			$.get("http://10.71.19.166:9097/kejiguan/selectVenueById",{
 				id:$("input[type=checkbox]:checked").val()
 			},function(res){
 	           if(res.code==1){
 	           	 tip=2;
 	           	 $('.add').show();
+	           	 $('.mask').show();
 	           	 $('input[name="titles"]').val(res.data.titles);
 	           	 $('textarea[name="desc"]').val(res.data.desc);
 	           	 $('input[name="picPath"]').val(res.data.picPath);
 	           	 $('input[name="id"]').val(res.data.id);
 	           	 $('#showImg').attr('src',res.data.picPath).show();
 	           	 $('#showAudio').attr('src',res.data.voicePath).show();
+	           	 $('#showVideo').attr('src',res.data.videoPath).show();
 	           }
 			});
 		}
@@ -149,23 +164,54 @@
 	//取消
 	$('.add .back').click(function(){
 		$('.add').hide();
+		$('.mask').hide();
 	})
     
     //添加/修改
 	$('.addAct').click(function(){
-		$('#form').ajaxSubmit({
-			url: 'http://10.71.21.166:9097/kejiguan/saveorupdatePicForVenue',
-            type: "Post",
-            success:function(res){
-            	alert(res.status);
+//		$('#form').ajaxSubmit({
+//			url: 'http://portal.zfsoft.com:9098/kejiguan/saveorupdatePicForVenue',
+//          type: "Post",
+//          timeout:60000,  
+//          success:function(res){
+//          	alert(res.status);
+//          	$('.add').hide();
+//          	$('.mask').hide();
+//          	$('body').find('#monthDataTable tr').not('.actName').remove();
+//          	actList();
+//          },
+//          fail:function(err){
+//          	console.log(err)
+//          }
+//		});
+		if(!window.FormData) {　
+	        alert('your brower is too old');
+	        return false;
+	    }
+		var formData=new FormData(document.getElementById('form'));
+		console.log(formData.get('video'))
+		console.log(formData.get('audio'))
+		console.log(formData.get('faceLegalFile'))
+		$.ajax({
+			url:"http://10.71.19.166:9097/kejiguan/saveorupdatePicForVenue",
+			type:"POST",
+			data:formData,
+			dataType: "JSON",
+		    cache: false,
+			contentType:false,
+			processData:false,
+			success:function(res){
+				alert(res.status);
             	$('.add').hide();
+            	$('.mask').hide();
             	$('body').find('#monthDataTable tr').not('.actName').remove();
             	actList();
-            },
-            fail:function(err){
-            	console.log(err)
-            }
-		});
+			},
+			fail:function(data){
+				alert(json.stringify(data))
+			}
+		})
+		
 	})	
 
 	//删除
@@ -176,7 +222,7 @@
 		}else if(len==0){
 			alert('请勾选活动！');
 		}else{
-			$.post("${request.contextPath}/kejiguan/deleteVenueById",{
+			$.post("http://10.71.19.166:9097/kejiguan/deleteVenueById",{
 				id:$("input[type=checkbox]:checked").val()
 			},function(res){
 	           if(res.code==1){
@@ -211,23 +257,26 @@
 	
 	function changeAudio(){
 		var file = document.getElementById('file1').files[0];
-        if (!/audio\/\w+/.test(file.type)) {/*可以把autio改成其他文件类型 比如 image*/
-              alert("只能选择音频文件")
-            return false;
-        }
-        console.log(file.type)/*文件类型*/
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-             $('#showAudio').attr('src',reader.result);
+             $('#showAudio').attr('src',reader.result).show();
         };
 
 	}
 	
+	function changeVideo(){
+		var file = document.getElementById('file2').files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+             $('#showVideo').attr('src',reader.result).show();
+        };
+	}
 
     //请求数据
 	function actList(){
-		$.post("${request.contextPath}/kejiguan/selectVenueListById",
+		$.post("http://10.71.19.166:9097/kejiguan/selectVenueListById",
 			'',
 			function(data,status){
 				//alert("Data: " + data + "\nStatus: " + status);
@@ -235,10 +284,13 @@
 				var list = data.data;
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
+					obj.titles=obj.titles==null?'':obj.titles;
+					obj.desc=obj.desc==null?'':obj.desc;
 					htm += "<tr><td><input type='checkbox' name='id' value="+obj.id+"></td>";
 					htm += "<td>"+ obj.titles +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
-					htm += "<td><audio controls src="+ obj.voicePath +" >您的浏览器不支持 audio 标签。</audio></td></td>";
+					htm += "<td><audio style='width:240px' controls src="+ obj.voicePath +" >您的浏览器不支持 audio 标签。</audio></td>";
+					htm += "<td><video controls src="+ obj.videoPath +" ></video></td>";
 					htm += "<td>"+ obj.desc +"</td>";
 					htm += "<td><img width='100px' src="+ obj.picPath +" ></td></tr>";
 				}

@@ -32,6 +32,7 @@
 				<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增图片</button>
 				<button class="xiugai" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">修改图片</button>
 				<button class="shanchu" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">删除图片</button>
+				<div class="mask" style="display:none;background: #000;width: 100%;height: 100%;position: fixed;z-index: 100;opacity: 0.68;top: 0;left: 0;"></div>
 				<div class="add" style="display:none;width: 400px;position: fixed;top: 10%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
 				    <form id="form" enctype="multipart/form-data">			    	
 					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;"></label>
@@ -66,6 +67,7 @@
 						</th>
 						<th>创建时间</th>	
 						<th>描述</th>	
+						<th>图片链接</th>
 						<th>背景图片</th>
 						<th>操作</th>	
 					</tr>
@@ -91,6 +93,7 @@
 		if($('.add').is(':hidden')){
 			$('.add').show().find('input').val('');
 			//默认开启
+			$('.mask').show();
 			$('input[name="state"]').val('1');
 			$('.formTitle').text('新增图片');
 			$('.addAct').text('新增图片');
@@ -112,6 +115,7 @@
             getData($("input[type=checkbox]:checked").val(),function(res){
             	 console.log(res)
             	 $('.add').show();
+            	 $('.mask').show();
 	           	 $('#showImg').attr('src',res.data.picPath).show();
             })
 		}
@@ -120,6 +124,7 @@
 	//取消
 	$('.add .back').click(function(){
 		$('.add').hide();
+		$('.mask').hide();
 	})
     
     //添加/修改
@@ -136,6 +141,7 @@
 //		});
 		submit(function(){
 			$('.add').hide();
+			$('.mask').hide();
 		})
 	})
 	
@@ -231,9 +237,12 @@
 						check='开启';
 						obj.state=0;
 					}
+					obj.desc=obj.desc==null?'':obj.desc;
+					obj.url=obj.url==null?'':obj.url;
 					htm += "<tr><td><input type='checkbox' name='id' value="+obj.id+"></td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td>"+ obj.desc +"</td>";
+					htm += "<td>"+ obj.url +"</td>";
 					htm += "<td><img width='100px' src="+ obj.picPath +" ></td>";
 					htm += "<td><button class='changeStatus' type='button' value="+obj.state+">"+check+"</button></td></tr>";
 				}

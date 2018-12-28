@@ -36,6 +36,7 @@
 					<input name="title" type="text" id="search-input" class="form-control" placeholder="请输入关键词" style="border-radius: 4px;background: #fff;line-height:40px;height:40px;">
 					<i class="fa fa-search icon-right search-icon" aria-hidden="true"></i>
 				</div>
+				<div class="mask" style="display:none;background: #000;width: 100%;height: 100%;position: fixed;z-index: 100;opacity: 0.68;top: 0;left: 0;"></div>
 				<div class="add" style="display:none;width: 400px;position: fixed;top: 10%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
 				    <form id="form" enctype="multipart/form-data">
 					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;">新增活动</label>
@@ -110,6 +111,7 @@
 		if($('.add').is(':hidden')){
 			tip=1;
 			$('.add').show().find('input').val('');
+			$('.mask').show();
 			$('.add').find('textarea').val('');
 			$('.formTitle').text('新增活动');
 			$('.addAct').text('新增活动');
@@ -135,6 +137,7 @@
 	           if(res.code==1){
 	           	 tip=2;
 	           	 $('.add').show();
+	           	 $('.mask').show();
 	           	 $('input[name="titles"]').val(res.data.titles);
 	           	 $('input[name="createTime"]').val(res.data.createTime);
 	           	 $('input[name="number"]').val(res.data.number);
@@ -150,6 +153,7 @@
 	//取消
 	$('.add .back').click(function(){
 		$('.add').hide();
+		$('.mask').hide();
 	})
     
     //添加/修改
@@ -160,6 +164,7 @@
             success:function(res){
             	alert(res.status);
             	$('.add').hide();
+            	$('.mask').hide();
             	$('body').find('#monthDataTable tr').not('.actName').remove();
             	actList();
             }
@@ -230,6 +235,9 @@
 				var list = data.data;
 				for(var i=0;i<list.length;i++){
 					var obj = list[i];
+					obj.titles=obj.titles==null?'':obj.titles;
+					obj.number=obj.number==null?'':obj.number;
+					obj.desc=obj.desc==null?'':obj.desc;
 					htm += "<tr><td><input type='checkbox' name='id' value="+obj.id+"></td>";
 					htm += "<td>"+ obj.titles +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
