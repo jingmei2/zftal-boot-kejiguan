@@ -23,14 +23,15 @@
 <div class="main-content">
 	<div class="sssj-xssj">
 		<div class="sssj-xssj-data">
-			<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="font-size: 16px;margin: 15px 0 0 15px;">详细数据</span>
-			<div class="cz" style="padding:15px;">
+			<div class="cz" style="padding:15px;position: fixed;width: 100%;height: 130px;background: #fff;z-index: 10000;">
+				<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="display:block;font-size: 16px;display: block;line-height: 50px;">详细数据</span>
 				<div class="form-group" style="position:relative;width:240px;display:inline-block;">
 					<input name="name" type="text" id="search-input" class="form-control" placeholder="请输入关键词" style="border-radius: 4px;background: #fff;line-height:40px;height:40px;">
 					<i class="fa fa-search icon-right search-icon" aria-hidden="true"></i>
 				</div>
+				<!--<button type="button">搜索</button>-->
 			</div>
-			<div class="sssj-xssj-xxsj">
+			<div class="sssj-xssj-xxsj" style="padding-top: 130px;">
 				<table id="monthDataTable" class="table table-bordered table-striped">
 					<tr class="actName">
 						<th>预定活动名称</th>

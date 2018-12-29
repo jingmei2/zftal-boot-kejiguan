@@ -27,8 +27,9 @@
 <div class="main-content">
 	<div class="sssj-xssj">
 		<div class="sssj-xssj-data">
-			<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="font-size: 16px;margin: 15px 0 0 15px;">详细数据</span>
-			<div class="cz" style="padding:15px;">
+			
+			<div class="cz" style="padding:15px;position: fixed;width: 100%;height: 130px;background: #fff;z-index: 10000;">
+				<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="display:block;font-size: 16px;display: block;line-height: 50px;">详细数据</span>
 				<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增图片</button>
 				<button class="xiugai" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">修改图片</button>
 				<button class="shanchu" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">删除图片</button>
@@ -59,7 +60,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="sssj-xssj-xxsj">
+			<div class="sssj-xssj-xxsj" style="padding-top: 130px;">
 				<table id="monthDataTable" class="table table-bordered table-striped">
 					<tr class="actName">
 					    <th>
@@ -97,7 +98,7 @@
 			$('input[name="state"]').val('1');
 			$('.formTitle').text('新增图片');
 			$('.addAct').text('新增图片');
-			$('#showImg').attr('src','');
+			$('#showImg').attr('src','').hide();
 		}
 	})
     
@@ -152,7 +153,6 @@
 		}
     	$.get("${request.contextPath}/kejiguan/selectNavigationById",{id:id},function(res){
            if(res.code==1){
-           	 tip=2;
            	 $('input[name="createTime"]').val(res.data.createTime);
            	 $('input[name="picPath"]').val(res.data.picPath);
            	 $('input[name="url"]').val(res.data.url);
@@ -171,6 +171,9 @@
             	console.log(res)
             	alert(res.status);
             	func();
+            	if($('body').find('.actId').attr('class')=='actId'){
+					$('body').find('.actId').remove();
+				}
             	$('body').find('#monthDataTable tr').not('.actName').remove();
         		actList();
             }
@@ -228,7 +231,6 @@
 				var check,
 				    checkstatus;
 				for(var i=0;i<list.length;i++){
-					
 					var obj = list[i];
 					console.log(typeof(obj.state))
 					if(obj.state==1){
@@ -264,11 +266,7 @@
      	}else{
      		$('input[name="state"]').val('1');
      	}
-     	submit(function(){
-     		$('body').find('.actId').remove();
- 		});
-     	
-     	
+     	submit(function(){});
     })
 
 

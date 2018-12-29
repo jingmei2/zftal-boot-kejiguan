@@ -27,8 +27,8 @@
 <div class="main-content">
 	<div class="sssj-xssj">
 		<div class="sssj-xssj-data">
-			<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="font-size: 16px;margin: 15px 0 0 15px;">详细数据</span>
-			<div class="cz" style="padding:15px;">
+			<div class="cz" style="padding:15px;position: fixed;width: 100%;height: 130px;background: #fff;z-index: 10000;">
+				<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="display:block;font-size: 16px;display: block;line-height: 50px;">详细数据</span>
 				<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增场馆</button>
 				<button class="xiugai" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">修改场馆</button>
 				<button class="shanchu" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">删除场馆</button>
@@ -55,7 +55,7 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
 				            <div style="width: 92px;height: 45px;position: relative;display: inline-block;">
-				            	<!--<input type="hidden" id="img" name="picPath"/>-->
+				            	<input type="hidden" id="img" name="picPath"/>
 					        	<input name="faceLegalFile" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 45px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
 					        </div>
@@ -64,7 +64,7 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传音频</label>
 				            <audio controls src="" id="showAudio" style="width: 150px;vertical-align: bottom;margin-right: 10px;">您的浏览器不支持 audio 标签。</audio>
 				            <div style="width: 92px;height: 50px;position: relative;display: inline-block;">
-					        	<!--<input type="hidden" id="img" name="voicePath"/>-->
+					        	<input type="hidden" id="img" name="voicePath"/>
 					        	<input name="voice" class="submit" style="color:#fff;border-radius:6px;font-size:16px;border: 0;display: inline-block;height: 50px;position: relative;z-index: 100;width: 92px;opacity: 0;" type="file" id="file1" onchange="changeAudio(this)" accept="audio/*">
 					        	<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding: 0 15px;border-radius:6px;font-size: 18px;margin-right:10px;position: absolute;left: 0;line-height: 45px;width: 90px;top:0;">上传</button>
 					        </div>
@@ -84,7 +84,7 @@
 					
 				</div>
 			</div>
-			<div class="sssj-xssj-xxsj">
+			<div class="sssj-xssj-xxsj" style="padding-top: 130px;">
 				<table id="monthDataTable" class="table table-bordered table-striped">
 					<tr class="actName">
 					    <th>
@@ -146,8 +146,8 @@
 				id:$("input[type=checkbox]:checked").val()
 			},function(res){
 	           if(res.code==1){
-	           	 tip=2;
-	           	 $('.add').show();
+	           	 $('.add').show().find('input').val('');
+	           	 $('.add').find('textarea').val('');
 	           	 $('.mask').show();
 	           	 $('input[name="titles"]').val(res.data.titles);
 	           	 $('textarea[name="desc"]').val(res.data.desc);
@@ -185,13 +185,19 @@
 //          }
 //		});
 		if(!window.FormData) {　
-	        alert('your brower is too old');
+	        alert('请更新浏览器版本！！！');
 	        return false;
 	    }
 		var formData=new FormData(document.getElementById('form'));
-		console.log(formData.get('video'))
-		console.log(formData.get('audio'))
-		console.log(formData.get('faceLegalFile'))
+		if(formData.get('faceLegalFile').size==0){
+        	formData.delete('faceLegalFile');
+        }
+        if(formData.get('voice').size==0){
+        	formData.delete('voice');
+        }
+        if(formData.get('video').size==0){
+        	formData.delete('video');
+        }
 		$.ajax({
 			url:"http://10.71.19.166:9097/kejiguan/saveorupdatePicForVenue",
 			type:"POST",
@@ -204,6 +210,9 @@
 				alert(res.status);
             	$('.add').hide();
             	$('.mask').hide();
+            	if($('body').find('.actId').attr('class')=='actId'){
+					$('body').find('.actId').remove();
+				}
             	$('body').find('#monthDataTable tr').not('.actName').remove();
             	actList();
 			},
@@ -276,8 +285,7 @@
 
     //请求数据
 	function actList(){
-		$.post("http://10.71.19.166:9097/kejiguan/selectVenueListById",
-			'',
+		$.post("http://10.71.19.166:9097/kejiguan/selectVenueListById",'',
 			function(data,status){
 				//alert("Data: " + data + "\nStatus: " + status);
 				var htm = "";
@@ -290,8 +298,8 @@
 					htm += "<td>"+ obj.titles +"</td>";
 					htm += "<td>"+ obj.createTime +"</td>";
 					htm += "<td><audio style='width:240px' controls src="+ obj.voicePath +" >您的浏览器不支持 audio 标签。</audio></td>";
-					htm += "<td><video controls src="+ obj.videoPath +" ></video></td>";
-					htm += "<td>"+ obj.desc +"</td>";
+					htm += "<td><video style='width:240px' controls src="+ obj.videoPath +" ></video></td>";
+					htm += "<td style='width:300px'>"+ obj.desc +"</td>";
 					htm += "<td><img width='100px' src="+ obj.picPath +" ></td></tr>";
 				}
 				$("#monthDataTable").append(htm);

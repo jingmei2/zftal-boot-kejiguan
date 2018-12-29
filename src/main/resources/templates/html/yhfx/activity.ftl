@@ -17,7 +17,7 @@
 	<!-- 应用系统自定义样式 -->
 
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
-	<link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css"/>
+	<link href="${request.contextPath}/assets/css/datetimepicker.css" rel="stylesheet" type="text/css"/>
 	
 	<!--<link href="${request.contextPath}/assets/css/datetimepicker.css"/>-->
 	<!-- 该页面单独样式 -->
@@ -27,8 +27,8 @@
 <div class="main-content">
 	<div class="sssj-xssj">
 		<div class="sssj-xssj-data">
-			<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="font-size: 16px;margin: 15px 0 0 15px;">详细数据</span>
-			<div class="cz" style="padding:15px;">
+			<div class="cz" style="padding:15px;position: fixed;width: 100%;height: 130px;background: #fff;z-index: 10000;">
+				<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="display:block;font-size: 16px;display: block;line-height: 50px;">详细数据</span>
 				<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增活动</button>
 				<button class="xiugai" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">修改活动</button>
 				<button class="shanchu" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">删除活动</button>
@@ -74,7 +74,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="sssj-xssj-xxsj">
+			<div class="sssj-xssj-xxsj" style="padding-top: 130px;">
 				<table id="monthDataTable" class="table table-bordered table-striped">
 					<tr class="actName">
 					    <th>
@@ -94,7 +94,7 @@
 </div>
 <script src="https://malsup.github.io/jquery.form.js"></script>
 <script type="text/javascript" src="${request.contextPath}/assets/js/yhfx/ssyhgj.js?ver=${versionUtil()}"></script>
-<script type="text/javascript" src="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/assets/js/datetimepicker.js"></script>
 <!--<script type="text/javascript" src="${request.contextPath}/assets/js/datetimepicker.js"></script>-->
 <script>
 	var tip;
@@ -130,12 +130,13 @@
 			//根据id找活动赋值
 			$('.formTitle').text('修改活动');
 			$('.addAct').text('修改活动');
-			$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
+            if($('body').find('.actId').attr('name')!='id'){
+				$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
+			}
 			$.get("${request.contextPath}/kejiguan/selectActivityById",{
 				id:$("input[type=checkbox]:checked").val()
 				},function(res){
 	           if(res.code==1){
-	           	 tip=2;
 	           	 $('.add').show();
 	           	 $('.mask').show();
 	           	 $('input[name="titles"]').val(res.data.titles);
@@ -165,6 +166,9 @@
             	alert(res.status);
             	$('.add').hide();
             	$('.mask').hide();
+            	if($('body').find('.actId').attr('class')=='actId'){
+					$('body').find('.actId').remove();
+				}
             	$('body').find('#monthDataTable tr').not('.actName').remove();
             	actList();
             }
