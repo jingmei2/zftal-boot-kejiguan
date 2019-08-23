@@ -30,7 +30,7 @@
 		<result property="className"  column="className" />
 		<result property="instituteName"  column="instituteName" />
 	</resultMap>
-	
+
 	<select id="getDeviceInfo" parameterType="MobileDeviceModel" resultMap="mobileDeviceMap">
 	    select t.*
 		  from M_DEVICEINFO t
@@ -42,7 +42,7 @@
 	</select>
 
 	<insert id="insert" parameterType="MobileDeviceModel">
-		insert into M_DEVICEINFO 
+		insert into M_DEVICEINFO
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userName != null and userName != ''">userName,</if>
 			<if test="wifiIp != null and wifiIp != ''">wifiIp,</if>
@@ -97,9 +97,9 @@
 		</trim>
 		<!-- <selectKey keyProperty="id" resultType="String" order="BEFORE">select sys_guid() from dual</selectKey> -->
 	</insert>
-	
+
 	<update id="update" parameterType="MobileDeviceModel">
-		update M_DEVICEINFO 
+		update M_DEVICEINFO
 		<set>
 			<if test="userName != null and userName != ''">userName=#{userName,jdbcType=VARCHAR},</if>
 			<if test="wifiIp != null and wifiIp != ''">wifiIp=#{wifiIp,jdbcType=VARCHAR},</if>
@@ -127,12 +127,12 @@
 		</set>
 		where userName = #{userName}
 	</update>
-	
+
 	<!-- 根据账号和手机号查询是否存在该记录 -->
     <select id="checkDeviceInfo" parameterType="com.zfsoft.boot.zhjx.dao.entities.MobileDeviceModel" resultMap="mobileDeviceMap">
     	select t.* from M_DEVICEINFO t where 1=1 and t.userName = #{userName}
     </select>
-    
+
 	<select id="getModelList" resultMap="mobileDeviceMap" parameterType="MobileDeviceModel">
 		select t.*,
 		       t3.classname,
@@ -144,20 +144,20 @@
 		    on t2.classid = t3.classid
 		  left join M_INSTITUTE t4
 		    on t3.instituteid = t4.instituteid
-		    where t.lastlogintime = (select max(tt.lastlogintime) from M_DEVICEINFO tt where t.username=tt.username)  
+		    where t.lastlogintime = (select max(tt.lastlogintime) from M_DEVICEINFO tt where t.username=tt.username)
 		    and t2.yhlx = 'student'
-		    
+
 		    <if test="mzdm != null">
-		    	and t.username = (select t2.yhm from M_USER t2 where t2.mzdm = #{mzdm}) 
+		    	and t.username = (select t2.yhm from M_USER t2 where t2.mzdm = #{mzdm})
 		    </if>
 		    <if test="status == '1'">
-		    	 <![CDATA[ and t.lastlogintime >=  to_date(#{startTime},'yyyy-mm-dd hh24:mi:ss')]]>
+		    	 <![CDATA[ and t.lastlogintime >=  STR_TO_DATE(#{startTime},'yyyy-mm-dd hh24:mi:ss')]]>
 		    </if>
-		    
+
 	</select>
-	
+
 	<insert id="insertPolygon" parameterType="PolygonModel">
-		insert into M_POLYGON_LNGLAT 
+		insert into M_POLYGON_LNGLAT
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="polygonId != null and polygonId != ''">polygonId,</if>
 			<if test="lnglatStr != null and lnglatStr != ''">lnglatStr,</if>
@@ -183,50 +183,50 @@
 			<if test="lddm != null and lddm != ''">#{lddm,jdbcType=VARCHAR},</if>
 		</trim>
 	</insert>
-	
+
 	<select id="getPolygonList" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
 		select t.* from M_POLYGON_LNGLAT t where 1=1
 		<if test="title != null and title != ''">
 		  and t.title like  '%'||#{title,jdbcType=VARCHAR}||'%'
 		</if>
 	</select>
-	
+
 	<select id="getPolygonById" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
-	    select t.* from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId} 
+	    select t.* from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId}
 	</select>
-	
+
 	<update id="updatePolygon">
-	    update M_POLYGON_LNGLAT t set 
+	    update M_POLYGON_LNGLAT t set
 	     t.title=#{title,jdbcType=VARCHAR},
 	     t.description=#{description,jdbcType=VARCHAR},
 	     t.warnLevel=#{warnLevel,jdbcType=VARCHAR},
 	     t.startTime=#{startTime,jdbcType=VARCHAR},
 	     t.endTime=#{endTime,jdbcType=VARCHAR},
 	     t.color=#{color,jdbcType=VARCHAR}
-	    where t.polygonId=#{polygonId,jdbcType=VARCHAR} 
+	    where t.polygonId=#{polygonId,jdbcType=VARCHAR}
 	</update>
-	
+
 	<delete id="deletePolygonById" parameterType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
-	   delete from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId} 
+	   delete from M_POLYGON_LNGLAT t where t.polygonid=#{polygonId}
 	</delete>
-	
+
 	<!-- 切换设备类型ios或者android -->
 	<select id="getMtaDeviceType" resultType="java.lang.String">
 	    select t.DEVICETYPE from M_DEVICETYPE t
 	</select>
-	
+
 	<!-- 修改设备类型 ios或者android -->
 	<update id="updateMtaDeviceType">
-		UPDATE M_DEVICETYPE SET devicetype=  
-		(  
-		  CASE devicetype  
-		    WHEN 'android' THEN 'ios'  
-		    WHEN 'ios' THEN 'android'  
-		    ELSE 'android'  
-		  END  
+		UPDATE M_DEVICETYPE SET devicetype=
+		(
+		  CASE devicetype
+		    WHEN 'android' THEN 'ios'
+		    WHEN 'ios' THEN 'android'
+		    ELSE 'android'
+		  END
 		)
 	</update>
-	
+
 	<!-- 统计运营商信息 -->
 	<select id="getCarrierCountList"  parameterType="map" resultType="com.zfsoft.boot.zhjx.dao.entities.CarrierCountModel">
 	    select case t.carrier
@@ -243,11 +243,11 @@
 		  from m_deviceinfo t
 		 where 1=1
 		  <if test="starDateStr != null and starDateStr != ''">
-		    <![CDATA[ and t.lastlogintime >= to_date(#{starDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>  
+		    <![CDATA[ and t.lastlogintime >= STR_TO_DATE(#{starDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>
 		  </if>
-		  <if test="endDateStr != null and endDateStr != ''">     
-		    <![CDATA[ and t.lastlogintime <= to_date(#{endDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>  
-		  </if>     
+		  <if test="endDateStr != null and endDateStr != ''">
+		    <![CDATA[ and t.lastlogintime <= STR_TO_DATE(#{endDateStr}, 'yyyy-mm-dd hh24:mi:ss')]]>
+		  </if>
 		 group by case t.carrier3
             when '中国联通' then
              '中国联通'
@@ -259,44 +259,44 @@
              '其他'
           end
 	</select>
-	
+
 	<select id="updateByOpenid">
 			update M_DEVICEINFO set userName=#{userName} where openid =#{openid}
 	</select>
-	
+
 	<select id="getWgPolygonList" resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
 		select t.* from m_polygon_lnglat t where iscon = '1' and t.lddm = (select a.lddm from xg_gygl_new_cwxxb a where a.xh = #{username})
 	</select>
-	
+
 	<select id="checkLeave" resultType="java.lang.Integer">
 		select count(1)
 		  	from xg_rcsw_qjgl_qjjg t
 		  	 <![CDATA[
-		 where to_date(t.kssj, 'yyyy-MM-dd HH24:mi:ss') <
-		       to_date(#{time}, 'yyyy-MM-dd HH24:mi:ss')
-		       and  to_date(#{time}, 'yyyy-MM-dd HH24:mi:ss') < to_date(t.jssj, 'yyyy-MM-dd HH24:mi:ss')
-		       ]]>  
+		 where STR_TO_DATE(t.kssj, 'yyyy-MM-dd HH24:mi:ss') <
+		       STR_TO_DATE(#{time}, 'yyyy-MM-dd HH24:mi:ss')
+		       and  STR_TO_DATE(#{time}, 'yyyy-MM-dd HH24:mi:ss') < STR_TO_DATE(t.jssj, 'yyyy-MM-dd HH24:mi:ss')
+		       ]]>
 		       and t.xh = #{username}
 	</select>
-	
+
 	<select id="getPolygons"  resultType="com.zfsoft.boot.zhjx.dao.entities.PolygonModel">
 		select t.*, t.rowid from M_POLYGON_LNGLAT t where t.iscon = '0'
 	</select>
-	
+
 	<select id="getLocationsByUser" resultType="com.zfsoft.boot.zhjx.dao.entities.MobileDeviceModel">
 		select distinct t.locinfo from M_DEVICEINFO t where t.username = #{username} and t.locinfo is not null
 		 <if test="startDate != null and startDate !=''">
-		   <![CDATA[ and t.lastlogintime >= to_date(#{startDate},'yyyy-mm-dd hh24:mi:ss') ]]>
-		 </if>  
+		   <![CDATA[ and t.lastlogintime >= STR_TO_DATE(#{startDate},'yyyy-mm-dd hh24:mi:ss') ]]>
+		 </if>
 		 <if test="endDate != null and endDate !=''">
-		   <![CDATA[ and t.lastlogintime <=  to_date(#{endDate},'yyyy-mm-dd hh24:mi:ss')]]>
-		 </if> 
-		
+		   <![CDATA[ and t.lastlogintime <=  STR_TO_DATE(#{endDate},'yyyy-mm-dd hh24:mi:ss')]]>
+		 </if>
+
 	</select>
-	
+
 	<select id="getNation" resultType="com.zfsoft.boot.zhjx.dao.entities.NationModel">
 		select * from M_USER_NATION t
 	</select>
-	
-	
+
+
 </mapper>

@@ -17,7 +17,7 @@
 	<!-- 应用系统自定义样式 -->
 
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
-	
+
 	<link href="http://dcloud.io/hellomui/css/mui.min.css" />
 	<!--<link href="${request.contextPath}/assets/css/datetimepicker.css"/>-->
 	<!-- 该页面单独样式 -->
@@ -27,7 +27,7 @@
 <div class="main-content">
 	<div class="sssj-xssj">
 		<div class="sssj-xssj-data">
-			
+
 			<div class="cz" style="padding:15px;position: fixed;width: 100%;height: 130px;background: #fff;z-index: 10000;">
 				<span class="glyphicon glyphicon-option-vertical" aria-hidden="true" style="display:block;font-size: 16px;display: block;line-height: 50px;">详细数据</span>
 				<button class="xinzeng" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增图片</button>
@@ -35,7 +35,7 @@
 				<button class="shanchu" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">删除图片</button>
 				<div class="mask" style="display:none;background: #000;width: 100%;height: 100%;position: fixed;z-index: 100;opacity: 0.68;top: 0;left: 0;"></div>
 				<div class="add" style="display:none;width: 400px;position: fixed;top: 10%;left: 50%;box-shadow: 1px 0px 1px 1px #ccc;background: #fff;transform: translateX(-80%);z-index: 100;border-radius: 6px;padding: 20px;">
-				    <form id="form" enctype="multipart/form-data">			    	
+				    <form id="form" enctype="multipart/form-data">
 					    <label class="formTitle" style="font-size: 20px;font-weight: bold;color: #0269f5;display: block;border-bottom: 1px solid #f5f5f5;line-height: 45px;"></label>
 				        <div style="margin-bottom: 20px;">
 				            <label style="width: 100px;font-size: 16px;color: #000;">上传图片</label>
@@ -66,11 +66,11 @@
 					    <th>
 							<input class="allCheck" type="checkbox">
 						</th>
-						<th>创建时间</th>	
-						<th>描述</th>	
+						<th>创建时间</th>
+						<th>描述</th>
 						<th>图片链接</th>
 						<th>背景图片</th>
-						<th>操作</th>	
+						<th>操作</th>
 					</tr>
 				</table>
 			</div>
@@ -85,7 +85,7 @@
 <!--<script type="text/javascript" src="${request.contextPath}/assets/js/datetimepicker.js"></script>-->
 <script>
 	actList();
-	
+
 	//新增
 	$('.xinzeng').click(function(){
 		if($('body').find('.actId').attr('name')=='id'){
@@ -101,7 +101,7 @@
 			$('#showImg').attr('src','').hide();
 		}
 	})
-    
+
 	//修改
 	$('.xiugai').click(function(){
 		var len=$("input[type=checkbox]:checked").length;
@@ -127,7 +127,7 @@
 		$('.add').hide();
 		$('.mask').hide();
 	})
-    
+
     //添加/修改
 	$('.addAct').click(function(){
 //		$('#form').ajaxSubmit({
@@ -145,9 +145,9 @@
 			$('.mask').hide();
 		})
 	})
-	
+
 	function getData(id,func){
-		
+
 		if($('body').find('.actId').attr('name')!='id'){
 			$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
 		}
@@ -162,10 +162,10 @@
            }
 		});
     }
-	
+
 	function submit(func){
 		$('#form').ajaxSubmit({
-			url: 'http://10.71.19.166:9097/kejiguan/saveorupdatePicForNavigation',
+			url: 'http://121.43.179.186:9097/kejiguan/saveorupdatePicForNavigation',
             type: "Post",
             success:function(res){
             	console.log(res)
@@ -179,7 +179,7 @@
             }
 		});
 	}
-	
+
 	//删除
 	$('.shanchu').click(function(){
 		var len=$("input[type=checkbox]:checked").length;
@@ -220,7 +220,7 @@
 		  image.src = event.target.result;//读入文件的base64数据(可直接作为src属性来显示图片)
 	   }
 	}
-	
+
     //请求数据
 	function actList(){
 		$.post("${request.contextPath}/kejiguan/selectNavigationListById",'',
@@ -252,7 +252,7 @@
 
 		});
 	}
-     
+
     $('body').on('click','.changeStatus',function(){
     	$('.add').find('input').val('');
     	var val=$(this).parent().parent().find('input[name="id"]').val();
@@ -270,7 +270,7 @@
     })
 
 
-    
+
 </script>
 </body>
 </html>

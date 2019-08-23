@@ -18,7 +18,7 @@
 
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
 	<link href="${request.contextPath}/assets/css/datetimepicker.css" rel="stylesheet" type="text/css"/>
-	
+
 	<!--<link href="${request.contextPath}/assets/css/datetimepicker.css"/>-->
 	<!-- 该页面单独样式 -->
 
@@ -59,7 +59,7 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;vertical-align: bottom;">活动描述</label>
 				            <textarea style="width: 245px;" name="desc" placeholder="请输入活动描述"></textarea>
 				        </div>
-				        
+
 				        <div style="margin-bottom: 20px;">
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
@@ -156,11 +156,11 @@
 		$('.add').hide();
 		$('.mask').hide();
 	})
-    
+
     //添加/修改
 	$('.addAct').click(function(){
 		$('#form').ajaxSubmit({
-			url: 'http://10.71.19.166:9097/kejiguan/saveorupdatePic',
+			url: 'http://121.43.179.186:9097/kejiguan/saveorupdatePic',
             type: "Post",
             success:function(res){
             	alert(res.status);
@@ -173,8 +173,8 @@
             	actList();
             }
 		});
-		
-	})	
+
+	})
 
 	//删除
 	$('.shanchu').click(function(){

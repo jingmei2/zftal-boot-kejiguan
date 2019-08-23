@@ -18,7 +18,7 @@
 				</div>
 				<button type="button" class="submit">提交</button>
 			</form>
-			
+
 		</div>
 		<script src="../js/jquery.min.js"></script>
 		<script>
@@ -28,12 +28,12 @@
 			        return false;
 			    }
 				var formData=new FormData(document.getElementById('upload'));
-				
+
 				console.log(formData.get('video'))
 				console.log(formData.get('voice'))
 				console.log(formData.get('faceLegalFile'))
 				$.ajax({
-					url:"http://10.71.19.166:9097/kejiguan/saveorupdatePicForVenue",
+					url:"http://121.43.179.186:9097/kejiguan/saveorupdatePicForVenue",
 					type:"POST",
 					data:formData,
 					dataType: "JSON",

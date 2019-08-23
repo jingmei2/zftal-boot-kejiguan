@@ -26,13 +26,13 @@
 			<div class="choose_type">
 				<div class="mui-input-row mui-radio mui-left">
 					<label>个人预约</label>
-					<input name="type" type="radio" id="person" checked value='1'> 
+					<input name="type" type="radio" id="person" checked value='1'>
 				</div>
 				<div class="mui-input-row mui-radio mui-left">
 					<label>单位预约</label>
 					<input name="type" type="radio" id="company" value='2'>
 				</div>
-				
+
 			</div>
 		</div>
 
@@ -48,7 +48,7 @@
 							<a href="#notifications" class="mui-navigate-right">预约日期</a>
 							<input id="valuedemo2" type="hidden" name="bookDate" value=""/>
 						</span>
-						
+
 						<!--<div id='resultdemo2' class="ui-alert"></div>-->
 						<span class="choose">
 							<button id='buttondemo2' type="button" data-options='{"type":"date","beginYear":2017,"endYear":2019}' class=" btn mui-btn mui-btn-block choose">请选择</button>
@@ -80,7 +80,7 @@
 							<a href="#notifications" class="mui-navigate-right">开始时间</a>
 							<input id="valuedemo5" type="hidden" name="starTime" />
 						</span>
-						
+
 						<!--<div id='resultdemo5' class="ui-alert"></div>-->
 						<span class="choose">
 							<button id='buttondemo5' type="button" data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
@@ -90,20 +90,20 @@
 					<li class="mui-table-view-cell bookValue" id='demo55'>
 						<span class="choose-title">
 							<a href="#notifications" class="mui-navigate-right">结束时间</a>
-							<input id="valuedemo55" type="hidden" name="endTime" />	
+							<input id="valuedemo55" type="hidden" name="endTime" />
 						</span>
-						
+
 						<!--<div id='resultdemo55' class="ui-alert"></div>-->
 						<span class="choose">
 							<button id='buttondemo55' type="button" data-options='{"type":"time"}' class="btn mui-btn mui-btn-block choose">请选择</button>
 						</span>
 					</li>
-	
-	
+
+
 				</ul>
 			</div>
-		
-		
+
+
 			<div class="person">
 				<div class="book-time">个人信息</div>
 				<div class="mui-input-row">
@@ -135,7 +135,7 @@
 					<input type="text" class="mui-input-clear inputStyle" name="phone" placeholder="请输入联系电话">
 				</div>
 			</div>
-			
+
 		</form>
 		<div style="height:80px;"></div>
 		<div class="submit"><button id="button" type="button" class="content">提交</button></div>
@@ -190,7 +190,7 @@
 							 * rs.h 时，用法同年
 							 * rs.i 分（minutes 的第二个字母），用法同年
 							 */
-							
+
 							$('#button'+btn.id)[0].innerText = '' + rs.text;
 							$('#value'+btn.id)[0].value = '' + rs.text;
 
@@ -213,7 +213,7 @@
 			});
 		})(mui);
 //		var url = "http://127.0.0.1";
-//		var url = "http://10.71.19.166:9097";
+//		var url = "http://121.43.179.186:9097";
 		$("#button").click(function(){
 			var bookDate = $('input[name="bookDate"]').val();//预约时间
 			var bookTime = $('input[name="bookTime"]:checked').val();//时间段
@@ -227,22 +227,22 @@
 			var phone = $('input[name="phone"]').val();//手机号
 			var data;
 			var value;
-			
+
 			var activityId=GetUrlParam('id');
 			var type = $('input[name="type"]:checked').val();
 			var id=GetUrlParam('id');
 			//判断元素值是否为空
 			console.log(id);
-			
+
 			if(type==1){
 				if(hasCheck==false){
 					check('.company input');
-				}				
+				}
 			}else{
 				if(hasCheck==false){
 					check('.person input');
 				}
-			}	
+			}
 
             if(hasCheck==true){
             	var classname=type==1?'.company input':'.person input';
@@ -265,7 +265,7 @@
 			    });
 	        }
 	    });
-	    
+
 	    //表单验证是否为空
 		function check(classname){
             //循环所有的表单元素
@@ -279,7 +279,7 @@
               if(i>=$('form').find('input').not(classname).length-1){
               	var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 				if($('input[name="type"]:checked').val()==2&&!myreg.test($('form').find('input').not(classname).eq(i).val()))
-				  { 
+				  {
 				  　　alert("请输入正确的手机号格式");
 				}else{
 					hasCheck=true;
@@ -287,7 +287,7 @@
               }
             }
 		}
-		
+
 		</script>
 	</body>
 

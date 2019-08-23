@@ -17,8 +17,8 @@
 	<!-- 应用系统自定义样式 -->
 
 	<link href="${request.contextPath}/assets/css/zftal-ui-app.css?ver=${versionUtil()}" rel="stylesheet" type="text/css" />
-	
-	
+
+
 	<!--<link href="${request.contextPath}/assets/css/datetimepicker.css"/>-->
 	<!-- 该页面单独样式 -->
 
@@ -44,13 +44,13 @@
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">场馆标题</label>
 				            <input name="titles" type="text" placeholder="请输入活动标题" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">
 				        </div>
-						
+
 						<div style="margin-bottom: 20px;">
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;vertical-align: bottom;">场馆详情</label>
 				            <textarea style="width: 245px;" name="desc" placeholder="请输入详情介绍"></textarea>
 				            <!--<input name="desc" type="text" placeholder="请输入活动描述" style="border: 1px solid #cccccc;border-radius: 4px;line-height: 40px;width: 245px;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);padding-left: 15px;">-->
 				        </div>
-				        
+
 				        <div style="margin-bottom: 20px;">
 				            <label style="width: 100px;font-size: 16px;color: #000;display: inline-block;line-height: 40px;">上传图片</label>
 				            <img id="showImg" src="" style="display:none;width: 160px;height: 120px;background: #000;vertical-align: bottom;">
@@ -81,7 +81,7 @@
 					    </form>
 					    <button class="addAct" type="button" style="border:0;background:#0269f5;color:#fff;padding:10px 15px;border-radius:6px;font-size:16px;margin-right:10px;">新增场馆</button>
 					    <button class="back" type="button" style="border:1px solid #ccc;background:#fff;color:#000;padding:10px 30px;border-radius:6px;font-size:16px;margin-right:10px;">取消</button>
-					
+
 				</div>
 			</div>
 			<div class="sssj-xssj-xxsj" style="padding-top: 130px;">
@@ -142,7 +142,7 @@
 			if($('body').find('.actId').attr('name')!='id'){
 				$('.add form').append('<input class="actId" type="hidden" id="activityId" name="id"/>');
 			}
-			$.get("http://10.71.19.166:9097/kejiguan/selectVenueById",{
+			$.get("http://121.43.179.186:9097/kejiguan/selectVenueById",{
 				id:$("input[type=checkbox]:checked").val()
 			},function(res){
 	           if(res.code==1){
@@ -166,13 +166,13 @@
 		$('.add').hide();
 		$('.mask').hide();
 	})
-    
+
     //添加/修改
 	$('.addAct').click(function(){
 //		$('#form').ajaxSubmit({
 //			url: 'http://portal.zfsoft.com:9098/kejiguan/saveorupdatePicForVenue',
 //          type: "Post",
-//          timeout:60000,  
+//          timeout:60000,
 //          success:function(res){
 //          	alert(res.status);
 //          	$('.add').hide();
@@ -199,7 +199,7 @@
         	formData.delete('video');
         }
 		$.ajax({
-			url:"http://10.71.19.166:9097/kejiguan/saveorupdatePicForVenue",
+			url:"http://121.43.179.186:9097/kejiguan/saveorupdatePicForVenue",
 			type:"POST",
 			data:formData,
 			dataType: "JSON",
@@ -220,8 +220,8 @@
 				alert(json.stringify(data))
 			}
 		})
-		
-	})	
+
+	})
 
 	//删除
 	$('.shanchu').click(function(){
@@ -231,7 +231,7 @@
 		}else if(len==0){
 			alert('请勾选活动！');
 		}else{
-			$.post("http://10.71.19.166:9097/kejiguan/deleteVenueById",{
+			$.post("http://121.43.179.186:9097/kejiguan/deleteVenueById",{
 				id:$("input[type=checkbox]:checked").val()
 			},function(res){
 	           if(res.code==1){
@@ -263,7 +263,7 @@
 		  image.src = event.target.result;//读入文件的base64数据(可直接作为src属性来显示图片)
 	   }
 	}
-	
+
 	function changeAudio(){
 		var file = document.getElementById('file1').files[0];
         var reader = new FileReader();
@@ -273,7 +273,7 @@
         };
 
 	}
-	
+
 	function changeVideo(){
 		var file = document.getElementById('file2').files[0];
         var reader = new FileReader();
@@ -285,7 +285,7 @@
 
     //请求数据
 	function actList(){
-		$.post("http://10.71.19.166:9097/kejiguan/selectVenueListById",'',
+		$.post("http://121.43.179.186:9097/kejiguan/selectVenueListById",'',
 			function(data,status){
 				//alert("Data: " + data + "\nStatus: " + status);
 				var htm = "";
